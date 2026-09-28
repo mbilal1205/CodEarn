@@ -30,22 +30,21 @@ async function refreshAccessToken(refreshToken: string) {
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  let accessToken = request.cookies.get('accessToken')?.value;
+  
+  // Safely get cookies values
+  const accessToken = request.cookies.get('accessToken')?.value;
   const refreshToken = request.cookies.get('refreshToken')?.value;
 
   let payload: any = null;
-  let response = NextResponse.next();
 
   if (accessToken) {
     payload = await verifyToken(accessToken, SECRET);
   }
 
-  // Token refresh logic agar access token expired hai
+  // Strict Condition: Sirf tab refresh karein jab accessToken expired ho AUR physically refreshToken exist karta ho
   if (!payload && refreshToken) {
     const newToken = await refreshAccessToken(refreshToken);
     if (newToken) {
-      // Yahan hum naya response banayenge jo current URL par hi redirect karega
-      // Taake naya token browser mein set ho jaye aur page dobara reload ho
       const refreshResponse = NextResponse.redirect(request.url); 
       refreshResponse.cookies.set('accessToken', newToken, {
         httpOnly: true,
@@ -54,14 +53,14 @@ export async function middleware(request: NextRequest) {
         path: '/',
         maxAge: 3600,
       });
-      return refreshResponse; // Foran return karein taake loop break ho
+      return refreshResponse;
     }
   }
 
-  // 1. Enroll route protection (Special Case)
+  // 1. Enroll route protection
   if (pathname.startsWith('/enroll/')) {
     if (!payload) {
-      const courseSlug = pathname.split('/')[2];
+      const courseSlug = pathname.split('/')[2] || '';
       const url = new URL('/register', request.url);
       url.searchParams.set('redirect', `/enroll/${courseSlug}`);
       url.searchParams.set('course', courseSlug);
@@ -75,15 +74,15 @@ export async function middleware(request: NextRequest) {
       const dashboard = payload.role === 'admin' ? '/admin/dashboard' : '/student/dashboard';
       return NextResponse.redirect(new URL(dashboard, request.url));
     }
-    return response;
+    return NextResponse.next();
   }
 
   // 3. Protected Routes (Admin/Student)
-  if (!payload) {
-    if (pathname.startsWith('/admin') || pathname.startsWith('/student')) {
+  if (pathname.startsWith('/admin') || pathname.startsWith('/student')) {
+    if (!payload) {
       return NextResponse.redirect(new URL('/login', request.url));
     }
-  } else {
+    
     const role = payload.role;
     if (pathname.startsWith('/admin') && role !== 'admin') {
       return NextResponse.redirect(new URL('/student/dashboard?error=unauthorized', request.url));
@@ -93,9 +92,16 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  return response;
+  return NextResponse.next();
 }
 
+// Matcher ko robust rakhein taake assets block na hon
 export const config = {
-  matcher: ['/admin/:path*', '/student/:path*', '/login', '/register', '/enroll/:path*'],
+  matcher: [
+    '/admin/:path*', 
+    '/student/:path*', 
+    '/login', 
+    '/register', 
+    '/enroll/:path*'
+  ],
 };

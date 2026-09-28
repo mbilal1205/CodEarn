@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* ------------------------------------------------------------------ */
-  /* Performance                                                         */
+  /* Performance & Optimization                                         */
   /* ------------------------------------------------------------------ */
   reactStrictMode: true,
   poweredByHeader: false,
@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
   },
 
   compiler: {
-    // Production mein console logs hatao (TBT reduce)
+    // Production build mein automatic console logs remove karein
     removeConsole:
       process.env.NODE_ENV === "production"
         ? { exclude: ["error", "warn"] }
@@ -21,14 +21,14 @@ const nextConfig: NextConfig = {
   },
 
   /* ------------------------------------------------------------------ */
-  /* Images                                                              */
+  /* High-Performance Images Optimization                               */
   /* ------------------------------------------------------------------ */
   images: {
-    qualities: [70, 75, 80, 85, 90, 95],
+    qualities: [75, 90],
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
+    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 Days Cache
     remotePatterns: [
       {
         protocol: "https",
@@ -44,31 +44,10 @@ const nextConfig: NextConfig = {
   },
 
   /* ------------------------------------------------------------------ */
-  /* Redirects (www -> non-www + old domain)                             */
+  /* Clean Redirects (Loop-Free Application Routes)                     */
   /* ------------------------------------------------------------------ */
   async redirects() {
     return [
-      // www -> non-www (primary domain)
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.codearntech.com" }],
-        destination: "https://codearntech.com/:path*",
-        permanent: true,
-      },
-      // Old domain redirect — replace OLD_DOMAIN.com with your previous domain
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "OLD_DOMAIN.com" }],
-        destination: "https://codearntech.com/:path*",
-        permanent: true,
-      },
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.OLD_DOMAIN.com" }],
-        destination: "https://codearntech.com/:path*",
-        permanent: true,
-      },
-      // Legacy route fixes
       {
         source: "/blog",
         destination: "/blogs",
@@ -83,11 +62,11 @@ const nextConfig: NextConfig = {
   },
 
   /* ------------------------------------------------------------------ */
-  /* Headers (Security + PWA caching)                                    */
+  /* Professional Enterprise Security & PWA Caching Headers             */
   /* ------------------------------------------------------------------ */
   async headers() {
     return [
-      // ---------- Manifest caching ----------
+      // Webmanifest File Cache Control
       {
         source: "/manifest.webmanifest",
         headers: [
@@ -98,7 +77,7 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      // ---------- Service Worker ----------
+      // Service Worker
       {
         source: "/sw.js",
         headers: [
@@ -109,7 +88,7 @@ const nextConfig: NextConfig = {
           { key: "Service-Worker-Allowed", value: "/" },
         ],
       },
-      // ---------- Icons (immutable cache) ----------
+      // Application Asset Icons
       {
         source: "/icon-:size.png",
         headers: [
@@ -128,7 +107,7 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      // ---------- OG images ----------
+      // OpenGraph Media Content Optimization
       {
         source: "/:path*.webp",
         headers: [
@@ -138,7 +117,7 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      // ---------- Security headers (all routes) ----------
+      // Bulletproof Production Security Matrix
       {
         source: "/:path*",
         headers: [
@@ -164,7 +143,7 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      // ---------- API routes: no cache ----------
+      // Dynamic Server API Routes
       {
         source: "/api/:path*",
         headers: [
