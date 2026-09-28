@@ -14,10 +14,10 @@ export default function ShareModal({ data, onClose }: ShareModalProps) {
   const [copied, setCopied] = useState(false);
 
   const shareText = encodeURIComponent(data.message);
-  const shareUrl = encodeURIComponent("https://www.codearntech.cloud");
+  const shareUrl = encodeURIComponent("https://www.codearntech.com");
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(data.message + " https://www.codearntech.cloud");
+    navigator.clipboard.writeText(data.message + " https://www.codearntech.com");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };

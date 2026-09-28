@@ -6,8 +6,8 @@ export const organizationSchema = {
   "@type": "Organization",
   name: "CodEarn",
   alternateName: "Code Earn Tech",
-  url: "https://www.codearntech.cloud",
-  logo: "https://www.codearntech.cloud/logo.png",
+  url: "https://www.codearntech.com",
+  logo: "https://www.codearntech.com/logo.png",
   description: "Leading software development company specializing in SaaS products, custom web applications, and practical programming training with guaranteed internships.",
   foundingDate: "2021",
   founders: [
@@ -79,12 +79,12 @@ export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "CodEarn",
-  url: "https://www.codearntech.cloud",
+  url: "https://www.codearntech.com",
   potentialAction: {
     "@type": "SearchAction",
     target: {
       "@type": "EntryPoint",
-      urlTemplate: "https://www.codearntech.cloud/blogs?q={search_term_string}",
+      urlTemplate: "https://www.codearntech.com/blogs?q={search_term_string}",
     },
     "query-input": "required name=search_term_string",
   },
@@ -103,9 +103,9 @@ export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "Organization"],
   name: "CodEarn",
-  image: "https://www.codearntech.cloud/og-image.jpg",
-  "@id": "https://www.codearntech.cloud",
-  url: "https://www.codearntech.cloud",
+  image: "https://www.codearntech.com/og-image.jpg",
+  "@id": "https://www.codearntech.com",
+  url: "https://www.codearntech.com",
   telephone: "+92-321-9515138",
   priceRange: "$$",
   address: {

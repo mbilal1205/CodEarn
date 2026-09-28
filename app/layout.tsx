@@ -8,53 +8,88 @@ import { QueryProvider } from "@/providers/query-provider";
 import { Toaster } from "sonner";
 import LayoutWrapper from "@/components/layout/layout-wrapper";
 import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_DESCRIPTION,
+  SITE_LOGO,
+  SITE_OG_IMAGE,
+  SOCIAL_LINKS,
   organizationSchema,
   websiteSchema,
-  localBusinessSchema,
-} from "@/lib/seo-schemas";
+} from "@/lib/seo/site";
 import SecurityGuard from "@/components/SecurityGuard";
 import ChatWidget from "@/components/codearn-ai/chat-widget";
+import { ServiceWorkerRegister } from "@/components/ServiceWorkerRegister";
 
-// Font Optimization
+/* ------------------------------------------------------------------ */
+/* Font Optimization                                                    */
+/* ------------------------------------------------------------------ */
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
 });
 
+/* ------------------------------------------------------------------ */
+/* Viewport                                                             */
+/* ------------------------------------------------------------------ */
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
+  userScalable: true,
+  colorScheme: "light dark",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
     { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
   ],
 };
 
+/* ------------------------------------------------------------------ */
+/* Metadata                                                             */
+/* ------------------------------------------------------------------ */
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.codearntech.cloud"),
+  metadataBase: new URL(SITE_URL),
+
   title: {
-    default: "CodEarn | SaaS Development & Software Solutions in Pakistan",
-    template: "%s | CodEarn",
+    default:
+      "CodEarn Tech — SaaS Development, AI Solutions & IT Training",
+    template: "%s | CodEarn Tech",
   },
-  description:
-    "Leading software company in Samundri, Pakistan. We build scalable SaaS products, custom web applications, and provide practical training with guaranteed internships. 4+ years experience, 3-month project support included.",
+
+  description: SITE_DESCRIPTION,
+
+  applicationName: SITE_NAME,
+  generator: "Next.js",
+
   keywords: [
-    "SaaS development Pakistan",
-    "software company Samundri",
-    "web application development",
-    "custom software solutions",
-    "programming training Pakistan",
-    "internship guaranteed courses",
+    "CodEarn Tech",
     "CodEarn",
-    "backend development",
-    "data modeling courses",
-    "software training institute",
+    "SaaS development Dubai",
+    "software company Dubai",
+    "AI solutions company",
+    "web development UAE",
+    "custom software development",
+    "IT training online",
+    "full stack development course",
+    "backend development training",
+    "software engineering Dubai",
+    "cloud solutions worldwide",
+    "hire software developers",
+    "Next.js development company",
+    "React development Dubai",
   ],
-  authors: [{ name: "CodEarn", url: "https://www.codearntech.cloud" }],
-  creator: "CodEarn",
-  publisher: "CodEarn",
+
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  category: "technology",
+  classification: "Software Development, AI Solutions, IT Training",
+
+  alternates: {
+    canonical: "/",
+  },
+
   robots: {
     index: true,
     follow: true,
@@ -68,51 +103,77 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  alternates: {
-    canonical: "/",
-  },
+
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://www.codearntech.cloud",
-    siteName: "CodEarn",
-    title: "CodEarn | SaaS Development & Software Solutions",
-    description:
-      "Transform your ideas into scalable SaaS products. 4+ years experience, practical training with internships, and 3-month project support.",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: "CodEarn Tech — SaaS Development, AI & IT Training",
+    description: SITE_DESCRIPTION,
     images: [
       {
-        url: "/og-image.webp",
+        url: SITE_OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "CodEarn - Software Development Company",
+        alt: "CodEarn Tech — Software, AI & IT Training Company",
         type: "image/webp",
       },
     ],
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "CodEarn | SaaS Development & Software Solutions",
-    description:
-      "Transform your ideas into scalable SaaS products. Practical training with guaranteed internships.",
-    images: ["/og-image.webp"],
+    title: "CodEarn Tech — SaaS Development, AI & IT Training",
+    description: SITE_DESCRIPTION,
+    images: [SITE_OG_IMAGE],
     creator: "@codearntech",
+    site: "@codearntech",
   },
+
   verification: {
     google: "_GZUOBwhCQ8T5t1ME4Xg46wwwo3o_WznYgcmBKM2PbY",
   },
+
   icons: {
-    icon: [{ url: "/logo.webp", type: "image/webp" }],
-    shortcut: ["/logo.webp"],
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
     apple: [
-      { url: "/logo.webp", sizes: "180x180", type: "image/webp" },
+      {
+        url: "/icon-192x192.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+    other: [
+      {
+        rel: "mask-icon",
+        url: "/logo.webp",
+      },
     ],
   },
-  manifest: "/manifest.json",
-  archives: ["https://www.codearntech.cloud/blogs"],
-  category: "technology",
-  classification: "Software Development, Education, Technology",
+
+  manifest: "/manifest.webmanifest",
+
+  archives: [`${SITE_URL}/blogs`],
+
+  other: {
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "black-translucent",
+    "apple-mobile-web-app-title": SITE_NAME,
+    "mobile-web-app-capable": "yes",
+    "msapplication-TileColor": "#0f172a",
+    "msapplication-config": "/browserconfig.xml",
+  },
 };
 
+/* ------------------------------------------------------------------ */
+/* Root Layout                                                          */
+/* ------------------------------------------------------------------ */
 export default function RootLayout({
   children,
 }: {
@@ -121,18 +182,24 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* ---------------- Structured Data (Site-wide) ---------------- */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify([
-              organizationSchema,
-              websiteSchema,
-              localBusinessSchema,
+              organizationSchema(),
+              websiteSchema(),
             ]),
           }}
         />
 
-        {/* SNAPCHAT PIXEL - NEXT.JS OPTIMIZED */}
+        {/* ---------------- Preconnect for performance ---------------- */}
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://sc-static.net" />
+
+        {/* ---------------- Snapchat Pixel ---------------- */}
         <Script id="snapchat-pixel" strategy="afterInteractive">
           {`
             (function(e,t,n){if(e.snaptr)return;var a=e.snaptr=function()
@@ -150,6 +217,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
+
       <body
         className={`${inter.variable} font-sans antialiased`}
         suppressHydrationWarning
@@ -165,11 +233,11 @@ export default function RootLayout({
               <SecurityGuard />
               <LayoutWrapper>{children}</LayoutWrapper>
 
-              {/* ============================================================
-                  CodEarn AI — Floating Chat Widget
-                  Available on every page (public + authenticated)
-              ============================================================ */}
+              {/* CodEarn AI — Floating Chat Widget */}
               <ChatWidget />
+
+              {/* PWA Service Worker registration (production only) */}
+              <ServiceWorkerRegister />
 
               <Toaster position="top-center" richColors closeButton />
             </QueryProvider>

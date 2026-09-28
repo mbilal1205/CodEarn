@@ -1,8 +1,8 @@
 // lib/codearn-ai/knowledge/contact.ts
 
 export const contact = {
-  email: "hello@codearntech.cloud",
-  website: "https://www.codearntech.cloud",
+  email: "hello@codearntech.com",
+  website: "https://www.codearntech.com",
   location: "Pakistan — building globally",
 
   responseTime: "Usually within 24 hours on business days",

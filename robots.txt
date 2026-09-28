@@ -1,9 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://www.codearntech.cloud/sitemap.xml
-
-# Disallow admin/dashboard routes
-Disallow: /dashboard/
-Disallow: /admin/
-Disallow: /api/

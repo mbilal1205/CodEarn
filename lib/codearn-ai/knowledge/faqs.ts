@@ -29,7 +29,7 @@ export const faqs = [
   {
     question: "How can I contact CodEarn?",
     answer:
-      "Email hello@codearntech.cloud or use the contact page at codearntech.cloud/contact.",
+      "Email hello@codearntech.com or use the contact page at codearntech.com/contact.",
   },
   {
     question: "Where is CodEarn based?",

@@ -1,77 +1,61 @@
 import EnrollPage from "@/components/sections/enroll/enrollpage";
+import PageLoader from "@/components/ui/page-loader";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_OG_IMAGE,
+  buildBreadcrumbs,
+  organizationSchema,
+} from "@/lib/seo/site";
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import PageLoader from "@/components/ui/page-loader"
-// ✅ ENROLL PAGE SEO - High Conversion for Students
+
 export const metadata: Metadata = {
-  title: "Enroll Now | Programming Courses with Internship Guarantee",
-  description: "Enroll in CodEarn's programming courses. Learn Full Stack Development, Backend & Data Modeling. Guaranteed internship + job placement support. Limited seats available!",
+  title: "Enroll Now | IT Training with Internship | CodEarn Tech",
+  description:
+    "Enroll in CodEarn Tech's practical IT training programs. Learn Full Stack Development, Backend Engineering, and Data Modeling with real projects and internship support.",
   keywords: [
-    "enroll programming course",
-    "join coding bootcamp",
-    "programming course registration",
-    "software training enrollment",
-    "web development course apply",
-    "coding course admission",
-    "programming internship program",
-    "learn coding Pakistan",
-    "software course enrollment",
-    "tech training registration"
+    "enroll IT course",
+    "online programming bootcamp",
+    "full stack developer training",
+    "backend development course",
+    "software internship program",
+    "learn coding online",
+    "IT training enrollment",
+    "online tech courses",
   ],
+  alternates: { canonical: "/enroll" },
   openGraph: {
-    title: "Enroll Now | Start Your Coding Journey with Internship",
-    description: "Limited seats available! Join our practical programming courses with guaranteed internship. Transform your career today.",
-    url: "https://www.codearntech.cloud/enroll",
     type: "website",
+    url: `${SITE_URL}/enroll`,
+    title: "Enroll Now | CodEarn Tech Training",
+    description:
+      "Start your tech career with practical training and internship support.",
+    images: [{ url: SITE_OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME }],
   },
-  alternates: {
-    canonical: "https://www.codearntech.cloud/enroll",
-  },
-  robots: {
-    index: true,
-    follow: true,
+  twitter: {
+    card: "summary_large_image",
+    title: "Enroll Now | CodEarn Tech Training",
+    description: "Practical IT training with internship support.",
+    images: [SITE_OG_IMAGE],
   },
 };
 
 export default function Enroll() {
   return (
-    <>
-      {/* ✅ Breadcrumbs */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: "https://www.codearntech.cloud",
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Training",
-                item: "https://www.codearntech.cloud/training",
-              },
-              {
-                "@type": "ListItem",
-                position: 3,
-                name: "Enroll",
-                item: "https://www.codearntech.cloud/enroll",
-              },
-            ],
-          }),
-        }}
+    <div className="bg-background text-foreground">
+      <JsonLd data={organizationSchema()} />
+      <JsonLd
+        data={buildBreadcrumbs([
+          { name: "Home", path: "/" },
+          { name: "Training", path: "/training" },
+          { name: "Enroll", path: "/enroll" },
+        ])}
       />
-      
-      
-       <Suspense fallback={<PageLoader message="Setting up your workspace..." />}>
+      <Suspense fallback={<PageLoader message="Setting up your workspace..." />}>
         <EnrollPage />
-          </Suspense>
-      
-    </>
+      </Suspense>
+    </div>
   );
 }

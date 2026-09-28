@@ -51,7 +51,7 @@ const projects: Project[] = [
       "The flagship CodEarn website and product ecosystem — the digital home of the company.",
     tech: ["Next.js", "Tailwind", "MongoDB"],
     status: "Live",
-    link: "https://www.codearntech.cloud",
+    link: "https://www.codearntech.com",
   },
   {
     name: "Client SaaS Dashboard",
@@ -254,7 +254,7 @@ export default function Shipped() {
                     size="lg"
                     className="group h-12 rounded-full bg-primary px-7 text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30"
                   >
-                    <Link href="https://www.codearntech.cloud/case-studies">
+                    <Link href="https://www.codearntech.com/case-studies">
                       Read Case Study
                       <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </Link>

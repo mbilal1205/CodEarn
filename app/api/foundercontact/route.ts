@@ -75,7 +75,7 @@ export async function POST(req: Request) {
         </div>
 
         <center style="margin-top: 35px;">
-          <a href="https://www.codearntech.cloud" style="display: inline-block; background-color: #6366f1; color: #ffffff; padding: 15px 35px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);">Visit CodEarn Portal</a>
+          <a href="https://www.codearntech.com" style="display: inline-block; background-color: #6366f1; color: #ffffff; padding: 15px 35px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);">Visit CodEarn Portal</a>
         </center>
       </div>
 

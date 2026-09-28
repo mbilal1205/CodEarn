@@ -62,10 +62,10 @@ const featured: Profile[] = [
   },
   {
     name: "Website",
-    handle: "codearntech.cloud",
+    handle: "codearntech.com",
     purpose: "Complete professional identity",
     icon: Globe,
-    link: "https://www.codearntech.cloud",
+    link: "https://www.codearntech.com",
   },
 ];
 
@@ -320,7 +320,7 @@ export default function FindOnline() {
                   size="lg"
                   className="group h-12 rounded-full bg-primary px-7 text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30"
                 >
-                  <Link href="https://www.codearntech.cloud/contact">
+                  <Link href="https://www.codearntech.com/contact">
                     Start a Conversation
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>

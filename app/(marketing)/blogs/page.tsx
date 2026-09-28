@@ -1,84 +1,71 @@
 import BlogPage from "@/components/sections/blogs/blogmain";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_LOGO,
+  SITE_OG_IMAGE,
+  buildBreadcrumbs,
+  organizationSchema,
+} from "@/lib/seo/site";
 import type { Metadata } from "next";
 
-// ✅ BLOGS PAGE SEO
 export const metadata: Metadata = {
-  title: "Blog | Software Development Insights & Tech Tips",
-  description: "Read expert articles on SaaS development, web technologies, programming tips, and industry insights. Learn from 4+ years of software development experience.",
+  title: "Blog | Software Development, AI & Tech Insights",
+  description:
+    "Expert articles on SaaS development, web engineering, AI, cloud, and modern software practices from the CodEarn Tech team.",
   keywords: [
     "software development blog",
-    "programming tips",
-    "SaaS development guide",
-    "web development tutorials",
-    "tech blog Pakistan",
-    "coding best practices",
-    "software engineering insights",
-    "backend development tips",
-    "programming career advice",
-    "technology trends 2024"
+    "SaaS development articles",
+    "AI tutorials",
+    "web development insights",
+    "programming best practices",
+    "tech blog Dubai",
+    "engineering blog",
+    "startup technology articles",
   ],
+  alternates: { canonical: "/blogs" },
   openGraph: {
-    title: "CodEarn Blog | Software Development Insights",
-    description: "Expert insights on SaaS development, programming, and technology trends. Learn from industry professionals.",
-    url: "https://www.codearntech.cloud/blogs",
     type: "website",
+    url: `${SITE_URL}/blogs`,
+    title: "CodEarn Tech Blog | Software, AI & Engineering",
+    description:
+      "Deep dives into SaaS, web engineering, AI, and modern software development from CodEarn Tech.",
+    images: [{ url: SITE_OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME }],
   },
-  alternates: {
-    canonical: "https://www.codearntech.cloud/blogs",
+  twitter: {
+    card: "summary_large_image",
+    title: "CodEarn Tech Blog",
+    description: "Software, AI & engineering insights.",
+    images: [SITE_OG_IMAGE],
   },
 };
 
-// ✅ Blog Schema
 const blogSchema = {
   "@context": "https://schema.org",
   "@type": "Blog",
-  name: "CodEarn Blog",
-  description: "Software development insights, programming tips, and technology articles",
-  url: "https://www.codearntech.cloud/blogs",
+  name: "CodEarn Tech Blog",
+  description:
+    "Software development insights, AI, SaaS, and engineering articles",
+  url: `${SITE_URL}/blogs`,
   publisher: {
     "@type": "Organization",
-    name: "CodEarn",
-    logo: {
-      "@type": "ImageObject",
-      url: "https://www.codearntech.cloud/logo.png",
-    },
+    name: SITE_NAME,
+    logo: { "@type": "ImageObject", url: SITE_LOGO },
   },
 };
 
 export default function Blogs() {
   return (
-    <div>
-      {/* ✅ Blog Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+    <div className="bg-background text-foreground">
+      <JsonLd data={organizationSchema()} />
+      <JsonLd data={blogSchema} />
+      <JsonLd
+        data={buildBreadcrumbs([
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blogs" },
+        ])}
       />
-      
-      {/* ✅ Breadcrumbs */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: "https://www.codearntech.cloud",
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Blog",
-                item: "https://www.codearntech.cloud/blogs",
-              },
-            ],
-          }),
-        }}
-      />
-      
       <BlogPage />
     </div>
   );

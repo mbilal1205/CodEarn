@@ -1,65 +1,40 @@
-
+import PrivacyPolicyContent from "@/components/sections/privacyPolicey/PrivacyPolicy";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { SITE_URL, buildBreadcrumbs } from "@/lib/seo/site";
 import type { Metadata } from "next";
-import PrivacyPolicyContent from '@/components/sections/privacyPolicey/PrivacyPolicy'; 
-// Note: Component import galat lag raha hai - PrivacyPolicy mein PricingSection?
-// Aapko sahi component import karna hoga
-// import { PrivacyPolicySection } from "@/components/sections/privacy/PrivacyPolicy";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | How We Protect Your Data | CodEarn",
-  description: "Read CodEarn's Privacy Policy to understand how we collect, use, and protect your personal information. Your data security is our priority.",
+  title: "Privacy Policy | CodEarn Tech",
+  description:
+    "Read CodEarn Tech's Privacy Policy to understand how we collect, use, and protect your personal information across our website and services.",
   keywords: [
     "privacy policy",
     "data protection",
-    "user privacy",
-    "CodEarn privacy",
-    "personal data security",
-    "GDPR compliance",
+    "CodEarn Tech privacy",
+    "GDPR",
+    "user data security",
     "privacy practices",
-    "data collection policy",
-    "user data protection",
-    "software company privacy"
   ],
-  robots: {
-    index: true,
-    follow: true,
-  },
-  alternates: {
-    canonical: "https://www.codearntech.cloud/privacy-policy",
+  alternates: { canonical: "/privacy-policy" },
+  robots: { index: true, follow: true },
+  openGraph: {
+    type: "website",
+    url: `${SITE_URL}/privacy-policy`,
+    title: "Privacy Policy | CodEarn Tech",
+    description: "How we protect your personal data.",
   },
 };
 
 export default function PrivacyPolicy() {
   return (
-    <>
-      {/* ✅ Breadcrumbs */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: "https://www.codearntech.cloud",
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Privacy Policy",
-                item: "https://www.codearntech.cloud/privacy-policy",
-              },
-            ],
-          }),
-        }}
+    <div className="bg-background text-foreground">
+      <JsonLd
+        data={buildBreadcrumbs([
+          { name: "Home", path: "/" },
+          { name: "Privacy Policy", path: "/privacy-policy" },
+        ])}
       />
-      
-      {/* TODO: Replace with actual Privacy Policy component */}
-      <PrivacyPolicyContent/>
-        
-    </>
+      <PrivacyPolicyContent />
+    </div>
   );
 }

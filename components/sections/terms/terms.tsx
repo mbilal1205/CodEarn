@@ -665,11 +665,11 @@ export default function TermsOfService() {
                       scripted responses.
                     </p>
                     <a
-                      href="mailto:hello@codearntech.cloud"
+                      href="mailto:hello@codearntech.com"
                       className="inline-flex items-center gap-2 px-5 py-2.5 lg:px-6 lg:py-3 bg-primary text-primary-foreground text-sm lg:text-base font-semibold rounded-lg lg:rounded-xl hover:shadow-lg hover:shadow-primary/25 transition-all"
                     >
                       <Mail className="w-4 h-4" />
-                      hello@codearntech.cloud
+                      hello@codearntech.com
                     </a>
                   </div>
                 </div>

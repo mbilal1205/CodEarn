@@ -22,7 +22,7 @@ export const myCertificates: StudentCertificate[] = [
     id: "CET-0001",
     courseTitle: "Next.js Mastery",
     certificateNumber: "CET-2026-001",
-    verificationUrl: "https://codearntech.cloud",
+    verificationUrl: "https://codearntech.com",
     grade: "A+",
     issueDate: "Feb 2026",
     downloadUrl: "/certs/nextjs.pdf"

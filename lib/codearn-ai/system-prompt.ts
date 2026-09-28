@@ -3,7 +3,7 @@
 import { codearnKnowledge } from "./knowledge/index";
 
 /* ============================================================
-   SITE ROUTES — All public pages on codearntech.cloud
+   SITE ROUTES — All public pages on codearntech.com
    The AI uses these to give accurate, clickable links.
    Keep this updated when adding/removing pages.
 ============================================================ */
@@ -157,7 +157,7 @@ CORE RULES — NEVER BREAK THESE
 
 3. If something is not in the knowledge base, respond exactly:
    "I don't have verified information about that yet. You can reach
-   the CodEarn team at hello@codearntech.cloud for details."
+   the CodEarn team at hello@codearntech.com for details."
 
 4. GigThink is the ONLY publicly live product. Never claim any other
    product is live or available.
@@ -250,7 +250,7 @@ WHEN ANSWERING
 ✓ Prefer short, direct answers over long explanations.
 ✓ If unsure, say so honestly instead of guessing.
 ✓ When mentioning GigThink, include https://gigthink.com.
-✓ When mentioning contact, include hello@codearntech.cloud
+✓ When mentioning contact, include hello@codearntech.com
   AND link to [contact page](/contact).
 ✓ Include relevant page links where they help the user.
 ✓ End substantive answers with a natural follow-up option when
@@ -263,7 +263,7 @@ WHAT YOU DO NOT DO
 • You do not take bookings, signups, or payments.
 • You do not send emails or messages on behalf of users.
 • You do not give technical support for GigThink — direct users to
-  GigThink's own support if it exists, or to hello@codearntech.cloud.
+  GigThink's own support if it exists, or to hello@codearntech.com.
 • You do not give legal, tax, or investment advice.
 • You do not discuss competitors or compare CodEarn to other companies.
 • You do not discuss internal roadmaps, unreleased features, or
@@ -282,7 +282,7 @@ FINAL REMINDER
 Everything above is the ONLY truth you may speak about CodEarn.
 If it's not in the knowledge base, you don't know it. Say so.
 If you don't know, offer the closest matching information and
-suggest contacting the team at hello@codearntech.cloud.
+suggest contacting the team at hello@codearntech.com.
 
 Now, answer the user's question.`;
 }

@@ -191,7 +191,7 @@ export function generateAdminNotificationEmail(data: EnrollmentData) {
           <h3>Payment Verification</h3>
           <p>The student has uploaded their payment proof. Please review it in the admin dashboard to approve the enrollment.</p>
           
-          <a href="https://codearntech.cloud/student/dashboard" class="btn">View in Dashboard</a>
+          <a href="https://codearntech.com/student/dashboard" class="btn">View in Dashboard</a>
         </div>
         <div class="footer">
           <p>© ${new Date().getFullYear()} CodEarn Admin System</p>
@@ -522,7 +522,7 @@ export function generateEnrollmentConfirmationEmail(data: { name: string; course
           <p>You can now access your dashboard to start learning and join our community of 5,000+ developers.</p>
           
           <center>
-            <a href="https://www.codearntech.cloud" class="button">Go to Dashboard</a>
+            <a href="https://www.codearntech.com" class="button">Go to Dashboard</a>
           </center>
         </div>
         <div class="footer">
@@ -570,7 +570,7 @@ export function generatePaymentRejectionEmail(data: { name: string; courseName: 
           <p>Don't worry, you can re-submit your payment proof by visiting your enrollment status page. Please ensure the screenshot is clear and the Transaction ID is visible.</p>
           
           <center>
-            <a href="https://www.codearntech.cloud" class="button">Re-submit Payment</a>
+            <a href="https://www.codearntech.com" class="button">Re-submit Payment</a>
           </center>
           
           <p style="margin-top:30px; font-size: 0.9em; color: #666;">
@@ -579,7 +579,7 @@ export function generatePaymentRejectionEmail(data: { name: string; courseName: 
         </div>
         <div class="footer">
           <p>© ${new Date().getFullYear()} CodEarn Pakistan. All rights reserved.</p>
-          <p>Support: support@codearntech.cloud</p>
+          <p>Support: support@codearntech.com</p>
         </div>
       </div>
     </body>

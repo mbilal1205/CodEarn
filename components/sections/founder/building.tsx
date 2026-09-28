@@ -173,7 +173,7 @@ export default function Building() {
                     size="lg"
                     className="group h-12 rounded-full bg-primary px-7 text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30"
                   >
-                    <Link href="https://www.codearntech.cloud" target="_blank">
+                    <Link href="https://www.codearntech.com" target="_blank">
                       Visit CodEarn
                       <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </Link>

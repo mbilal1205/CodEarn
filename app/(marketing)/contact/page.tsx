@@ -1,107 +1,87 @@
 import ContactPage from "@/components/sections/contect/contactmain";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_LOGO,
+  SITE_OG_IMAGE,
+  CONTACT,
+  buildBreadcrumbs,
+  organizationSchema,
+} from "@/lib/seo/site";
 import type { Metadata } from "next";
 
-// ✅ CONTACT PAGE SEO
 export const metadata: Metadata = {
-  title: "Contact Us | Get Free Consultation - CodEarn",
-  description: "Contact CodEarn for SaaS development, web applications, or training inquiries. Visit our Samundri office or reach us online. Free consultation available!",
+  title: "Contact CodEarn Tech | Get a Free Consultation",
+  description:
+    "Contact CodEarn Tech for SaaS development, web applications, AI solutions, or IT training. Serving clients worldwide from Dubai, UAE. Free consultation available.",
   keywords: [
-    "contact CodEarn",
-    "software company Samundri contact",
-    "hire developers Pakistan",
-    "web development consultation",
-    "programming training inquiry",
+    "contact CodEarn Tech",
+    "software company Dubai contact",
+    "hire developers online",
     "SaaS development quote",
-    "software services Pakistan",
-    "tech company contact",
-    "free consultation software",
-    "Samundri software office"
+    "AI solutions contact",
+    "IT training inquiry",
+    "free software consultation",
   ],
+  alternates: { canonical: "/contact" },
   openGraph: {
-    title: "Contact CodEarn | Let's Build Something Amazing",
-    description: "Ready to start your project? Contact us for free consultation. Visit our Samundri office or connect online.",
-    url: "https://www.codearntech.cloud/contact",
     type: "website",
+    url: `${SITE_URL}/contact`,
+    title: "Contact CodEarn Tech",
+    description:
+      "Get in touch for software, AI, and training inquiries. Worldwide service.",
+    images: [{ url: SITE_OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME }],
   },
-  alternates: {
-    canonical: "https://www.codearntech.cloud/contact",
-  },
-  robots: {
-    index: true,
-    follow: true,
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact CodEarn Tech",
+    description: "Software, AI, and training inquiries. Worldwide service.",
+    images: [SITE_OG_IMAGE],
   },
 };
 
-// ✅ Contact Page Schema
 const contactSchema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
-  name: "Contact CodEarn",
-  description: "Contact information for CodEarn software development company",
-  url: "https://www.codearntech.cloud/contact",
+  name: "Contact CodEarn Tech",
+  url: `${SITE_URL}/contact`,
   mainEntity: {
     "@type": "Organization",
-    name: "CodEarn",
-    url: "https://www.codearntech.cloud",
-    logo: "https://www.codearntech.cloud/logo.png",
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: "+92-321-9515138", // Update with your number
-      contactType: "sales",
-      availableLanguage: ["English", "Urdu"],
-      areaServed: "PK",
-      hoursAvailable: {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        opens: "09:00",
-        closes: "18:00",
+    name: SITE_NAME,
+    url: SITE_URL,
+    logo: SITE_LOGO,
+    areaServed: "Worldwide",
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        email: CONTACT.email,
+        availableLanguage: ["English", "Urdu", "Arabic"],
+        areaServed: "Worldwide",
       },
-    },
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Main Bazaar, Near City Center",
-      addressLocality: "Samundri",
-      addressRegion: "Punjab",
-      postalCode: "37300",
-      addressCountry: "PK",
-    },
+      {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        email: CONTACT.supportEmail,
+        availableLanguage: ["English", "Urdu", "Arabic"],
+        areaServed: "Worldwide",
+      },
+    ],
   },
 };
 
 export default function Contact() {
   return (
-    <div>
-      {/* ✅ Contact Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
+    <div className="bg-background text-foreground">
+      <JsonLd data={organizationSchema()} />
+      <JsonLd data={contactSchema} />
+      <JsonLd
+        data={buildBreadcrumbs([
+          { name: "Home", path: "/" },
+          { name: "Contact", path: "/contact" },
+        ])}
       />
-      
-      {/* ✅ Breadcrumbs */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: "https://www.codearntech.cloud",
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Contact",
-                item: "https://www.codearntech.cloud/contact",
-              },
-            ],
-          }),
-        }}
-      />
-      
       <ContactPage />
     </div>
   );

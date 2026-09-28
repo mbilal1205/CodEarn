@@ -1,148 +1,97 @@
 import AcademyComparison from "@/components/sections/academy/academy-comparison";
-import AcademyCourses from "@/components/sections/academy/academy-courses";
 import AcademyHero from "@/components/sections/academy/academy-hero";
 import AcademyRoadmap from "@/components/sections/academy/academy-roadmap";
 import CoursesSection from "@/components/sections/academy/CoursesSection";
 import FAQSection from "@/components/sections/academy/FAQSection";
 import FinalCTA from "@/components/sections/academy/FinalCTA";
-// import {CourseDetailModal} from "@/components/sections/traning/traningmain";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_OG_IMAGE,
+  buildBreadcrumbs,
+  organizationSchema,
+} from "@/lib/seo/site";
 import type { Metadata } from "next";
 
-// ✅ TRAINING PAGE SEO - Education Keywords
 export const metadata: Metadata = {
-  title: "Programming Courses & Internship Training | CodEarn",
-  description: "Learn Full Stack Development, Backend & Data Modeling with guaranteed internship. Practical training in Samundri, Pakistan. Job placement assistance included. Enroll now!",
+  title: "IT Training & Internship Programs | CodEarn Tech",
+  description:
+    "Learn Full Stack Development, Backend Engineering, and Data Modeling with CodEarn Tech's practical online programs. Real projects, expert mentors, internship support.",
   keywords: [
-    "programming courses Pakistan",
-    "web development training",
-    "software engineering internship",
-    "learn coding Samundri",
-    "backend development course",
-    "data modeling training",
+    "IT training online",
     "full stack developer course",
-    "programming training with job guarantee",
-    "software development internship",
-    "coding bootcamp Pakistan",
-    "practical programming training",
-    "computer courses with internship"
+    "backend development training",
+    "data modeling course",
+    "online programming bootcamp",
+    "software internship program",
+    "web development course",
+    "coding course online",
   ],
+  alternates: { canonical: "/training" },
   openGraph: {
-    title: "Learn Programming with Guaranteed Internship | CodEarn",
-    description: "Master Full Stack Development, Backend & Data Modeling. 4+ years experienced mentors, real projects, and job placement support.",
-    url: "https://www.codearntech.cloud/training",
     type: "website",
-    images: [
-      {
-        url: "/training-og.png",
-        width: 1200,
-        height: 630,
-        alt: "CodEarn Training - Programming Courses",
-      },
-    ],
+    url: `${SITE_URL}/training`,
+    title: "IT Training & Internship Programs | CodEarn Tech",
+    description:
+      "Practical online IT training with real projects and internship support.",
+    images: [{ url: SITE_OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Programming Training with Internship | CodEarn",
-    description: "Learn to code and get guaranteed internship. Start your tech career today!",
-  },
-  alternates: {
-    canonical: "https://www.codearntech.cloud/training",
+    title: "IT Training | CodEarn Tech",
+    description: "Practical IT training with internship support.",
+    images: [SITE_OG_IMAGE],
   },
 };
 
-// ✅ Course Schema Data
-const courseSchema = {
+const courseListSchema = {
   "@context": "https://schema.org",
-  "@type": "Course",
-  name: "Full Stack Development Training",
-  description: "Comprehensive programming training covering frontend, backend, data modeling, and system architecture with guaranteed internship",
-  provider: {
-    "@type": "Organization",
-    name: "CodEarn",
-    sameAs: "https://www.codearntech.cloud",
-  },
-  hasCourseInstance: [
+  "@type": "ItemList",
+  name: "CodEarn Tech Training Programs",
+  url: `${SITE_URL}/training`,
+  itemListElement: [
     {
-      "@type": "CourseInstance",
-      courseMode: "onsite",
-      courseWorkload: "PT20H",
-      inLanguage: ["en", "ur"],
-      location: {
-        "@type": "Place",
-        name: "CodEarn Training Center",
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Samundri",
-          addressRegion: "Punjab",
-          addressCountry: "PK",
+      "@type": "ListItem",
+      position: 1,
+      item: {
+        "@type": "Course",
+        name: "Full Stack Web Development",
+        description:
+          "Comprehensive training covering frontend, backend, databases, and deployment with internship support.",
+        provider: {
+          "@type": "Organization",
+          name: SITE_NAME,
+          sameAs: SITE_URL,
+        },
+        offers: {
+          "@type": "Offer",
+          category: "Paid",
+          priceCurrency: "USD",
+          availability: "https://schema.org/InStock",
         },
       },
     },
   ],
-  teaches: [
-    "Full Stack Web Development",
-    "Backend Development (Node.js)",
-    "Database Design & Data Modeling",
-    "System Architecture",
-    "Version Control (Git/GitHub)",
-    "Deployment & DevOps Basics",
-  ],
-  educationalLevel: "Beginner to Advanced",
-  timeRequired: "P3M", // 3 months
-  occupationalCredentialAwarded: {
-    "@type": "DefinedTerm",
-    name: "Internship Certificate",
-    description: "3-month project completion certificate with job placement assistance",
-  },
-  offers: {
-    "@type": "Offer",
-    category: "Paid",
-    price: "Contact for pricing",
-    priceCurrency: "PKR",
-  },
 };
 
 export default function Training() {
   return (
-    <div>
-      {/* ✅ Course Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+    <div className="bg-background text-foreground">
+      <JsonLd data={organizationSchema()} />
+      <JsonLd data={courseListSchema} />
+      <JsonLd
+        data={buildBreadcrumbs([
+          { name: "Home", path: "/" },
+          { name: "Training", path: "/training" },
+        ])}
       />
-      
-      {/* ✅ Breadcrumbs */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: "https://www.codearntech.cloud",
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Training",
-                item: "https://www.codearntech.cloud/training",
-              },
-            ],
-          }),
-        }}
-      />
-      
-      <AcademyHero/>
-      <AcademyComparison/>
-      <CoursesSection/>
-      <AcademyRoadmap/>
-      <FAQSection/>
-      {/* <AcademyCourses/> */}
-      <FinalCTA/>
+      <AcademyHero />
+      <AcademyComparison />
+      <CoursesSection />
+      <AcademyRoadmap />
+      <FAQSection />
+      <FinalCTA />
     </div>
   );
 }

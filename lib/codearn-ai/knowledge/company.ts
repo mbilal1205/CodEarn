@@ -5,7 +5,7 @@ export const company = {
   legalName: "CodEarn Technology Company",
   founded: "2024",
   founder: "Muhammad Bilal",
-  website: "https://www.codearntech.cloud",
+  website: "https://www.codearntech.com",
   location: "Pakistan — building globally",
 
   focus:

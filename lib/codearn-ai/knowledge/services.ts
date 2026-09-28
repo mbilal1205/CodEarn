@@ -13,7 +13,7 @@ export const services = {
   ],
 
   howToStart:
-    "To discuss a project, contact CodEarn at hello@codearntech.cloud or through the contact page.",
+    "To discuss a project, contact CodEarn at hello@codearntech.com or through the contact page.",
 
   contactPageUrl: "/contact",
 };

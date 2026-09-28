@@ -1,59 +1,40 @@
 import CookiePolicy from "@/components/sections/cookies/cookie";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { SITE_URL, buildBreadcrumbs } from "@/lib/seo/site";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy | How We Use Cookies | CodEarn",
-  description: "Learn about how CodEarn uses cookies to enhance your browsing experience. Understand what cookies we use and how you can manage your preferences.",
+  title: "Cookie Policy | CodEarn Tech",
+  description:
+    "Learn how CodEarn Tech uses cookies to improve your browsing experience, and how you can manage your cookie preferences.",
   keywords: [
     "cookie policy",
-    "cookies usage",
+    "CodEarn Tech cookies",
     "website cookies",
     "cookie consent",
-    "tracking cookies",
-    "CodEarn cookies",
     "browser cookies",
-    "cookie settings",
-    "privacy cookies",
-    "cookie management"
+    "cookie preferences",
   ],
-  robots: {
-    index: true,
-    follow: true,
+  alternates: { canonical: "/cookies" },
+  openGraph: {
+    type: "website",
+    url: `${SITE_URL}/cookies`,
+    title: "Cookie Policy | CodEarn Tech",
+    description: "How we use cookies and how to manage them.",
   },
-  alternates: {
-    canonical: "https://www.codearntech.cloud/cookies",
-  },
+  robots: { index: true, follow: true },
 };
 
 export default function Cookies() {
   return (
-    <>
-      {/* ✅ Breadcrumbs */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: "https://www.codearntech.cloud",
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Cookie Policy",
-                item: "https://www.codearntech.cloud/cookies",
-              },
-            ],
-          }),
-        }}
+    <div className="bg-background text-foreground">
+      <JsonLd
+        data={buildBreadcrumbs([
+          { name: "Home", path: "/" },
+          { name: "Cookie Policy", path: "/cookies" },
+        ])}
       />
-      
       <CookiePolicy />
-    </>
+    </div>
   );
 }

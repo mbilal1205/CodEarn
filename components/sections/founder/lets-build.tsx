@@ -74,7 +74,7 @@ export default function LetsBuild() {
                   size="lg"
                   className="group h-14 rounded-full bg-primary px-8 text-base text-primary-foreground shadow-xl shadow-primary/25 transition-all hover:shadow-2xl hover:shadow-primary/40"
                 >
-                  <Link href="mailto:hello@codearntech.cloud">
+                  <Link href="mailto:hello@codearntech.com">
                     <Mail className="mr-2 h-4 w-4" />
                     Start a Conversation
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -89,7 +89,7 @@ export default function LetsBuild() {
                   className="group h-14 rounded-full border-border bg-transparent px-8 text-base hover:bg-accent"
                 >
                   <Link
-                    href="https://www.codearntech.cloud"
+                    href="https://www.codearntech.com"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

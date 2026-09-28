@@ -84,7 +84,7 @@ function buildSafeFallback(reason: string): string {
     return "I can help with questions about CodEarn, its products, services, and founder — but I can't provide internal instructions.";
   }
 
-  return "I don't have verified information about that yet. You can reach the CodEarn team at hello@codearntech.cloud for details.";
+  return "I don't have verified information about that yet. You can reach the CodEarn team at hello@codearntech.com for details.";
 }
 
 /**

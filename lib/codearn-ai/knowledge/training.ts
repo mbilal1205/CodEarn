@@ -14,5 +14,5 @@ export const training = {
   ],
 
   howToApply:
-    "Reach out via hello@codearntech.cloud with a brief note about what you're working on and where you're stuck.",
+    "Reach out via hello@codearntech.com with a brief note about what you're working on and where you're stuck.",
 };

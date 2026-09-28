@@ -23,11 +23,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "CodEarn | Transform Ideas Into Digital Reality",
     description: "SaaS development, custom web apps, and practical training with guaranteed internships. Start your journey today!",
-    url: "https://www.codearntech.cloud",
+    url: "https://www.codearntech.com",
     type: "website",
   },
   alternates: {
-    canonical: "https://www.codearntech.cloud",
+    canonical: "https://www.codearntech.com",
   },
 }
 
@@ -43,7 +43,7 @@ export default function Home() {
             "@type": "WebPage",
             name: "CodEarn - Home",
             description: "Leading software development company in Pakistan",
-            url: "https://www.codearntech.cloud",
+            url: "https://www.codearntech.com",
             mainEntity: {
               "@type": "Organization",
               name: "CodEarn",

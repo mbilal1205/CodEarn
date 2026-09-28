@@ -744,10 +744,10 @@ export default function PrivacyPolicy() {
                     <p className="text-sm text-muted-foreground text-center">
                       To exercise any of these rights, email us at{" "}
                       <a
-                        href="mailto:hello@codearntech.cloud"
+                        href="mailto:hello@codearntech.com"
                         className="text-primary font-medium hover:underline"
                       >
-                        hello@codearntech.cloud
+                        hello@codearntech.com
                       </a>
                       . We&apos;ll respond within a reasonable time — usually
                       within a few business days.
@@ -875,10 +875,10 @@ export default function PrivacyPolicy() {
                       If you believe we have inadvertently collected data from
                       a child under 13, please contact us at{" "}
                       <a
-                        href="mailto:hello@codearntech.cloud"
+                        href="mailto:hello@codearntech.com"
                         className="text-primary font-medium hover:underline"
                       >
-                        hello@codearntech.cloud
+                        hello@codearntech.com
                       </a>{" "}
                       and we will delete the information promptly.
                     </p>
@@ -975,11 +975,11 @@ export default function PrivacyPolicy() {
 
                       <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <a
-                          href="mailto:hello@codearntech.cloud"
+                          href="mailto:hello@codearntech.com"
                           className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-xl hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
                         >
                           <Mail className="w-4 h-4" />
-                          hello@codearntech.cloud
+                          hello@codearntech.com
                         </a>
                         <span className="text-sm text-muted-foreground">
                           Response time: usually within a few business days

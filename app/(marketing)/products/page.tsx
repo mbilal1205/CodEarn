@@ -1,5 +1,4 @@
-import  ProductsHero  from "@/components/sections/products/ProductHero";
-import type { Metadata } from "next";
+import ProductsHero from "@/components/sections/products/ProductHero";
 import LiveProduct from "@/components/sections/products/live-product";
 import Problem from "@/components/sections/products/problem";
 import ProductFlow from "@/components/sections/products/product-flow";
@@ -11,117 +10,92 @@ import WhyWeBuilt from "@/components/sections/products/why-we-built";
 import ProductStatus from "@/components/sections/products/product-status";
 import WhatsNext from "@/components/sections/products/whats-next";
 import FinalCTA from "@/components/sections/products/final-cta";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_OG_IMAGE,
+  buildBreadcrumbs,
+  organizationSchema,
+} from "@/lib/seo/site";
+import type { Metadata } from "next";
 
-// ✅ PRODUCTS PAGE SEO
 export const metadata: Metadata = {
-  title: "Our SaaS Products | Innovative Software Solutions",
-  description: "Explore CodEarn's SaaS products and software solutions. Built with cutting-edge technology to solve real business problems. Discover our product roadmap and upcoming features.",
+  title: "SaaS Products | Innovative Software by CodEarn Tech",
+  description:
+    "Explore CodEarn Tech's SaaS products built to automate workflows, empower teams, and solve real business problems. Discover our roadmap and upcoming innovations.",
   keywords: [
-    "SaaS products Pakistan",
-    "software products",
+    "SaaS products",
+    "software products Dubai",
     "business automation tools",
-    "cloud based solutions",
-    "enterprise software products",
-    "SaaS platform",
+    "cloud software",
+    "enterprise SaaS",
+    "CodEarn Tech products",
     "software innovation",
-    "digital products",
-    "tech products Pakistan",
-    "software solutions"
   ],
+  alternates: { canonical: "/products" },
   openGraph: {
-    title: "CodEarn Products | Innovative SaaS Solutions",
-    description: "Discover our portfolio of SaaS products built to transform businesses. See our roadmap and upcoming innovations.",
-    url: "https://www.codearntech.cloud/products",
     type: "website",
-    images: [
-      {
-        url: "/products-og.png",
-        width: 1200,
-        height: 630,
-        alt: "CodEarn SaaS Products",
-      },
-    ],
+    url: `${SITE_URL}/products`,
+    title: "CodEarn Tech Products | SaaS & Software Solutions",
+    description:
+      "Discover our SaaS products portfolio and upcoming innovations.",
+    images: [{ url: SITE_OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME }],
   },
-  alternates: {
-    canonical: "https://www.codearntech.cloud/products",
-  },
-  robots: {
-    index: true,
-    follow: true,
+  twitter: {
+    card: "summary_large_image",
+    title: "CodEarn Tech Products",
+    description: "Innovative SaaS & software solutions.",
+    images: [SITE_OG_IMAGE],
   },
 };
 
-// ✅ Software Application Schema
 const softwareSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "CodEarn SaaS Products",
+  name: "CodEarn Tech SaaS Suite",
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web",
-  offers: {
-    "@type": "Offer",
-    price: "14 Days Free Trial", // Free trial ya contact pricing
-    priceCurrency: "PKR",
-  },
+  url: `${SITE_URL}/products`,
+  description:
+    "Suite of SaaS products for business automation and digital transformation.",
+  author: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
   aggregateRating: {
     "@type": "AggregateRating",
-    ratingValue: "4.8",
-    ratingCount: "50",
+    ratingValue: "4.9",
+    ratingCount: "48",
   },
-  description: "Suite of SaaS products for business automation and digital transformation",
-  url: "https://www.codearntech.cloud/products",
-  author: {
-    "@type": "Organization",
-    name: "CodEarn",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+    description: "Free trial available",
   },
 };
 
 export default function ProductsPage() {
   return (
-    <>
-      {/* ✅ Software Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+    <div className="bg-background text-foreground">
+      <JsonLd data={organizationSchema()} />
+      <JsonLd data={softwareSchema} />
+      <JsonLd
+        data={buildBreadcrumbs([
+          { name: "Home", path: "/" },
+          { name: "Products", path: "/products" },
+        ])}
       />
-      
-      {/* ✅ Breadcrumbs */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: "https://www.codearntech.cloud",
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Products",
-                item: "https://www.codearntech.cloud/products",
-              },
-            ],
-          }),
-        }}
-      />
-      
       <ProductsHero />
-      <LiveProduct/>
-      <Problem/>
-      <ProductFlow/>
-      <HowItWorks/>
-      <Capabilities/>
-      <ProductExperience/>
-      <WhoItsFor/>
-      <WhyWeBuilt/>
-      <ProductStatus/>
-      <WhatsNext/>
-      <FinalCTA/>
-    </>
+      <LiveProduct />
+      <Problem />
+      <ProductFlow />
+      <HowItWorks />
+      <Capabilities />
+      <ProductExperience />
+      <WhoItsFor />
+      <WhyWeBuilt />
+      <ProductStatus />
+      <WhatsNext />
+      <FinalCTA />
+    </div>
   );
 }

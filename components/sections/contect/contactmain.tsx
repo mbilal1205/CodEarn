@@ -42,7 +42,7 @@ const contactMethods = [
     responseTime: "Within 24 hours",
     availability: "Business days",
     action: "Start a Conversation",
-    email: "hello@codearntech.cloud",
+    email: "hello@codearntech.com",
     features: [
       "Product development",
       "Custom software",
@@ -59,7 +59,7 @@ const contactMethods = [
     responseTime: "Within 24 hours",
     availability: "Business days",
     action: "Get Support",
-    email: "hello@codearntech.cloud",
+    email: "hello@codearntech.com",
     features: [
       "Bug reports",
       "Feature requests",
@@ -76,7 +76,7 @@ const contactMethods = [
     responseTime: "Within 48 hours",
     availability: "Business days",
     action: "Book a Demo",
-    email: "hello@codearntech.cloud",
+    email: "hello@codearntech.com",
     features: [
       "Live walkthrough",
       "Technical Q&A",
@@ -93,7 +93,7 @@ const contactMethods = [
     responseTime: "Within 48 hours",
     availability: "Business days",
     action: "Partner With Us",
-    email: "hello@codearntech.cloud",
+    email: "hello@codearntech.com",
     features: [
       "Technology partnerships",
       "Integration requests",
@@ -110,7 +110,7 @@ const contactMethods = [
     responseTime: "Within 48 hours",
     availability: "Business days",
     action: "Learn More",
-    email: "hello@codearntech.cloud",
+    email: "hello@codearntech.com",
     features: [
       "Developer mentorship",
       "Product building guidance",
@@ -127,7 +127,7 @@ const contactMethods = [
     responseTime: "Within 24–48 hours",
     availability: "Business days",
     action: "Send a Message",
-    email: "hello@codearntech.cloud",
+    email: "hello@codearntech.com",
     features: [
       "General questions",
       "Feedback",
@@ -141,7 +141,7 @@ const faqs = [
   {
     question: "How quickly do you respond to messages?",
     answer:
-      "We aim to respond within 24 hours on business days. For urgent matters, mention it in the subject line and we'll prioritize it. All emails go to hello@codearntech.cloud.",
+      "We aim to respond within 24 hours on business days. For urgent matters, mention it in the subject line and we'll prioritize it. All emails go to hello@codearntech.com.",
   },
   {
     question: "Do you build custom software for clients?",
@@ -184,8 +184,8 @@ const teamMembers = [
 ];
 
 const contactInfo = {
-  email: "hello@codearntech.cloud",
-  website: "https://www.codearntech.cloud",
+  email: "hello@codearntech.com",
+  website: "https://www.codearntech.com",
   location: "Pakistan — building globally",
   responseTime: "Usually within 24 hours",
 };
@@ -916,7 +916,7 @@ export default function ContactPage() {
                         Website
                       </div>
                       <div className="text-xs text-muted-foreground truncate">
-                        codearntech.cloud
+                        codearntech.com
                       </div>
                     </div>
                   </a>

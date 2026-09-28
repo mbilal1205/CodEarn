@@ -1,66 +1,83 @@
-import { WhatWeDo } from "@/components/sections/About/WhatWeDo"
-import { AboutHero } from "../../../components/sections/About/abouthero"
-import { WhoWeAre } from "../../../components/sections/About/WhoWeAre"
-import { LearningApproach } from "@/components/sections/About/LearningApproach"
-import { WhyChooseUsSection } from "@/components/sections/About/WhyChooseUs"
-import { MissionVision } from "@/components/sections/About/MissionVision"
-import { FinalCTA } from "@/components/sections/About/aboutCta"
-import type { Metadata } from "next"
-import SubscribeSection from "@/components/layout/subscription"
+import { WhatWeDo } from "@/components/sections/About/WhatWeDo";
+import { AboutHero } from "@/components/sections/About/abouthero";
+import { WhoWeAre } from "@/components/sections/About/WhoWeAre";
+import { LearningApproach } from "@/components/sections/About/LearningApproach";
+import { WhyChooseUsSection } from "@/components/sections/About/WhyChooseUs";
+import { MissionVision } from "@/components/sections/About/MissionVision";
+import { FinalCTA } from "@/components/sections/About/aboutCta";
+import SubscribeSection from "@/components/layout/subscription";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_OG_IMAGE,
+  buildBreadcrumbs,
+  organizationSchema,
+} from "@/lib/seo/site";
+import type { Metadata } from "next";
 
-// ✅ ABOUT PAGE SEO
 export const metadata: Metadata = {
-  title: "About Us | CodEarn - Our Story & Mission",
-  description: "Learn about CodEarn's journey. 4+ years of excellence in SaaS development, software solutions, and practical training. Discover our unique approach with guaranteed internships and 3-month project support.",
+  title: "About Us | CodEarn Tech - Software, AI & IT Training",
+  description:
+    "CodEarn Tech is a Dubai-based technology company delivering SaaS products, web development, AI solutions, and professional IT training to businesses and learners worldwide.",
   keywords: [
-    "about CodEarn",
-    "software company Pakistan",
-    "SaaS development team",
-    "programming training institute",
-    "internship guarantee",
-    "Samundri tech company"
+    "about CodEarn Tech",
+    "Dubai software company",
+    "SaaS development Dubai",
+    "IT training online",
+    "AI solutions company",
+    "web development company UAE",
+    "software engineering team",
+    "international IT training",
   ],
+  alternates: { canonical: "/about" },
   openGraph: {
-    title: "About CodEarn | Building Digital Futures Since 2021",
-    description: "Discover our mission to transform ideas into reality. 4+ years, 5+ successful projects, and 100+ trained students.",
-    url: "https://www.codearntech.cloud/about",
-    type: "article",
+    type: "website",
+    url: `${SITE_URL}/about`,
+    title: "About CodEarn Tech | Software, AI & IT Training",
+    description:
+      "Discover our mission, vision, and the team building modern SaaS products, web applications, and training programs for clients worldwide.",
+    images: [{ url: SITE_OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME }],
   },
-  alternates: {
-    canonical: "https://www.codearntech.cloud/about",
+  twitter: {
+    card: "summary_large_image",
+    title: "About CodEarn Tech",
+    description:
+      "Dubai-based software company delivering SaaS, web development, AI solutions, and IT training worldwide.",
+    images: [SITE_OG_IMAGE],
   },
-}
+};
+
+const aboutPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: "About CodEarn Tech",
+  description:
+    "Learn about CodEarn Tech, our mission, vision, values, and the software & training services we deliver globally.",
+  url: `${SITE_URL}/about`,
+  mainEntity: organizationSchema(),
+};
 
 export default function AboutPage() {
   return (
-    <div>
-      {/* ✅ About Page Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "AboutPage",
-            name: "About CodEarn",
-            description: "Learn about our software development company and training programs",
-            url: "https://www.codearntech.cloud/about",
-            mainEntity: {
-              "@type": "Organization",
-              name: "CodEarn",
-              foundingDate: "2021",
-              description: "Software development and training company",
-            },
-          }),
-        }}
+    <div className="bg-background text-foreground">
+      <JsonLd data={organizationSchema()} />
+      <JsonLd data={aboutPageSchema} />
+      <JsonLd
+        data={buildBreadcrumbs([
+          { name: "Home", path: "/" },
+          { name: "About", path: "/about" },
+        ])}
       />
+
       <AboutHero />
       <WhoWeAre />
       <WhatWeDo />
       <LearningApproach />
       <WhyChooseUsSection />
       <MissionVision />
-      <SubscribeSection/>
+      <SubscribeSection />
       <FinalCTA />
     </div>
-  )
+  );
 }
