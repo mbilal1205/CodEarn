@@ -22,6 +22,12 @@ import ChatWidget from "@/components/codearn-ai/chat-widget";
 import { ServiceWorkerRegister } from "@/components/ServiceWorkerRegister";
 
 /* ------------------------------------------------------------------ */
+/* Analytics Configuration                                              */
+/* ------------------------------------------------------------------ */
+const GA_MEASUREMENT_ID =
+  process.env.NEXT_PUBLIC_GA_ID || "G-57JXSBCJRM";
+
+/* ------------------------------------------------------------------ */
 /* Font Optimization                                                    */
 /* ------------------------------------------------------------------ */
 const inter = Inter({
@@ -196,8 +202,36 @@ export default function RootLayout({
         {/* ---------------- Preconnect for performance ---------------- */}
         <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link
+          rel="preconnect"
+          href="https://www.googletagmanager.com"
+          crossOrigin="anonymous"
+        />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://sc-static.net" />
+      </head>
+
+      <body
+        className={`${inter.variable} font-sans antialiased`}
+        suppressHydrationWarning
+      >
+        {/* ---------------- Google Analytics (GA4) ---------------- */}
+        <Script
+          id="ga-script"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}', {
+              page_path: window.location.pathname,
+              send_page_view: true
+            });
+          `}
+        </Script>
 
         {/* ---------------- Snapchat Pixel ---------------- */}
         <Script id="snapchat-pixel" strategy="afterInteractive">
@@ -216,12 +250,7 @@ export default function RootLayout({
             snaptr('track', 'PAGE_VIEW');
           `}
         </Script>
-      </head>
 
-      <body
-        className={`${inter.variable} font-sans antialiased`}
-        suppressHydrationWarning
-      >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
