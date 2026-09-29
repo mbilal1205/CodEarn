@@ -11,9 +11,7 @@ import {
   SITE_URL,
   SITE_NAME,
   SITE_DESCRIPTION,
-  SITE_LOGO,
   SITE_OG_IMAGE,
-  SOCIAL_LINKS,
   organizationSchema,
   websiteSchema,
 } from "@/lib/seo/site";
@@ -22,10 +20,13 @@ import ChatWidget from "@/components/codearn-ai/chat-widget";
 import { ServiceWorkerRegister } from "@/components/ServiceWorkerRegister";
 
 /* ------------------------------------------------------------------ */
-/* Analytics Configuration                                              */
+/* Analytics & Tag Manager Configuration                                */
 /* ------------------------------------------------------------------ */
 const GA_MEASUREMENT_ID =
   process.env.NEXT_PUBLIC_GA_ID || "G-57JXSBCJRM";
+
+const GTM_ID =
+  process.env.NEXT_PUBLIC_GTM_ID || "GTM-M7QZPDQQ";
 
 /* ------------------------------------------------------------------ */
 /* Font Optimization                                                    */
@@ -188,6 +189,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* ---------------- Google Tag Manager (script) ---------------- */}
+        <Script id="gtm-script" strategy="afterInteractive">
+          {`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','${GTM_ID}');
+          `}
+        </Script>
+
         {/* ---------------- Structured Data (Site-wide) ---------------- */}
         <script
           type="application/ld+json"
@@ -215,6 +227,17 @@ export default function RootLayout({
         className={`${inter.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
+        {/* ---------------- Google Tag Manager (noscript) ---------------- */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+            title="Google Tag Manager"
+          />
+        </noscript>
+
         {/* ---------------- Google Analytics (GA4) ---------------- */}
         <Script
           id="ga-script"
@@ -262,10 +285,7 @@ export default function RootLayout({
               <SecurityGuard />
               <LayoutWrapper>{children}</LayoutWrapper>
 
-              {/* CodEarn AI — Floating Chat Widget */}
               <ChatWidget />
-
-              {/* PWA Service Worker registration (production only) */}
               <ServiceWorkerRegister />
 
               <Toaster position="top-center" richColors closeButton />
