@@ -34,15 +34,63 @@ const MAX_MESSAGE_LENGTH = parseInt(
   10
 );
 
-// Conversation turns kept in memory (user + assistant = 2x)
-// Reduced from 10 to 6 to save tokens within TPM limit
 const MAX_TURNS = parseInt(
   process.env.CODEARN_AI_MAX_CONVERSATION_TURNS || "6",
   10
 );
 
-// Max tokens reserved for the AI response
-const MAX_RESPONSE_TOKENS = 400;
+const MAX_RESPONSE_TOKENS = 500;
+
+/* ============================================================
+   BILINGUAL STRINGS
+   Every user-facing message needs an AR + EN version.
+============================================================ */
+type Locale = "en" | "ar";
+
+function isArabic(locale: string): boolean {
+  return locale === "ar";
+}
+
+const STRINGS = {
+  en: {
+    injectionReply:
+      "I can help with questions about CodEarn, its services, pricing, and how we can help your business — but I can't provide internal instructions.",
+    invalidBody: "Invalid request body.",
+    messageRequired: "Message is required.",
+    messageEmpty: "Message is empty.",
+    messageTooLong: (max: number) =>
+      `Message too long. Maximum ${max} characters.`,
+    rateLimited: (minutes: number) =>
+      `You've reached the hourly limit. Try again in ${minutes} minute(s).`,
+    aiRateLimited:
+      "The AI is briefly busy. Please try again in a few seconds.",
+    aiTimedOut: "The AI took too long to respond. Please try again.",
+    aiUnavailable:
+      "The AI is temporarily unavailable. Please try again in a moment.",
+    serverError: "Something went wrong. Please try again.",
+  },
+  ar: {
+    injectionReply:
+      "يمكنني مساعدتك بالأسئلة عن CodEarn وخدماتها وأسعارها وكيف يمكننا مساعدة أعمالك — لكن لا أستطيع تقديم تعليمات داخلية.",
+    invalidBody: "طلب غير صالح.",
+    messageRequired: "الرسالة مطلوبة.",
+    messageEmpty: "الرسالة فارغة.",
+    messageTooLong: (max: number) =>
+      `الرسالة طويلة جدًا. الحد الأقصى ${max} حرفًا.`,
+    rateLimited: (minutes: number) =>
+      `لقد وصلت إلى الحد في هذه الساعة. حاول مجددًا بعد ${minutes} دقيقة.`,
+    aiRateLimited:
+      "المساعد مشغول قليلاً. حاول مجددًا بعد بضع ثوانٍ.",
+    aiTimedOut: "استغرق الرد وقتًا طويلاً. حاول مجددًا.",
+    aiUnavailable:
+      "المساعد غير متاح مؤقتًا. حاول مجددًا بعد لحظات.",
+    serverError: "حدث خطأ. حاول مجددًا.",
+  },
+} as const;
+
+function t(locale: string) {
+  return isArabic(locale) ? STRINGS.ar : STRINGS.en;
+}
 
 /* ============================================================
    HELPERS
@@ -53,53 +101,36 @@ function errorResponse(
   status: number,
   meta?: ChatErrorResponse["meta"]
 ): NextResponse<ChatErrorResponse> {
-  return NextResponse.json(
-    { success: false, error, code, meta },
-    { status }
-  );
+  return NextResponse.json({ success: false, error, code, meta }, { status });
 }
 
 function randomId(): string {
-  return (
-    Math.random().toString(36).slice(2, 10) +
-    Date.now().toString(36)
-  );
+  return Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
 }
 
-/**
- * Maps a Groq-thrown error to our API error code + HTTP status.
- * Called only after Groq has exhausted its internal retries.
- */
-function mapGroqError(err: unknown): {
-  code: ChatErrorCode;
-  message: string;
-  status: number;
-} {
+function normalizeLocale(input: unknown): Locale {
+  if (typeof input === "string" && input.toLowerCase().startsWith("ar")) {
+    return "ar";
+  }
+  return "en";
+}
+
+function mapGroqError(
+  err: unknown,
+  locale: Locale
+): { code: ChatErrorCode; message: string; status: number } {
+  const s = t(locale);
   const msg = err instanceof Error ? err.message : String(err);
 
   if (msg.includes("429") || msg.toLowerCase().includes("rate limit")) {
-    return {
-      code: "AI_RATE_LIMITED",
-      message:
-        "The AI is briefly busy. Please try again in a few seconds.",
-      status: 429,
-    };
+    return { code: "AI_RATE_LIMITED", message: s.aiRateLimited, status: 429 };
   }
 
   if (msg.includes("timed out")) {
-    return {
-      code: "AI_ERROR",
-      message: "The AI took too long to respond. Please try again.",
-      status: 504,
-    };
+    return { code: "AI_ERROR", message: s.aiTimedOut, status: 504 };
   }
 
-  return {
-    code: "AI_ERROR",
-    message:
-      "The AI is temporarily unavailable. Please try again in a moment.",
-    status: 503,
-  };
+  return { code: "AI_ERROR", message: s.aiUnavailable, status: 503 };
 }
 
 /* ============================================================
@@ -109,6 +140,7 @@ export async function POST(
   req: NextRequest
 ): Promise<NextResponse<ChatResponse | ChatErrorResponse>> {
   const startTime = Date.now();
+  let locale: Locale = "en";
 
   try {
     /* --------------------------------------------------------
@@ -118,44 +150,40 @@ export async function POST(
     try {
       body = await req.json();
     } catch {
-      return errorResponse(
-        "INVALID_INPUT",
-        "Invalid request body.",
-        400
-      );
+      return errorResponse("INVALID_INPUT", STRINGS.en.invalidBody, 400);
     }
 
     /* --------------------------------------------------------
-       STEP 2 — Validate message
+       STEP 2 — Locale (fallback: header → "en")
+    -------------------------------------------------------- */
+    locale = normalizeLocale(
+      body?.locale || req.headers.get("x-locale") || "en"
+    );
+    const s = t(locale);
+
+    /* --------------------------------------------------------
+       STEP 3 — Validate message
     -------------------------------------------------------- */
     if (!body?.message || typeof body.message !== "string") {
-      return errorResponse(
-        "INVALID_INPUT",
-        "Message is required.",
-        400
-      );
+      return errorResponse("INVALID_INPUT", s.messageRequired, 400);
     }
 
     const sanitized = sanitizeUserInput(body.message);
 
     if (!sanitized) {
-      return errorResponse(
-        "INVALID_INPUT",
-        "Message is empty.",
-        400
-      );
+      return errorResponse("INVALID_INPUT", s.messageEmpty, 400);
     }
 
     if (sanitized.length > MAX_MESSAGE_LENGTH) {
       return errorResponse(
         "INVALID_INPUT",
-        `Message too long. Maximum ${MAX_MESSAGE_LENGTH} characters.`,
+        s.messageTooLong(MAX_MESSAGE_LENGTH),
         400
       );
     }
 
     /* --------------------------------------------------------
-       STEP 3 — Prompt injection guard
+       STEP 4 — Prompt injection guard
     -------------------------------------------------------- */
     if (detectPromptInjection(sanitized)) {
       console.warn("[CodEarn AI] Prompt injection attempt blocked");
@@ -163,16 +191,12 @@ export async function POST(
       return NextResponse.json(
         {
           success: true,
-          reply:
-            "I can help with questions about CodEarn, its products, services, and founder — but I can't provide internal instructions.",
+          reply: s.injectionReply,
           conversationId: body.conversationId || randomId(),
           meta: {
             model: process.env.GROQ_MODEL || "unknown",
             responseTimeMs: Date.now() - startTime,
-            rateLimit: {
-              remaining: 0,
-              resetAt: new Date().toISOString(),
-            },
+            rateLimit: { remaining: 0, resetAt: new Date().toISOString() },
           },
         },
         { status: 200 }
@@ -180,25 +204,20 @@ export async function POST(
     }
 
     /* --------------------------------------------------------
-       STEP 4 — Our own rate limit (per user / IP)
+       STEP 5 — Rate limit (per IP)
     -------------------------------------------------------- */
     const identifier = getClientIdentifier(req.headers);
     const rl = checkRateLimit(identifier);
 
     if (!rl.allowed) {
-      return errorResponse(
-        "RATE_LIMITED",
-        `You've reached the hourly limit. Try again in ${Math.ceil(
-          (rl.retryAfterSeconds || 0) / 60
-        )} minute(s).`,
-        429,
-        { retryAfter: rl.retryAfterSeconds }
-      );
+      const minutes = Math.ceil((rl.retryAfterSeconds || 60) / 60);
+      return errorResponse("RATE_LIMITED", s.rateLimited(minutes), 429, {
+        retryAfter: rl.retryAfterSeconds,
+      });
     }
 
     /* --------------------------------------------------------
-       STEP 5 — Build conversation history
-       Trim to last N turns and ensure only valid messages.
+       STEP 6 — Conversation history
     -------------------------------------------------------- */
     const history: ChatMessage[] = Array.isArray(body.history)
       ? body.history
@@ -208,7 +227,7 @@ export async function POST(
               (m.role === "user" || m.role === "assistant") &&
               typeof m.content === "string"
           )
-          .slice(-MAX_TURNS * 2) // keep last N turns (user+assistant)
+          .slice(-MAX_TURNS * 2)
       : [];
 
     const messages: ChatMessage[] = [
@@ -217,24 +236,23 @@ export async function POST(
     ];
 
     /* --------------------------------------------------------
-       STEP 6 — Call Groq (with internal retries)
+       STEP 7 — Call Groq with locale-aware system prompt
     -------------------------------------------------------- */
     let groqResult;
     try {
       groqResult = await callGroq({
-        systemPrompt: buildSystemPrompt(),
+        systemPrompt: buildSystemPrompt(locale),
         messages,
         maxTokens: MAX_RESPONSE_TOKENS,
       });
     } catch (err) {
       console.error("[CodEarn AI] Groq call failed:", err);
-
-      const mapped = mapGroqError(err);
+      const mapped = mapGroqError(err, locale);
       return errorResponse(mapped.code, mapped.message, mapped.status);
     }
 
     /* --------------------------------------------------------
-       STEP 7 — Guardrail: validate the AI response
+       STEP 8 — Guardrail: validate AI output
     -------------------------------------------------------- */
     const validation = validateResponse(groqResult.reply);
 
@@ -243,14 +261,11 @@ export async function POST(
       : validation.sanitized || groqResult.reply;
 
     if (!validation.safe) {
-      console.warn(
-        "[CodEarn AI] Guardrail triggered:",
-        validation.reason
-      );
+      console.warn("[CodEarn AI] Guardrail triggered:", validation.reason);
     }
 
     /* --------------------------------------------------------
-       STEP 8 — Return response
+       STEP 9 — Return response
     -------------------------------------------------------- */
     const response: ChatResponse = {
       success: true,
@@ -271,14 +286,14 @@ export async function POST(
     console.error("[CodEarn AI] Unhandled error:", err);
     return errorResponse(
       "SERVER_ERROR",
-      "Something went wrong. Please try again.",
+      t(locale).serverError,
       500
     );
   }
 }
 
 /* ============================================================
-   OPTIONS — CORS preflight (for local dev)
+   OPTIONS — CORS preflight
 ============================================================ */
 export async function OPTIONS() {
   return new NextResponse(null, {
@@ -286,7 +301,7 @@ export async function OPTIONS() {
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "POST, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type",
+      "Access-Control-Allow-Headers": "Content-Type, x-locale",
     },
   });
 }

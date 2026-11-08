@@ -1,0 +1,1399 @@
+{
+  "Metadata": {
+    "title": "CodEarn Tech | Custom SaaS, Web & Mobile Development",
+    "description": "CodEarn Tech builds custom SaaS platforms, web and mobile apps, and business automation for companies across the Gulf and worldwide."
+  },
+ "Nav": {
+  "home": "Home",
+  "services": "Services",
+  "work": "Work",
+  "labs": "Labs",
+  "about": "About",
+  "blog": "Blog",
+  "contact": "Contact",
+  "menuLinks": "Menu Links",
+  "more": "More",
+  "getInTouch": "Get in Touch",
+  "tagline": "Software Company",
+  "chatWhatsApp": "Chat on WhatsApp",
+  "chatWhatsAppShort": "Chat"
+},
+  "Common": {
+    "learnMore": "Learn more",
+    "readMore": "Read more",
+    "getQuote": "Get a Quote",
+    "allPricesExcludeVat": "All prices exclude 5% VAT"
+  },
+  "LanguageSwitcher": {
+    "label": "Language",
+    "en": "English",
+    "ar": "العربية"
+  },
+  "Footer": {
+    "tagline": "Remote-first software engineering studio. We build custom SaaS platforms, web and mobile apps, and business automation for companies across the UAE, Saudi Arabia, Bahrain and worldwide.",
+    "location": "Remote-first · Serving UAE, Saudi Arabia & Bahrain",
+    "rights": "All rights reserved.",
+    "sections": {
+      "services": "Services",
+      "company": "Company",
+      "legal": "Legal"
+    },
+    "services": {
+      "saas": "Custom SaaS",
+      "webApps": "Web Apps",
+      "mobileApps": "Mobile Apps",
+      "automation": "AI & Automation",
+      "maintenance": "Maintenance & Support"
+    },
+    "company": {
+      "about": "About",
+      "work": "Work",
+      "labs": "Labs",
+      "blog": "Blog",
+      "contact": "Contact"
+    },
+    "legal": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookies": "Cookie Policy"
+    },
+    "badges": {
+      "ownCode": "You own your code",
+      "directAccess": "Direct access to engineers",
+      "writtenScope": "Written scope & milestones",
+      "responseTime": "1 business day response"
+    }
+  },
+  "Home": {
+  "hero": {
+    "badge": "Remote-first software engineering studio",
+    "headingLine1": "We build software",
+    "headingLine2": "that helps your business",
+    "words": ["scale", "automate", "grow", "succeed"],
+    "subheading": "Custom SaaS platforms, web and mobile apps, and business automation for growing companies across the UAE, Saudi Arabia, Bahrain and worldwide.",
+    "primaryCta": "Book a free strategy call",
+    "secondaryCta": "See our services",
+    "trustBadges": [
+      "You own your code",
+      "Direct access to engineers",
+      "Written scope & milestones"
+    ],
+    "services": [
+      {
+        "title": "Custom SaaS",
+        "description": "Multi-user products with subscriptions, dashboards and admin tools."
+      },
+      {
+        "title": "Web Apps",
+        "description": "Fast, secure, search-friendly websites and business portals."
+      },
+      {
+        "title": "Mobile Apps",
+        "description": "Cross-platform iOS and Android apps with React Native."
+      },
+      {
+        "title": "AI & Automation",
+        "description": "Connect your tools, remove manual work, add AI where it helps."
+      }
+    ]
+  },
+  "stack": {
+    "badge": "Our Stack",
+    "subtitle": "Modern tools. Real production experience."
+  },
+  "problems": {
+    "badge": "What we fix",
+    "titleLine1": "Problems we",
+    "titleLine2": "actually solve.",
+    "description": "We replace manual processes, slow systems and fragmented tools with clean, production-ready software.",
+    "items": [
+      {
+        "tag": "Operations",
+        "problem": "Manual workflows and repetitive admin tasks",
+        "solution": "Automated business workflows",
+        "description": "We replace repetitive manual tasks with reliable automation that connects your existing tools."
+      },
+      {
+        "tag": "Growth",
+        "problem": "Fragmented tools and lost leads",
+        "solution": "Unified lead and customer systems",
+        "description": "We connect your tools into one clear system so leads, clients and data stop slipping through gaps."
+      },
+      {
+        "tag": "Presence",
+        "problem": "Outdated or slow website",
+        "solution": "Fast, modern web platforms",
+        "description": "We build sites and portals with strong performance, SEO basics and clean, professional design."
+      },
+      {
+        "tag": "Scale",
+        "problem": "Systems that break under growth",
+        "solution": "Scalable custom architecture",
+        "description": "We design applications that stay fast and stable as your users and data grow."
+      }
+    ]
+  },
+  "services": {
+    "badge": "What we build",
+    "titleLine1": "Solutions",
+    "titleLine2": "engineered for growth.",
+    "items": [
+      {
+        "id": "01",
+        "label": "SaaS Infrastructure",
+        "title": "Multi-tenant SaaS platforms",
+        "description": "User accounts, subscriptions, dashboards and admin tools — architected for teams that need to scale safely.",
+        "features": [
+          "Multi-tenant data design",
+          "Stripe subscription billing",
+          "Admin dashboards & roles"
+        ]
+      },
+      {
+        "id": "02",
+        "label": "Business Automation",
+        "title": "Automated business workflows",
+        "description": "We model your processes and remove manual steps — integrating the tools your team already uses.",
+        "features": [
+          "Event-driven integrations",
+          "Fail-safe retry queues",
+          "Real-time state sync"
+        ]
+      },
+      {
+        "id": "03",
+        "label": "Web Platforms",
+        "title": "Fast web apps and business portals",
+        "description": "Next.js and React platforms built for performance, SEO basics and a professional presence.",
+        "features": [
+          "Next.js App Router",
+          "Server-side rendering & caching",
+          "SEO basics & structured data"
+        ]
+      },
+      {
+        "id": "04",
+        "label": "Mobile Applications",
+        "title": "Cross-platform mobile apps",
+        "description": "React Native apps for iOS and Android, with offline support where it matters.",
+        "features": [
+          "Expo & React Native",
+          "Offline-first sync",
+          "App Store & Play Store submission"
+        ]
+      }
+    ]
+  },
+  "why": {
+    "badge": "Why CodEarn",
+    "titleLine1": "Built differently.",
+    "titleLine2": "Built for scale.",
+    "description": "We work as a direct engineering partner — no account managers, no middle layers.",
+    "items": [
+      {
+        "category": "PRACTICE",
+        "title": "Short, frequent milestones",
+        "description": "We ship in small increments with regular demos so you see progress and give feedback early."
+      },
+      {
+        "category": "PRACTICE",
+        "title": "Clean, documented code",
+        "description": "Readable, maintainable code with clear handover — not a black box."
+      },
+      {
+        "category": "PRACTICE",
+        "title": "Secure by default",
+        "description": "Authentication, role-based access and data isolation built in from day one."
+      },
+      {
+        "category": "EXPERIENCE",
+        "title": "Direct engineering access",
+        "description": "You talk to the engineers building your product — not through layers."
+      },
+      {
+        "category": "EXPERIENCE",
+        "title": "Considered UX",
+        "description": "Interfaces that are clear, fast and respectful of your users' time."
+      },
+      {
+        "category": "EXPERIENCE",
+        "title": "Business-focused decisions",
+        "description": "Every choice is measured against your goals — not just code quality in isolation."
+      }
+    ]
+  },
+  "cta": {
+    "badge": "CodEarn Tech",
+    "title": "Ready to build?",
+    "description": "Tell us about your product or process in a free 20-minute strategy call. No obligation.",
+    "button": "Book a free strategy call",
+    "note": "Response within one business day."
+  }
+},
+"About": {
+  "metadata": {
+    "title": "About | CodEarn Tech",
+    "description": "CodEarn Tech is a remote-first software engineering studio building custom SaaS platforms, web and mobile apps, and business automation for companies in the UAE, Saudi Arabia, Bahrain and worldwide."
+  },
+  "hero": {
+    "location": "Remote-first · Serving UAE, Saudi Arabia & Bahrain",
+    "since": "Founded 2020",
+    "headingLine1": "A small",
+    "headingLine2": "engineering team",
+    "headingLine3": "that ships.",
+    "subtitle": "CodEarn Tech builds software for businesses that want a reliable technical partner — not an anonymous agency. We design, build and ship with clear scope, direct communication and clean, documented code.",
+    "ctaPrimary": "Start a conversation",
+    "ctaSecondary": "Meet the founder",
+    "quote": "We don't just deliver projects. We deliver the confidence that your product will ship — and hold up.",
+    "quoteAuthor": "CodEarn Team",
+    "quoteRole": "Founders & Engineers",
+    "badgeAvailable": "Available for projects",
+    "trustBadges": [
+      "You own your code",
+      "Direct access to engineers",
+      "Written scope & milestones"
+    ]
+  },
+  "whoWeAre": {
+    "badge": "Who we are",
+    "headingLine1": "A team focused on",
+    "headingLine2": "outcomes",
+    "headingLine3": ", not output.",
+    "description": "We're engineers who care about the product succeeding, not about closing tickets. That changes how we plan, build and communicate.",
+    "cards": [
+      {
+        "title": "Problem solvers",
+        "description": "We start with your business, not the framework. Every technical decision traces back to a real user need.",
+        "point": "Business-first approach"
+      },
+      {
+        "title": "Your technical partner",
+        "description": "We work as an extension of your team — not a vendor behind a portal. You talk to the people writing the code.",
+        "point": "Long-term partnership"
+      },
+      {
+        "title": "Product thinkers",
+        "description": "We ask “does this help the user?” before “can we build it?” — and say no when something won't move the needle.",
+        "point": "Outcome-focused"
+      },
+      {
+        "title": "Craftsmen",
+        "description": "Clean, documented, tested code. If a project ends, you or another engineer can pick it up without archaeology.",
+        "point": "Quality without compromise"
+      }
+    ],
+    "differentiatorsHeading": "How we operate",
+    "differentiatorsDescription": "No middle layers, no hidden process. This is how a CodEarn project actually runs.",
+    "differentiators": [
+      "You own the code and accounts from day one",
+      "Direct access to the engineers building your product",
+      "Written scope, milestones and a clear quote",
+      "Short iterations with regular demos",
+      "Post-launch support as agreed in your contract"
+    ],
+    "promiseTitle": "The CodEarn approach",
+    "promiseBody": "Short iterations. Regular demos. Clear handover. If something isn't working, we say so early — before it becomes a bigger problem.",
+    "promiseLink": "Start your project"
+  },
+  "whatWeDo": {
+    "badge": "What we do",
+    "headingLine1": "End-to-end delivery for",
+    "headingLine2": "ambitious teams.",
+    "description": "From the first line of code to scaling infrastructure, we handle the technical complexity so you can focus on the business.",
+    "whatYouGet": "What you get",
+    "techStack": "Stack",
+    "learnMore": "Learn more",
+    "services": [
+      {
+        "id": "saas",
+        "title": "Custom SaaS",
+        "tagline": "Multi-user products with subscriptions",
+        "description": "We design and build multi-tenant SaaS platforms — authentication, subscription billing, admin dashboards and APIs, architected so you can grow without re-writing.",
+        "features": [
+          "Multi-tenant data design",
+          "Stripe subscription billing",
+          "Role-based access control",
+          "Admin dashboards & APIs",
+          "Cloud deployment & monitoring"
+        ],
+        "technologies": ["Next.js", "TypeScript", "PostgreSQL", "Stripe", "Node.js"]
+      },
+      {
+        "id": "web-apps",
+        "title": "Web Apps & Websites",
+        "tagline": "Fast, secure, SEO-ready platforms",
+        "description": "Marketing sites, business portals and internal tools built with Next.js and React — fast by default, mobile-friendly, and ready for search engines.",
+        "features": [
+          "Next.js App Router",
+          "Server-side rendering & SEO",
+          "Responsive across devices",
+          "CMS where you need it",
+          "Performance & accessibility basics"
+        ],
+        "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL"]
+      },
+      {
+        "id": "mobile",
+        "title": "Mobile Apps",
+        "tagline": "Cross-platform iOS and Android",
+        "description": "React Native apps with a single codebase — native feel, offline support where it matters, and store submission handled end-to-end.",
+        "features": [
+          "Expo & React Native",
+          "Offline-first where needed",
+          "Push notifications",
+          "App Store & Play Store submission",
+          "Analytics & crash reporting"
+        ],
+        "technologies": ["React Native", "Expo", "TypeScript", "Node.js", "PostgreSQL"]
+      },
+      {
+        "id": "automation-ai",
+        "title": "Automation & AI",
+        "tagline": "Integrations and AI where it helps",
+        "description": "We connect the tools your team already uses and remove manual work. AI where it genuinely helps, not as a gimmick.",
+        "features": [
+          "Workflow automation",
+          "System integrations & APIs",
+          "Chat assistants",
+          "Document & data processing",
+          "Monitoring & alerts"
+        ],
+        "technologies": ["Next.js", "Node.js", "OpenAI API", "PostgreSQL", "Stripe"]
+      }
+    ],
+    "processHeading": "How we work",
+    "processSubtitle": "A short, focused process — with demos at every step so you always know where things stand.",
+    "process": [
+      {
+        "number": "01",
+        "title": "Discovery",
+        "description": "We learn your business, users and goals before writing code."
+      },
+      {
+        "number": "02",
+        "title": "Plan",
+        "description": "Scope, architecture, milestones and a clear written quote."
+      },
+      {
+        "number": "03",
+        "title": "Build",
+        "description": "Short iterations with regular demos. You see progress and give feedback early."
+      },
+      {
+        "number": "04",
+        "title": "Launch & support",
+        "description": "Deployment, monitoring and post-launch support as agreed in your contract."
+      }
+    ],
+    "ctaHeading": "Not sure what you need?",
+    "ctaDescription": "Tell us about your product or process in a free 20-minute call. We'll help you figure out the right approach.",
+    "ctaButton": "Book a free strategy call"
+  },
+  "why": {
+    "badge": "How we work",
+    "headingLine1": "Six principles",
+    "headingLine2": "we actually follow.",
+    "description": "No slogans, no “elite agency” language. Just the way we run projects, written down so you know what to expect.",
+    "pillars": [
+      {
+        "category": "DELIVERY",
+        "title": "You own your code",
+        "description": "Source code and assets are transferred to you on final payment. No lock-in, no hostage situations."
+      },
+      {
+        "category": "DELIVERY",
+        "title": "Written scope & milestones",
+        "description": "Every project starts with a written scope, milestones and a clear quote — so pricing and delivery don't drift."
+      },
+      {
+        "category": "DELIVERY",
+        "title": "Short iterations with demos",
+        "description": "We ship in small increments and demo regularly. You give feedback early, not after the fact."
+      },
+      {
+        "category": "COMMUNICATION",
+        "title": "Direct access to engineers",
+        "description": "You talk to the people building the product — not through account managers or layers."
+      },
+      {
+        "category": "COMMUNICATION",
+        "title": "Business-day response",
+        "description": "Messages answered within one business day during active projects. Clear communication, no promises we can't keep."
+      },
+      {
+        "category": "COMMUNICATION",
+        "title": "Clean, documented code",
+        "description": "Readable code with clear handover docs. If a project ends, you or another engineer can pick it up without drama."
+      }
+    ]
+  },
+  "mission": {
+    "badge": "Our purpose",
+    "heading": "Why we do this",
+    "missionLabel": "Our mission",
+    "missionTitle": "Build software businesses can rely on — and hand over without drama.",
+    "missionBody": "We exist to be the technical partner we wished we'd had: honest about scope, clear about trade-offs, and focused on shipping software that lasts.",
+    "missionPoints": [
+      "Ship products that solve a real business problem",
+      "Write code that another engineer can pick up without archaeology",
+      "Give clients honest timelines, not optimistic guesses"
+    ],
+    "visionLabel": "Our vision",
+    "visionTitle": "The technical partner of choice for growing companies across the Gulf.",
+    "visionBody": "We want CodEarn to be known for the software we ship — for teams in the UAE, Saudi Arabia, Bahrain and beyond — not for our slides.",
+    "visionPoints": [
+      "A small, senior team that stays small by design",
+      "Clients who return for the second and third project",
+      "Products in production, not just in demos"
+    ],
+    "beliefsHeading": "What we believe",
+    "beliefs": [
+      {
+        "title": "Ship over slides",
+        "description": "Working software beats pitch decks. We measure progress in shipped milestones, not in meetings held."
+      },
+      {
+        "title": "Own the outcome",
+        "description": "We treat the product like it's ours. If something isn't working, we say so early — even if it isn't what you want to hear."
+      },
+      {
+        "title": "Clear beats clever",
+        "description": "Simple, readable code and straightforward communication beat clever tricks that nobody can maintain."
+      }
+    ],
+    "quote": "We measure success by products in production, decisions made with confidence, and clients who come back.",
+    "quoteAuthor": "CodEarn Team",
+    "quoteRole": "Founders & Engineers",
+    "ctaText": "Want to work with us?",
+    "ctaButton": "Start a conversation"
+  },
+  "finalCta": {
+    "badge": "Ready to start?",
+    "headingLine1": "Let's build something",
+    "headingLine2": "great together.",
+    "description": "Tell us about your product or process in a free 20-minute call. No obligation.",
+    "cardBadge": "For businesses",
+    "cardTitle": "Start your project",
+    "cardDescription": "Have a product or an idea? Let's discuss scope, budget and timeline in a free strategy call.",
+    "cardFeatures": [
+      "No commitment required",
+      "Written proposal & quote",
+      "Fixed scope, clear milestones"
+    ],
+    "cardCta": "Book a free strategy call",
+    "trustLine1": "Response within one business day",
+    "trustLine2": "Free 20-minute consultation",
+    "trustLine3": "Written scope before we start"
+  }
+},
+"Work": {
+  "metadata": {
+    "title": "Work | CodEarn Tech",
+    "description": "Selected case studies from CodEarn Tech — real software we designed and built for clients in Bahrain and beyond."
+  },
+  "listing": {
+    "badge": "Selected work",
+    "headingLine1": "Products we built",
+    "headingLine2": "with care.",
+    "description": "A small set of real projects. We publish only what we actually shipped — no inflated metrics, no fabricated results.",
+    "emptyState": "More case studies coming soon."
+  },
+  "detail": {
+    "backToWork": "Back to work",
+    "caseStudyLabel": "Case study",
+    "client": "Client",
+    "timeline": "Timeline",
+    "services": "Services",
+    "techStack": "Tech stack",
+    "challengeHeading": "The challenge",
+    "solutionHeading": "What we built",
+    "featuresHeading": "Key features",
+    "galleryHeading": "Interface previews",
+    "liveSite": "Visit live site",
+    "ctaHeading": "Have a similar project?",
+    "ctaDescription": "Tell us about your product in a free 20-minute call. No obligation.",
+    "ctaButton": "Book a free strategy call"
+  },
+  "notFound": {
+    "title": "Case study not found",
+    "description": "This project doesn't exist or has been moved.",
+    "backButton": "Back to work"
+  }
+},
+"AI": {
+  "metadata": {
+    "title": "CodEarn AI — Official Assistant",
+    "description": "Chat with CodEarn AI, the official assistant for CodEarn Tech. Ask about our services, work, and how we can help you build custom SaaS, web and mobile apps, and business automation."
+  },
+  "page": {
+    "back": "Back",
+    "live": "Live",
+    "loading": "Loading conversation…"
+  },
+  "container": {
+    "conversation": "Conversation",
+    "newChat": "New chat",
+    "startOver": "Start over",
+    "askNext": "Ask next",
+    "disclaimer": "CodEarn AI can make mistakes. Verify important information.",
+    "messagesLeft": "{count} messages left this hour"
+  },
+  "empty": {
+    "compactTitle": "Ask anything about CodEarn",
+    "compactSubtitle": "Services, work, or how to get in touch.",
+    "title": "Ask CodEarn AI",
+    "subtitle": "Have a question about CodEarn, our services, or what we're building? Ask below."
+  },
+  "input": {
+    "placeholder": "Ask anything about CodEarn...",
+    "send": "Send message"
+  },
+  "message": {
+    "basedOn": "Based on CodEarn information",
+    "copy": "Copy",
+    "copied": "Copied",
+    "regenerate": "Regenerate response",
+    "helpful": "Helpful",
+    "notHelpful": "Not helpful"
+  },
+  "widget": {
+    "openLabel": "Open CodEarn AI",
+    "title": "CodEarn AI",
+    "online": "Online",
+    "close": "Close chat",
+    "expand": "Open full page"
+  },
+  "suggestions": [
+    "What is CodEarn?",
+    "What services does CodEarn offer?",
+    "Who founded CodEarn?",
+    "What does CodEarn build?",
+    "How can I work with CodEarn?",
+    "Does CodEarn build custom SaaS?"
+  ]
+},
+"Legal": {
+  "shared": {
+    "sections": "Sections",
+    "backToTop": "Back to Top",
+    "jumpToSection": "Jump to Section",
+    "openNav": "Open sections navigation",
+    "closeNav": "Close navigation",
+    "lastUpdated": "Last updated",
+    "version": "Version",
+    "current": "Current",
+    "info": "Info",
+    "readTime": "Read time",
+    "tldr": "TL;DR",
+    "contact": "Contact"
+  },
+  "cookies": {
+    "metadata": {
+      "title": "Cookie Policy | CodEarn Tech",
+      "description": "How CodEarn Tech uses cookies to run the website, and how you can manage your cookie preferences."
+    },
+    "hero": {
+      "title": "Cookie Policy",
+      "noWalls": "No Cookie Walls",
+      "updatedLabel": "Updated",
+      "updatedDate": "January 2026",
+      "transparencyTitle": "Transparency First",
+      "transparencyBody": "We believe you deserve to know exactly which cookies we use and why. No hidden trackers, no surprise third-parties. You have full control over your data."
+    },
+    "overview": {
+      "title": "What Are Cookies?",
+      "body": "Cookies are small text files stored on your device when you visit websites. They help websites remember your preferences, understand how you use the site, and improve your experience.",
+      "session": "Session",
+      "sessionDesc": "Deleted when you close browser",
+      "persistent": "Persistent",
+      "persistentDesc": "Stay for days / months / years",
+      "firstParty": "First-Party",
+      "firstPartyDesc": "Set by us only"
+    },
+    "categories": {
+      "essential": { "title": "Essential Cookies", "description": "Required for the website to function properly. Cannot be disabled." },
+      "analytics": { "title": "Analytics Cookies", "description": "Help us understand how visitors interact with the website." },
+      "marketing": { "title": "Marketing Cookies", "description": "Used to deliver personalised advertisements. We do not currently use any." },
+      "preferences": { "title": "Preference Cookies", "description": "Remember your settings and customise your experience." }
+    },
+    "table": {
+      "cookieName": "Cookie Name",
+      "purpose": "Purpose",
+      "duration": "Duration",
+      "provider": "Provider",
+      "enableCategory": "Enable {category}",
+      "required": "Required",
+      "optional": "Optional",
+      "alwaysActive": "Always active",
+      "yourChoice": "Your choice"
+    },
+    "yourConsent": "Your Consent",
+    "on": "On",
+    "off": "Off",
+    "thirdPartyTitle": "Third-Party Services",
+    "thirdPartyBody": "We use a small number of trusted third-party services that may set cookies:",
+    "manageTitle": "Manage Your Cookies",
+    "manageBody": "You can change your cookie preferences at any time:",
+    "savePreferences": "Save Preferences",
+    "acceptAll": "Accept All",
+    "rejectOptional": "Reject Optional",
+    "preferencesSaved": "Preferences saved successfully!",
+    "clearAll": "Clear all cookies and reset preferences",
+    "contactTitle": "Cookie Questions?",
+    "contactBody": "Our team can explain any cookie in detail. No technical question is too small.",
+    "contactButton": "Contact Us",
+    "mobileSections": "Cookie Sections"
+  },
+  "privacy": {
+    "metadata": {
+      "title": "Privacy Policy | CodEarn Tech",
+      "description": "How CodEarn Tech collects, uses and protects your personal information across our website and services."
+    },
+    "hero": {
+      "title": "Privacy Policy",
+      "badge": "Your Data, Your Control",
+      "intro": "We build software, not trust empires. Here's exactly how we handle your data — in plain language, without the legal fog.",
+      "version": "Version 1.0",
+      "updatedLabel": "Last updated"
+    },
+    "sections": {
+      "introduction": "Introduction",
+      "collection": "What We Collect",
+      "usage": "How We Use It",
+      "cookies": "Cookies & Tracking",
+      "sharing": "Data Sharing",
+      "security": "Security Measures",
+      "rights": "Your Rights",
+      "thirdParty": "Third-Party Services",
+      "children": "Children's Privacy",
+      "updates": "Policy Updates",
+      "contact": "Contact Us"
+    },
+    "sidebar": {
+      "onThisPage": "On this page",
+      "zeroSales": "Zero Data Sales",
+      "zeroSalesSub": "Never sold, never will",
+      "zeroSalesBody": "We don't monetise your data. We build software that solves real problems."
+    },
+    "footer": {
+      "quote": "User data remains the property of the user.",
+      "subline": "We build software. We earn trust. We never sell it."
+    }
+  },
+  "terms": {
+    "metadata": {
+      "title": "Terms of Service | CodEarn Tech",
+      "description": "Rules governing use of CodEarn Tech's website and software development services."
+    },
+    "hero": {
+      "title": "Terms of Service",
+      "readableLegal": "Readable Legal",
+      "readableBody": "Legal documents should be readable. Each section has a TL;DR summary. No corporate fog, no hidden clauses.",
+      "version": "Version 1.0",
+      "updatedLabel": "Last updated",
+      "current": "Current"
+    },
+    "sections": {
+      "acceptance": "Acceptance",
+      "service": "Service Description",
+      "accounts": "Account Terms",
+      "acceptableUse": "Acceptable Use",
+      "payment": "Payment",
+      "intellectual": "Intellectual Property",
+      "termination": "Termination",
+      "liability": "Liability",
+      "disputes": "Disputes",
+      "changes": "Changes"
+    }
+  }
+},
+"Offline": {
+  "metadata": {
+    "title": "You're offline | CodEarn Tech",
+    "description": "Your connection dropped. Retry or return to a cached page."
+  },
+  "status": {
+    "offline": "Offline",
+    "backOnline": "Back online"
+  },
+  "title": "You're offline",
+  "subtitle": "It looks like your internet connection dropped.",
+  "body": "Check your connection and try again. Pages you've already visited may still be available from cache.",
+  "retry": "Try again",
+  "retrying": "Retrying…",
+  "backHome": "Back to home",
+  "hint": "We'll reload automatically as soon as you're back online."
+},
+"Founder": {
+  "metadata": {
+    "title": "Founder Story | CodEarn Tech",
+    "description": "The story behind CodEarn Tech — how a focus on building real software turned into a remote-first engineering studio serving clients across the Gulf and worldwide."
+  },
+  "hero": {
+    "badge": "The person behind CodEarn",
+    "firstName": "Muhammad",
+    "lastName": "Bilal",
+    "role": "Founder & Software Architect",
+    "positioning": "Building software products for real-world problems.",
+    "location": "Remote-first · Serving UAE, Saudi Arabia & Bahrain",
+    "ctaPrimary": "Explore my journey",
+    "ctaSecondary": "Connect with me",
+    "trustLine": ["Software Engineer", "Founder", "Product Builder"],
+    "badgeFounder": "Founder",
+    "badgeArchitect": "Software Architect",
+    "badgeBuilder": "Builder",
+    "currentlyBuilding": "Currently building",
+    "buildingList": ["CodEarn", "Client projects", "SaaS products (in development)"],
+    "imageCaptionName": "Muhammad Bilal",
+    "imageCaptionRole": "Founder & Software Architect"
+  },
+  "story": {
+    "badge": "01 — The human behind CodEarn",
+    "headingLine1": "Before CodEarn, there was a problem",
+    "headingLine2": "I wanted to understand.",
+    "imageCaptionLabel": "The beginning",
+    "imageCaptionText": "Where every builder starts — with a question.",
+    "blocks": [
+      { "title": "Where I started", "body": "I didn't start with a company or a clear plan. I started with curiosity — a computer, an internet connection, and a stubborn need to understand how things actually work." },
+      { "title": "What I discovered", "body": "Programming wasn't just syntax. It was a way of thinking — breaking big problems into small pieces and building solutions that didn't exist before." },
+      { "title": "What changed me", "body": "Real projects. Real clients. Real failures. Each one taught me something no course could — that building for people is harder, and far more meaningful, than building for yourself." },
+      { "title": "Why it mattered", "body": "I realised the gap wasn't talent or tools. It was access — to guidance, to opportunity, to a place where builders could actually grow. That gap became the reason CodEarn exists." }
+    ],
+    "quote": "I didn't start to build a company. I started to solve a problem I couldn't ignore.",
+    "quoteAuthor": "Muhammad Bilal"
+  },
+  "journey": {
+    "badge": "02 — The journey",
+    "headingLine1": "From learning to",
+    "headingLine2": "building.",
+    "description": "Every year added something — a skill, a lesson, a failure, a win. This is the timeline of how CodEarn came to be.",
+    "ctaButton": "See our work",
+    "items": [
+      { "year": "2019", "title": "Started software journey", "description": "Wrote the first line of code. No roadmap, no mentor — just curiosity and consistency.", "tag": "Beginning" },
+      { "year": "2020", "title": "First real projects", "description": "Moved from tutorials to real problems. Built small tools and websites that people actually used.", "tag": "Foundation" },
+      { "year": "2021", "title": "Client & product experience", "description": "Worked with clients, learned deadlines, scope, communication, and the discipline of shipping.", "tag": "Experience" },
+      { "year": "2022", "title": "Engineering growth", "description": "Went deeper into architecture, full-stack systems, and scalable product thinking.", "tag": "Growth" },
+      { "year": "2023", "title": "Writing & open source", "description": "Started sharing knowledge publicly, contributing to open source, and writing about what worked — and what didn't.", "tag": "Craft" },
+      { "year": "2024", "title": "CodEarn", "description": "Founded CodEarn — a remote-first software engineering studio built around real problems and shipped products.", "tag": "Founder", "highlight": true },
+      { "year": "2025", "title": "Client work & case studies", "description": "Shipping client projects across Bahrain and the region. Real products in production.", "tag": "Shipping" },
+      { "year": "2026", "title": "Building the next chapter", "description": "The journey is still being written. More products. More clients. More building.", "tag": "Now", "highlight": true }
+    ]
+  },
+  "why": {
+    "badge": "03 — Why I built CodEarn",
+    "headingLine1": "I didn't want to simply build software.",
+    "headingLine2": "I wanted to build around problems that matter.",
+    "steps": [
+      { "number": "01", "label": "The problem", "heading": "What I saw", "body": "Developers were learning endlessly but not building. Businesses were paying for software that never solved the real problem. Talent existed everywhere — opportunity didn't.", "points": ["Learning without shipping", "Tools built without understanding users", "Skill present, access missing"] },
+      { "number": "02", "label": "The insight", "heading": "What I realised", "body": "The gap wasn't talent or technology. It was the space in between — where learning meets real building, and where builders meet real opportunity. That space needed to exist.", "points": ["Real problems need real builders", "Skills grow when they ship", "Opportunity should be built, not waited for"] },
+      { "number": "03", "label": "The mission", "heading": "What CodEarn became", "body": "CodEarn was built as that space — a software engineering studio where products are developed around real problems, not trends. Not just a company. A vehicle.", "points": ["Build useful software", "Ship real products", "Create opportunity for engineers"] }
+    ],
+    "statementLine1": "CodEarn is not just a company.",
+    "statementLine2": "It is the vehicle through which I want to build useful software, products, and opportunities."
+  },
+  "beliefs": {
+    "badge": "04 — What I believe",
+    "headingLine1": "The principles behind",
+    "headingLine2": "how I build.",
+    "description": "These aren't slogans. They are the filters I use before I start anything — and the standards I hold myself to while building.",
+    "principles": [
+      { "title": "Build, don't just learn", "body": "Tutorials fade. Real projects stay. Skills are proven when they ship, not when they're understood." },
+      { "title": "Solve real problems", "body": "Technology without purpose is just noise. Every line of code should trace back to a real human need." },
+      { "title": "Ship, learn, improve", "body": "Perfection is a delay tactic. Shipping teaches faster than planning. Iteration is the real skill." },
+      { "title": "Depth over hype", "body": "Trends will pass. Fundamentals will compound. I choose depth — in code, in products, in craft." },
+      { "title": "Create value", "body": "Success is a side effect of usefulness. If it doesn't help someone, it doesn't matter how clever it is." }
+    ],
+    "quote": "Your skills become valuable when they solve a real problem.",
+    "quoteAuthor": "Muhammad Bilal"
+  },
+  "findOnline": {
+    "badge": "05 — Find me online",
+    "headingLine1": "Connect, follow,",
+    "headingLine2": "explore.",
+    "description": "Where I share work, code, and the occasional lesson.",
+    "featuredLabel": "Featured",
+    "featuredTitle": "Start here",
+    "featured": [
+      { "name": "LinkedIn", "handle": "in/mbilal1205", "purpose": "Professional network" },
+      { "name": "GitHub", "handle": "@mbilal1205", "purpose": "Code & repositories" },
+      { "name": "CodEarn Tech", "handle": "codearntech.com", "purpose": "The studio & its work" }
+    ],
+    "contactBadge": "Contact",
+    "contactHeading": "Want to talk business, products, or software?",
+    "contactBody": "Whether you have a project, a collaboration idea, or just want to say hello — my inbox is open.",
+    "contactCta": "Start a conversation"
+  },
+  "letter": {
+    "badge": "06 — A letter from the founder",
+    "headingLine1": "A note from me to anyone",
+    "headingLine2": "building from zero.",
+    "greeting": "Dear builder,",
+    "paragraphs": [
+      "I know exactly where you are right now. The doubts. The late nights. The tutorials you started and never finished. The projects you built and never shipped. The comparison with people who seem five steps ahead.",
+      "I've been there. I still am, some days. And I want you to know something important: none of that means you're behind. It means you're building.",
+      "The people who succeed aren't the ones with the perfect plan. They're the ones who keep going when the plan falls apart. They ship when it's not ready. They ask when they don't understand. They build even when nobody's watching.",
+      "CodEarn exists because I believe in that version of you — the one who refuses to wait for permission. The one who understands that skills become valuable the moment they solve something real for someone real.",
+      "So if you're reading this, and you're building something — anything — know that I'm building too. Somewhere, right now, we're on the same road.",
+      "Keep going. Keep shipping. Keep learning. The world needs more people like you."
+    ],
+    "closing": "With respect,",
+    "signatureName": "Muhammad Bilal",
+    "signatureRole": "Founder, CodEarn",
+    "imageCaptionLabel": "Founder's note",
+    "imageCaptionText": "Written on a late night, for anyone building from zero."
+  },
+  "keepsMoving": {
+    "badge": "07 — What keeps me moving",
+    "headingLine1": "What keeps me",
+    "headingLine2": "grounded while building.",
+    "description": "Beyond the code, the products, and the plans — these three things quietly shape how I live and build every day.",
+    "pillars": [
+      { "label": "Faith", "body": "Everything I build starts with gratitude. Faith keeps me grounded when things work, and patient when they don't. It reminds me that outcomes are not entirely mine to control — but effort always is.", "quote": "Trust the process. Do the work. Leave the rest." },
+      { "label": "Discipline", "body": "Motivation fades. Discipline doesn't. Showing up every day — even when the work feels small — is what actually compounds over years. Consistency is the quiet engine behind every result.", "quote": "Small consistent steps beat big inconsistent leaps." },
+      { "label": "Continuous learning", "body": "The moment I stop learning is the moment I start falling behind. Every project, every failure, every conversation teaches something. I stay a student — no matter how much I've built.", "quote": "Stay curious. Stay humble. Keep learning." }
+    ],
+    "quote": "Build with intention. Stay grateful. Keep learning.",
+    "quoteAuthor": "Muhammad Bilal"
+  },
+  "whatsNext": {
+    "badge": "08 — What's next",
+    "headingLine1": "The journey is still",
+    "headingLine2": "being written.",
+    "description": "Three directions I'm heading in. No fixed timeline — just consistent work in the right direction.",
+    "directions": [
+      { "number": "01", "label": "More products", "body": "Building useful software around real problems. Not more of the same — better tools for people who actually need them.", "highlights": ["SaaS products", "Developer tools", "Real problem focus"] },
+      { "number": "02", "label": "Stronger CodEarn", "body": "Growing the studio, its products, and its clients. Turning CodEarn into a place where engineers ship quality work and businesses get real outcomes.", "highlights": ["Team growth", "Client work", "Product ecosystem"], "featured": true },
+      { "number": "03", "label": "Build in public", "body": "Sharing what I build, what works, and what doesn't. Writing and documenting the journey — the good parts and the hard ones.", "highlights": ["Writing", "Sharing lessons", "Documenting failures too"] }
+    ],
+    "currentlyLabel": "Currently",
+    "currentlyText": "Building • Learning • Shipping",
+    "currentlyCta": "Follow the journey"
+  },
+  "letsBuild": {
+    "badge": "Let's build something meaningful",
+    "headingLine1": "Have a problem",
+    "headingLine2": "worth solving?",
+    "description": "Whether you're building a product, exploring an idea, or looking for a technology partner — let's start with the problem. Everything good begins there.",
+    "ctaPrimary": "Start a conversation",
+    "ctaSecondary": "Explore our services",
+    "trustLine1": "Response within one business day",
+    "trustLine2": "Open to projects & collaborations",
+    "trustLine3": "Remote-first · Serving UAE, Saudi Arabia & Bahrain",
+    "imageCaptionLabel": "Founder",
+    "imageCaptionName": "Muhammad Bilal",
+    "imageCaptionRole": "Founder & Software Architect, CodEarn",
+    "statusChip": "Available for projects",
+    "currentlyChipLabel": "Currently",
+    "currentlyChipText": "Building • Learning • Shipping"
+  }
+},
+"NotFound": {
+  "tag": "Page not found",
+  "status": "PAGE_NOT_FOUND",
+  "title": "This page isn't here.",
+  "description": "The link may be broken, or the page may have moved. Try one of these instead — or head back to the home page.",
+  "suggestionsLabel": "Try",
+  "suggestions": [
+    { "path": "/services", "label": "Services" },
+    { "path": "/case-studies", "label": "Work" },
+    { "path": "/about", "label": "About" },
+    { "path": "/contact", "label": "Contact" }
+  ],
+  "cards": {
+    "services": {
+      "title": "See our services",
+      "description": "Custom SaaS, web, mobile, and automation — what we actually build.",
+      "cta": "Explore services"
+    },
+    "work": {
+      "title": "See our work",
+      "description": "Real case studies — shipped projects and real deliverables.",
+      "cta": "View case studies"
+    }
+  },
+  "backHomeHint": "Or head to familiar territory",
+  "backHome": "Back to home",
+  "stats": {
+    "status": "STATUS: PAGE_NOT_FOUND",
+    "searched": "ROUTES_CHECKED: ALL",
+    "location": "LOCATION: UNKNOWN"
+  }
+},
+"Share": {
+  "title": "Share this",
+  "subtitle": "Help someone discover CodEarn:",
+  "whatsapp": "WhatsApp",
+  "twitter": "X (Twitter)",
+  "linkedin": "LinkedIn",
+  "copy": "Copy link",
+  "copied": "Copied!"
+},
+"Contact": {
+  "metadata": {
+    "title": "Contact Us | CodEarn Tech",
+    "description": "Get in touch with CodEarn Tech. Discuss your SaaS, web, mobile, or automation project. WhatsApp, email, and consultation available for clients in UAE, Saudi Arabia, Bahrain, and worldwide."
+  },
+  "hero": {
+    "badge": "Let's talk",
+    "headingLine1": "Have a project",
+    "headingLine2": "in mind?",
+    "description": "Whether you need a custom SaaS platform, a web app, or want to discuss an idea — reach out. We respond within one business day."
+  },
+  "channels": {
+    "emailTitle": "Email us",
+    "emailDescription": "For project inquiries, proposals, and general questions.",
+    "whatsappTitle": "Chat on WhatsApp",
+    "whatsappDescription": "Prefer messaging? Get quick answers to your questions.",
+    "whatsappCta": "Open WhatsApp",
+    "emailCta": "Send an email",
+    "locationTitle": "Where we work",
+    "locationDescription": "Remote-first. Serving companies across the UAE, Saudi Arabia, Bahrain, and worldwide."
+  },
+  "form": {
+    "title": "Send us a message",
+    "description": "Fill out the form below and we'll get back to you shortly.",
+    "name": "Your name",
+    "namePlaceholder": "John Doe",
+    "email": "Email address",
+    "emailPlaceholder": "john@company.com",
+    "company": "Company name (optional)",
+    "companyPlaceholder": "Your company",
+    "service": "What do you need help with?",
+    "serviceOptions": [
+      "Custom SaaS Development",
+      "Web App / Website",
+      "Mobile App",
+      "AI & Automation",
+      "Maintenance & Support",
+      "Other"
+    ],
+    "message": "Tell us about your project",
+    "messagePlaceholder": "Briefly describe what you're looking to build...",
+    "submit": "Send message",
+    "sending": "Sending...",
+    "success": "Message sent! We'll reply within one business day.",
+    "error": "Something went wrong. Please try again or email us directly."
+  },
+  "regions": {
+    "title": "Serving the Gulf & beyond",
+    "uae": "United Arab Emirates",
+    "saudi": "Saudi Arabia",
+    "bahrain": "Bahrain",
+    "worldwide": "Worldwide"
+  }
+},
+  "Pricing": {
+    "metadata": {
+      "title": "Pricing | Transparent Software Development Costs | CodEarn Tech",
+      "description": "View clear, upfront pricing for website development, web apps, mobile apps, SaaS, and AI automation. Custom software agency for UAE, Saudi Arabia, and Bahrain."
+    },
+    "hero": {
+      "badge": "Limited Time Launch Offer",
+      "headingLine1": "Clear pricing.",
+      "headingLine2": "Zero surprises.",
+      "description": "Choose a package that fits your stage. All plans include direct engineering access, written scope, and source code ownership.",
+      "discountText": "Get 20% off on all website packages this month.",
+      "currencyLabel": "Currency:",
+      "vatNote": "All prices exclude 5% VAT."
+    },
+    "tabs": {
+      "websites": "Website Packages",
+      "custom": "Custom Development",
+      "maintenance": "Maintenance"
+    },
+    "badges": {
+      "popular": "Most Popular",
+      "bestValue": "Best Value",
+      "customQuote": "Custom Quote"
+    },
+    "website": {
+      "starter": {
+        "name": "Starter",
+        "desc": "For small businesses, freelancers, and new startups.",
+        "features": [
+          "Up to 5 pages",
+          "Mobile-responsive design",
+          "Contact form & WhatsApp button",
+          "Basic on-page SEO",
+          "Google Analytics setup",
+          "2 revision rounds",
+          "14 days free support"
+        ],
+        "notIncluded": ["Arabic version", "Admin panel (CMS)", "Blog"],
+        "timeline": "4 working days",
+        "cta": "Start with Starter"
+      },
+      "business": {
+        "name": "Business",
+        "desc": "For growing companies needing a full professional presence.",
+        "features": [
+          "Up to 10 pages",
+          "English + Arabic (RTL)",
+          "Custom design",
+          "Contact form + WhatsApp",
+          "Google Maps & Social links",
+          "Basic SEO + Sitemap",
+          "Speed optimization",
+          "3 revision rounds",
+          "30 days free support"
+        ],
+        "notIncluded": ["Admin panel (CMS)", "E-commerce"],
+        "timeline": "1 week",
+        "cta": "Choose Business"
+      },
+      "premium": {
+        "name": "Premium",
+        "desc": "For businesses needing content control and advanced features.",
+        "features": [
+          "15+ pages",
+          "English + Arabic (RTL)",
+          "Admin panel (CMS) included",
+          "Blog functionality",
+          "Smooth animations",
+          "Advanced SEO setup",
+          "Newsletter/CRM integration",
+          "4 revision rounds",
+          "60 days free support"
+        ],
+        "notIncluded": ["E-commerce", "Content writing"],
+        "timeline": "2-3 weeks",
+        "cta": "Go Premium"
+      },
+      "ecommerce": {
+        "name": "E-commerce",
+        "desc": "For selling products online with a fast checkout.",
+        "features": [
+          "Up to 50 products catalogue",
+          "Cart & Checkout",
+          "Payment gateway integration",
+          "Basic order management",
+          "English + Arabic",
+          "3 revision rounds",
+          "30 days free support"
+        ],
+        "notIncluded": ["50+ products data entry", "Gateway fees"],
+        "timeline": "3-4 weeks",
+        "cta": "Start E-commerce"
+      }
+    },
+    "custom": {
+      "title": "Custom Development",
+      "description": "Complex requirements need a tailored approach. We provide written quotes based on your exact scope.",
+      "webapp": {
+        "name": "Web Application",
+        "desc": "Dashboards, portals, booking systems, and custom software.",
+        "features": ["Requirements discovery", "UI design", "Up to 3 core modules", "Admin panel", "Database & API", "30 days bug-fix support"]
+      },
+      "mobile": {
+        "name": "Mobile App (React Native)",
+        "desc": "iOS and Android from a single codebase.",
+        "features": ["5-8 screens", "User login", "API connection", "Push notifications", "Store submission help", "30 days bug-fix support"]
+      },
+      "saas": {
+        "name": "SaaS Development",
+        "desc": "Launch your own software product.",
+        "features": ["Product scoping", "User accounts & login", "Admin dashboard", "Core MVP features", "Subscription integration", "Cloud deployment"]
+      },
+      "ai": {
+        "name": "AI Automation",
+        "desc": "WhatsApp chatbot or custom AI agents.",
+        "setup": "Setup",
+        "monthly": "Monthly",
+        "features": ["Arabic + English support", "WhatsApp Business API", "Lead capture", "Human handover", "Simple dashboard", "1-2 weeks to live"]
+      }
+    },
+    "maintenance": {
+      "title": "Maintenance & Support",
+      "description": "Keep your software secure, fast, and updated.",
+      "basic": {
+        "name": "Basic",
+        "features": ["Uptime monitoring", "Security updates", "Monthly backup", "2 hours of small changes"]
+      },
+      "standard": {
+        "name": "Standard",
+        "features": ["Everything in Basic", "Weekly backup", "Performance check", "5 hours of changes", "Email support (24h response)"]
+      },
+      "premium": {
+        "name": "Premium",
+        "features": ["Everything in Standard", "Priority WhatsApp support", "10 hours of changes", "Monthly report", "SEO health check"]
+      }
+    },
+    "comparison": {
+      "title": "Compare Website Packages",
+      "features": {
+        "pages": "Pages",
+        "bilingual": "English + Arabic (RTL)",
+        "cms": "Admin Panel (CMS)",
+        "blog": "Blog",
+        "ecommerce": "E-commerce",
+        "seo": "SEO Setup",
+        "support": "Free Support",
+        "revisions": "Revision Rounds"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": "How does payment work?",
+      "a1": "We require a 50% advance to start, and the remaining 50% upon delivery before go-live. For larger projects, we split this into 40% / 30% / 30% milestones.",
+      "q2": "What do revisions include?",
+      "a2": "Revisions cover design tweaks and minor changes within the agreed scope. Adding entirely new pages or features is charged separately.",
+      "q3": "Who handles hosting and domains?",
+      "a3": "You own your domain and hosting. We set everything up for you, but the ongoing fees are paid directly to the provider.",
+      "q4": "Is VAT included?",
+      "a4": "No, all listed prices exclude 5% VAT, which will be added to the final invoice.",
+      "q5": "Do I own the code?",
+      "a5": "Yes. Upon final payment, all source code and accounts are transferred to you. You have 100% ownership."
+    },
+    "cta": {
+      "title": "Not sure which plan is right?",
+      "desc": "Book a free 20-minute strategy call. We'll review your requirements and recommend the best approach.",
+      "button": "Book a free strategy call"
+    },
+    "calculator": {
+      "openBtn": "Open Project Calculator",
+      "title": "Build Your Estimate",
+      "desc": "Select what you need and get an instant cost & timeline estimate.",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "John Doe",
+      "budgetLabel": "Your Budget (Optional)",
+      "budgetPlaceholder": "e.g. 5000",
+      "whatsappSubmit": "Send Details via WhatsApp",
+      "budgetWarning": "Your budget is slightly below the estimate. Let's discuss a custom scope on WhatsApp.",
+      "summaryTitle": "Project Summary",
+      "days": "days",
+      "weeks": "weeks",
+      "baseTitle": "Project Base",
+      "baseOptions": {
+  "starter": "Starter Website",
+  "business": "Business Website",
+  "premium": "Premium Website",
+  "ecommerce": "E-commerce Website",
+  "webapp": "Web Application",
+  "mobile": "Mobile App",
+  "saas": "SaaS Platform"
+},
+      "addonsTitle": "Add-ons",
+      "addons": {
+        "cms": "Admin Panel (CMS)",
+        "bilingual": "English + Arabic (RTL)",
+        "ecommerce": "E-commerce / Payment",
+        "seo": "Advanced SEO Setup",
+        "maintenance": "3-Month Maintenance"
+      },
+      "speedTitle": "Delivery Speed",
+      "standardSpeed": "Standard (Normal Timeline)",
+      "expressSpeed": "Express (+30% Cost, 40% Faster)",
+      "estimateTitle": "Your Estimate",
+      "estCost": "Estimated Cost",
+      "estTime": "Estimated Time",
+      "expressTime": "Express Time",
+      "vatNote": "+ VAT. Final quote after discovery call.",
+      "cta": "Book this Estimate",
+      "close": "Close Calculator"
+    },
+    "urgency": {
+      "title": "Need it faster?",
+      "desc": "We understand your time is valuable. Choose Express Delivery and we will prioritize your project.",
+      "standard": "Standard",
+      "express": "Express (40% Faster)",
+      "expressFee": "+30% cost"
+    }
+  },
+    "calculator": {
+      "openBtn": "Open Project Calculator",
+      "title": "Build Your Estimate",
+      "desc": "Select what you need and get an instant cost & timeline estimate.",
+      "baseTitle": "Project Base",
+            "baseOptions": {
+        "starter": "Starter Website",
+        "business": "Business Website",
+        "premium": "Premium Website",
+        "ecommerce": "E-commerce Website",
+        "webapp": "Web Application",
+        "mobile": "Mobile App",
+        "saas": "SaaS Platform"
+      },
+          "nameLabel": "Your Name",
+    "namePlaceholder": "John Doe",
+    "budgetLabel": "Your Budget (Optional)",
+    "budgetPlaceholder": "e.g. 5000",
+    "whatsappSubmit": "Send Details via WhatsApp",
+    "budgetWarning": "Your budget is slightly below the estimate. Let's discuss a custom scope on WhatsApp.",
+    "summaryTitle": "Project Summary",
+    "days": "days",
+    "weeks": "weeks",
+      "addonsTitle": "Add-ons",
+      "addons": {
+        "cms": "Admin Panel (CMS)",
+        "bilingual": "English + Arabic (RTL)",
+        "ecommerce": "E-commerce / Payment",
+        "seo": "Advanced SEO Setup",
+        "maintenance": "3-Month Maintenance"
+      },
+      "speedTitle": "Delivery Speed",
+      "standardSpeed": "Standard (Normal Timeline)",
+      "expressSpeed": "Express (+30% Cost, 40% Faster)",
+      "estimateTitle": "Your Estimate",
+      "estCost": "Estimated Cost",
+      "estTime": "Estimated Time",
+      "expressTime": "Express Time",
+      "vatNote": "+ VAT. Final quote after discovery call.",
+      "cta": "Book this Estimate",
+      "close": "Close Calculator"
+    },
+    "urgency": {
+      "title": "Need it faster?",
+      "desc": "We understand your time is valuable. Choose Express Delivery and we will prioritize your project.",
+      "standard": "Standard",
+      "express": "Express (40% Faster)",
+      "expressFee": "+30% cost"
+    },
+    "Services": {
+  "metadata": {
+    "title": "Services | Custom SaaS, Web, Mobile & AI | CodEarn Tech",
+    "description": "Custom SaaS platforms, web and mobile apps, and business automation — designed and built by CodEarn Tech for companies across the UAE, Saudi Arabia, Bahrain and worldwide."
+  },
+  "hero": {
+    "badge": "What we build",
+    "headingLine1": "Services built for",
+    "headingLine2": "growth.",
+    "description": "Five focused services — custom SaaS, web applications, mobile apps, AI automation, and maintenance. No filler. Just software that ships and holds up.",
+    "primaryCta": "Book a free strategy call",
+    "secondaryCta": "See pricing",
+    "trustLine": ["You own your code", "Direct engineer access", "Written scope & quote"]
+  },
+  "list": {
+    "badge": "Our services",
+    "heading": "Everything we build, in detail.",
+    "description": "Pick the service that matches your stage. Each includes a clear scope, a written quote, and a delivery timeline you can hold us to.",
+    "quickNav": "Jump to",
+    "whatYouGet": "What you get",
+    "typicalFor": "Typical for",
+    "timelineLabel": "Timeline",
+    "priceLabel": "Starting from",
+    "services": [
+      {
+        "id": "saas",
+        "number": "01",
+        "name": "Custom SaaS Development",
+        "tagline": "Multi-tenant SaaS platforms built for scale.",
+        "description": "We design and build multi-tenant SaaS platforms end-to-end — authentication, subscription billing, admin dashboards, and APIs. Architected so you can grow without rewriting the core when you hit your next 10x.",
+        "features": [
+          "Multi-tenant data design",
+          "Stripe subscription billing",
+          "Role-based access control",
+          "Admin dashboards & REST APIs",
+          "Cloud deployment & monitoring"
+        ],
+        "typicalFor": "Startups launching their first product, and businesses replacing spreadsheets with a real platform.",
+        "timeline": "8-12 weeks",
+        "startingPrice": "AED 25,000",
+        "cta": "Start a SaaS project"
+      },
+      {
+        "id": "web-apps",
+        "number": "02",
+        "name": "Web Apps & Websites",
+        "tagline": "Fast, secure, SEO-ready platforms.",
+        "description": "Marketing sites, business portals, and internal tools built with Next.js and React — fast by default, mobile-friendly, and ready for search engines. Bilingual English + Arabic with full RTL support is standard on our Business package and above.",
+        "features": [
+          "Next.js App Router",
+          "Server-side rendering & SEO",
+          "Bilingual EN + AR (full RTL)",
+          "CMS integration where you need it",
+          "Performance & accessibility basics"
+        ],
+        "typicalFor": "Companies that need a professional online presence, and businesses building portals for clients or staff.",
+        "timeline": "4 days – 5 weeks depending on package",
+        "startingPrice": "AED 2,900",
+        "cta": "Start a web project"
+      },
+      {
+        "id": "mobile",
+        "number": "03",
+        "name": "Mobile Apps",
+        "tagline": "Cross-platform iOS and Android from a single codebase.",
+        "description": "React Native apps with a native feel, offline support where it matters, and store submission handled end-to-end. One codebase, both platforms, no double cost.",
+        "features": [
+          "Expo & React Native",
+          "Offline-first where needed",
+          "Push notifications & deep linking",
+          "App Store & Play Store submission",
+          "Analytics & crash reporting"
+        ],
+        "typicalFor": "Booking, delivery, field-service, and loyalty apps — anywhere a native app beats a website.",
+        "timeline": "6-12 weeks",
+        "startingPrice": "AED 15,000",
+        "cta": "Start a mobile project"
+      },
+      {
+        "id": "automation-ai",
+        "number": "04",
+        "name": "AI & Automation",
+        "tagline": "Integrations and AI where it actually helps.",
+        "description": "We connect the tools your team already uses and remove manual work. AI where it genuinely helps — not as a gimmick. Arabic + English support built-in for the Gulf market.",
+        "features": [
+          "Workflow automation",
+          "System integrations & APIs",
+          "Arabic + English AI chatbots",
+          "Document & data processing",
+          "Monitoring & alerts"
+        ],
+        "typicalFor": "Teams losing hours to repetitive admin work, and businesses handling heavy WhatsApp enquiries.",
+        "timeline": "1-2 weeks (chatbot) · 3-5 weeks (custom agents)",
+        "startingPrice": "AED 3,900 setup + AED 990/month",
+        "cta": "Start an automation project"
+      },
+      {
+        "id": "maintenance",
+        "number": "05",
+        "name": "Maintenance & Support",
+        "tagline": "Your software, monitored and maintained.",
+        "description": "Ongoing monitoring, security updates, backups, and small improvements under a monthly plan — so your product stays fast, secure, and up to date without you chasing anything.",
+        "features": [
+          "Uptime monitoring",
+          "Security & dependency updates",
+          "Weekly or monthly backups",
+          "Small changes & bug fixes",
+          "Priority WhatsApp support (Premium)"
+        ],
+        "typicalFor": "Any business running a production app or website that needs to stay healthy long-term.",
+        "timeline": "Monthly plan",
+        "startingPrice": "AED 199/month",
+        "cta": "Choose a plan"
+      }
+    ]
+  },
+  "process": {
+    "badge": "How we work",
+    "heading": "A short, focused process.",
+    "description": "No endless discovery. Demos at every step so you always know where things stand.",
+    "steps": [
+      { "number": "01", "title": "Discovery", "description": "We learn your business, users, and goals before writing a single line of code." },
+      { "number": "02", "title": "Plan", "description": "Scope, architecture, milestones, and a written quote you can actually hold us to." },
+      { "number": "03", "title": "Build", "description": "Short iterations with regular demos. You see progress and give feedback early." },
+      { "number": "04", "title": "Launch", "description": "Deployment, monitoring, and infrastructure set up properly for production." },
+      { "number": "05", "title": "Support", "description": "Post-launch support and fixes as agreed in your contract. No surprises." }
+    ]
+  },
+  "deliverables": {
+    "badge": "What you actually get",
+    "heading": "Four things every engagement includes.",
+    "description": "No vanity metrics or inflated claims — these are the working conditions on every project.",
+    "items": [
+      { "title": "You own your code", "description": "Source code and accounts transferred on final payment. No lock-in." },
+      { "title": "Direct engineer access", "description": "You talk to the engineers building your product — no account-manager layers." },
+      { "title": "Written scope & quote", "description": "Clear milestones and pricing agreed before we start. No scope-creep invoices." },
+      { "title": "1 business day response", "description": "Messages answered within one business day during active projects." }
+    ]
+  },
+  "cta": {
+    "badge": "Ready to start?",
+    "heading": "Have a product or process to build?",
+    "description": "Tell us about it in a free 20-minute strategy call. No obligation.",
+    "primaryButton": "Book a free strategy call",
+    "secondaryButton": "See our work",
+    "note": "Response within one business day."
+  }
+}
+}

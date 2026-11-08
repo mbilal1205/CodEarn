@@ -1,37 +1,51 @@
 // lib/codearn-ai/knowledge/company.ts
 
 export const company = {
-  name: "CodEarn",
-  legalName: "CodEarn Technology Company",
-  founded: "2024",
+  name: "CodEarn Tech",
+  shortName: "CodEarn",
+  legalName: "CodEarn Tech",
+  founded: "2020",
   founder: "Muhammad Bilal",
+
   website: "https://www.codearntech.com",
-  location: "Pakistan — building globally",
 
-  focus:
-    "Software products, SaaS platforms, web applications, custom software development and AI integrations.",
+  positioning:
+    "Remote-first software engineering studio. We design and build custom SaaS platforms, web and mobile apps, and business automation for companies across the UAE, Saudi Arabia, Bahrain, and worldwide.",
 
-  mission:
-    "Building software, products and technology around real problems.",
-
-  currentLiveProduct: "GigThink",
-
-  productsInDevelopment: "Not publicly announced yet.",
-
-  /**
-   * Critical rules for the AI — these will be enforced in the system prompt.
-   * Do not remove these.
-   */
-  importantRules: [
-    "CodEarn currently has ONE publicly live product: GigThink.",
-    "Do not claim any other product is live.",
-    "Do not invent products, customers, revenue, team members or certifications.",
-    "If information is not in this knowledge base, say 'I don't have verified information about that yet.'",
+  serviceRegions: [
+    "United Arab Emirates",
+    "Saudi Arabia",
+    "Bahrain",
+    "Kuwait",
+    "Qatar",
+    "Oman",
+    "Worldwide",
   ],
 
+  languages: ["English", "Arabic"],
+
+  focus:
+    "Custom SaaS development, web applications, mobile apps, AI & automation, and maintenance — delivered as a direct engineering partner.",
+
+  mission:
+    "Build software businesses can rely on — and hand over without drama.",
+
+  differentiators: [
+    "You own your code — source code and accounts transferred on final payment.",
+    "Direct access to the engineers building your product.",
+    "Written scope, milestones, and a clear quote before work starts.",
+    "Short iterations with regular demos.",
+    "Post-launch support as agreed in the contract.",
+  ],
+
+  paymentTerms:
+    "50% advance, 50% on delivery before go-live. For larger projects (web app, mobile app, SaaS): 40% / 30% / 30% milestones.",
+
+  vatNote: "All prices exclude 5% VAT.",
+
   socials: {
-    linkedin: "https://linkedin.com/company/codearn",
-    github: "https://github.com/mbilal1205",
-    x: "https://x.com/mbial1205",
+    linkedin: "https://www.linkedin.com/company/codearntech",
+    github: "https://github.com/codearntech",
+    x: "https://x.com/codearntech",
   },
 };

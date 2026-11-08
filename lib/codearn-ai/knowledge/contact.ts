@@ -2,21 +2,25 @@
 
 export const contact = {
   email: "hello@codearntech.com",
+  whatsapp: "+971 54 175 7432",
+  whatsappUrl: "https://wa.me/971541757432",
   website: "https://www.codearntech.com",
-  location: "Pakistan — building globally",
 
-  responseTime: "Usually within 24 hours on business days",
+  regions: "UAE, Saudi Arabia, Bahrain, and worldwide",
+
+  responseTime: "Within one business day (Sunday–Thursday, Gulf hours)",
 
   contactPageUrl: "/contact",
-  founderStoryUrl: "/founderstory",
+
+  forNewProjects:
+    "Use the [Contact page](/contact) or message us on WhatsApp for the fastest reply.",
+  forPartnerships:
+    "Use the [Contact page](/contact) and mention 'Partnership' in your message.",
+  forSupport:
+    "Existing clients can reach us at hello@codearntech.com or WhatsApp directly.",
 
   socials: {
-    linkedin: "https://linkedin.com/company/codearn",
-    github: "https://github.com/mbilal1205",
-    x: "https://x.com/mbilal1205",
+    linkedin: "https://www.linkedin.com/company/codearntech",
+    github: "https://github.com/codearntech",
   },
-
-  forPartnerships: "Use the contact page and select 'Partnership' as the reason.",
-  forSupport: "Use the contact page and select 'Existing Client Support'.",
-  forNewProjects: "Use the contact page and select 'Start a New Project'.",
 };

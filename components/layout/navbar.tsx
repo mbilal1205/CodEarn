@@ -1,51 +1,49 @@
 "use client"
 
 import { useState, useEffect, memo } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import Image from "next/image"
+import { Link, usePathname } from "@/i18n/navigation"
+import { useTranslations } from "next-intl"
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
-import { 
-  Home, 
-  Layers, 
-  Briefcase, 
-  Box, 
-  GraduationCap, 
-  Info, 
-  PhoneCall, 
-  MoreHorizontal, 
-  CheckCircle2,
-  X, 
-  Mail,
-  CalendarCheck ,
-  UserPlus
+import {
+  Layers,
+  Briefcase,
+  Info,
+  PhoneCall,
+  MoreHorizontal,
+  X,
+  BookOpen,
+  MessageCircle,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
-import Image from "next/image"
+import LanguageSwitcher from "@/components/LanguageSwitcher"
 
-/* -------------------- NAV LINKS DATA -------------------- */
-const navLinks = [
-  { name: "Products", href: "/products", icon: Box },
-  { name: "Solutions", href: "/solutions", icon: Layers },
-  { name: "Case Studies", href: "/case-studies", icon: Briefcase },
-  { name: "Academy", href: "/training", icon: GraduationCap },
-  { name: "Register", href: "/register", icon: UserPlus },
-] as const;
+/* -------------------- WHATSAPP -------------------- */
+const WHATSAPP_NUMBER = "971541757432"
+const WHATSAPP_MESSAGE = encodeURIComponent(
+  "Hi CodEarn, I'd like to discuss a project."
+)
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`
+
+/* -------------------- NAV LINKS -------------------- */
+const useNavLinks = () => {
+  const t = useTranslations("Nav")
+  return [
+    { name: t("services"), href: "/services", icon: Layers },
+    { name: t("work"), href: "/case-studies", icon: Briefcase },
+    { name: t("about"), href: "/about", icon: Info },
+    { name: t("blog"), href: "/blogs", icon: BookOpen },
+    { name: t("contact"), href: "/contact", icon: PhoneCall },
+  ] as const
+}
 
 /* -------------------- DESKTOP NAV LINK -------------------- */
 const DesktopNavLink = memo(
-  ({
-    href,
-    name,
-    isActive,
-  }: {
-    href: string
-    name: string
-    isActive: boolean
-  }) => (
+  ({ href, name, isActive }: { href: string; name: string; isActive: boolean }) => (
     <Link
       href={href}
-      className="relative px-4 py-2 text-[13px] font-normal tracking-wide transition-colors duration-300 group"
+      className="relative px-3.5 py-2 text-[13px] font-normal tracking-wide transition-colors duration-300 group whitespace-nowrap"
     >
       <span
         className={`relative z-10 transition-colors duration-300 ${
@@ -56,7 +54,6 @@ const DesktopNavLink = memo(
       >
         {name}
       </span>
-
       {isActive && (
         <motion.span
           layoutId="activeDesktopNav"
@@ -67,22 +64,21 @@ const DesktopNavLink = memo(
     </Link>
   )
 )
-
 DesktopNavLink.displayName = "DesktopNavLink"
 
-/* -------------------- NAVBAR COMPONENT -------------------- */
+/* -------------------- NAVBAR -------------------- */
 export function Navbar() {
   const pathname = usePathname()
+  const t = useTranslations("Nav")
+  const navLinks = useNavLinks()
   const [isMounted, setIsMounted] = useState(false)
   const [isMobileSheetOpen, setIsMobileSheetOpen] = useState(false)
 
   const { scrollY } = useScroll()
-  
-  // Apple Style Dynamic Transparency on Scroll
   const backgroundColor = useTransform(
     scrollY,
     [0, 50],
-    ["rgba(var(--background), 0)", "rgba(var(--background), 0.75)"]
+    ["rgba(var(--background), 0)", "rgba(var(--background), 0.85)"]
   )
   const borderBottom = useTransform(
     scrollY,
@@ -95,13 +91,13 @@ export function Navbar() {
 
   if (!isMounted) return null
 
-  // Segregating tabs for native bottom navigation layout
-  const primaryMobileTabs = navLinks.slice(0, 4) // Home, Solutions, Case Studies, Products
-  const remainingMobileLinks = navLinks.slice(4) // Academy, About, Contact
+  /* Mobile bottom bar: 4 primary tabs */
+  const primaryMobileTabs = navLinks.slice(0, 4)
+  const remainingMobileLinks = navLinks.slice(4)
 
   return (
     <>
-      {/* ---------------- DESKTOP & MOBILE TOP HEADER ---------------- */}
+      {/* ---------------- TOP HEADER ---------------- */}
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -110,95 +106,115 @@ export function Navbar() {
         style={{ backgroundColor, borderBottom }}
       >
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="flex items-center justify-between h-16 sm:h-20">
-            
-            {/* -------- SAME EXACT ORIGINAL LOGO UNCHANGED -------- */}
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative">
+          <div className="flex items-center justify-between h-16 sm:h-20 gap-3">
+            {/* ---------- LOGO + TAG ---------- */}
+            <Link
+              href="/"
+              className="flex items-center gap-2.5 sm:gap-3 group shrink-0"
+            >
+              <div className="relative shrink-0">
                 <div className="absolute inset-0 bg-linear-to-r from-codearn-blue to-codearn-purple rounded-xl blur-lg opacity-0 group-hover:opacity-40 transition" />
-
-                <div className="relative w-12 h-12 sm:w-11 sm:h-11 rounded-xl bg-linear-to-br from-codearn-blue via-codearn-purple to-codearn-cyan flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+                <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-linear-to-br from-codearn-blue via-codearn-purple to-codearn-cyan flex items-center justify-center shadow-lg group-hover:scale-105 transition">
                   <Image
                     src="/logo.webp"
                     alt="CodEarn Logo"
                     fill
-                    sizes="(max-width: 768px) 100px, 150px" 
+                    sizes="(max-width: 768px) 100px, 150px"
                     className="object-contain"
-                    priority 
+                    priority
                   />
                 </div>
               </div>
 
-              <div className="flex flex-col">
-                <span className="text-lg sm:text-xl font-bold tracking-tight">
-                  <span className="text-gradient">CodEarn</span>
+              {/* 👇 Tag ALWAYS visible now */}
+              <div className="flex flex-col leading-none">
+                <span className="text-base sm:text-lg md:text-xl font-bold tracking-tight text-gradient">
+                  CodEarn
                 </span>
-                <span className="text-[9px] sm:text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
-  Technology Company
-</span>
-
+                <span className="mt-1 text-[8px] sm:text-[9px] md:text-[10px] tracking-[0.18em] text-muted-foreground uppercase font-medium whitespace-nowrap">
+                  {t("tagline")}
+                </span>
               </div>
             </Link>
 
-            {/* -------- DESKTOP MINIMAL CENTRAL LINKS -------- */}
-            <div className="hidden lg:flex items-center gap-1 bg-muted/30 border border-border/40 rounded-full p-1.5 backdrop-blur-lg">
+            {/* ---------- DESKTOP CENTRAL LINKS ---------- */}
+            <div className="hidden lg:flex items-center gap-0.5 bg-muted/30 border border-border/40 rounded-full p-1.5 backdrop-blur-lg shrink-0">
               {navLinks.map((link) => (
                 <DesktopNavLink
-                  key={link.name}
+                  key={link.href}
                   {...link}
                   isActive={pathname === link.href}
                 />
               ))}
             </div>
 
-            {/* -------- RIGHT SIDE CONTROLS -------- */}
-            <div className="flex items-center gap-3">
+            {/* ---------- RIGHT CONTROLS ---------- */}
+            <div className="flex items-center gap-1 sm:gap-1.5 lg:gap-2 shrink-0">
+              <LanguageSwitcher />
               <ThemeToggle />
-              
-              {/* Premium Restyled Strategy Call Button */}
-              <Link href="/book-call" className="hidden lg:block">
-                <Button className="rounded-full px-6 text-xs font-medium  text-background  shadow-xs transition-all duration-200 bg-blue-400">
-                  Book Strategy Call
+
+              {/* 👇 WhatsApp — icon only < xl, full text at xl+ */}
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden lg:inline-flex group"
+                aria-label={t("chatWhatsApp")}
+              >
+                <Button
+                  className="relative rounded-full h-10 px-3 xl:px-4 gap-2 text-xs font-semibold text-white whitespace-nowrap overflow-hidden transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] bg-[#25D366] hover:bg-[#20bd5a] shadow-md shadow-[#25D366]/30 hover:shadow-lg hover:shadow-[#25D366]/40 ring-1 ring-white/10"
+                >
+                  {/* Live pulse dot */}
+                  <span className="relative flex h-2 w-2 shrink-0">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+                  </span>
+
+                  <MessageCircle className="w-3.5 h-3.5 shrink-0" />
+
+                  {/* 👇 Text only at xl+ (1280px+) */}
+                  <span className="hidden xl:inline">
+                    {t("chatWhatsApp")}
+                  </span>
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </nav>
       </motion.header>
 
-      {/* ---------------- MOBILE APP BOTTOM TABS NAVIGATION ---------------- */}
-      <div className="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-background/80 backdrop-blur-xl border-t border-border pb-safe-bottom shadow-[0_-4px_24px_rgba(0,0,0,0.04)]">
+      {/* ---------------- MOBILE BOTTOM TABS ---------------- */}
+      <div className="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-background/85 backdrop-blur-xl border-t border-border pb-safe-bottom shadow-[0_-4px_24px_rgba(0,0,0,0.04)]">
         <div className="flex items-center justify-around h-16 px-2 max-w-md mx-auto">
-          
-          {/* Main Core 4 Tabs */}
           {primaryMobileTabs.map((tab) => {
             const Icon = tab.icon
             const isActive = pathname === tab.href
-
             return (
               <Link
-                key={tab.name}
+                key={tab.href}
                 href={tab.href}
                 className="relative flex flex-col items-center justify-center flex-1 h-full text-center group"
               >
                 <div className="relative flex flex-col items-center gap-1 py-1 w-full">
-                  <Icon 
-                    className={`h-[21px] w-[21px] transition-transform duration-200 group-active:scale-92 ${
+                  <Icon
+                    className={`h-[21px] w-[21px] transition-transform duration-200 group-active:scale-90 ${
                       isActive ? "text-foreground" : "text-muted-foreground"
-                    }`} 
+                    }`}
                     strokeWidth={isActive ? 2.2 : 1.8}
                   />
-                  <span className={`text-[10px] tracking-wide transition-colors ${
-                    isActive ? "text-foreground font-medium" : "text-muted-foreground font-normal"
-                  }`}>
+                  <span
+                    className={`text-[10px] tracking-wide transition-colors ${
+                      isActive
+                        ? "text-foreground font-medium"
+                        : "text-muted-foreground font-normal"
+                    }`}
+                  >
                     {tab.name}
                   </span>
-                  
-                  {/* Apple Style Smooth Micro-Spring Indicator */}
                   {isActive && (
                     <motion.div
                       layoutId="activeMobileTabLine"
-                      className="absolute bottom-[-4px] w-5 h-[3px] bg-foreground rounded-full"
+                      className="absolute bottom-[-4px] w-5 h-[3px] bg-primary rounded-full"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -207,7 +223,6 @@ export function Navbar() {
             )
           })}
 
-          {/* "More" Trigger Button for Sheet Activation */}
           <button
             onClick={() => setIsMobileSheetOpen(true)}
             className={`flex flex-col items-center justify-center flex-1 h-full text-center transition-colors group ${
@@ -215,40 +230,42 @@ export function Navbar() {
             }`}
           >
             <div className="flex flex-col items-center gap-1 py-1">
-              <MoreHorizontal className="h-[21px] w-[21px] group-active:scale-92 transition-transform duration-200" strokeWidth={1.8} />
-              <span className="text-[10px] tracking-wide font-normal">More</span>
+              <MoreHorizontal
+                className="h-[21px] w-[21px] group-active:scale-90 transition-transform duration-200"
+                strokeWidth={1.8}
+              />
+              <span className="text-[10px] tracking-wide font-normal">
+                {t("more")}
+              </span>
             </div>
           </button>
         </div>
       </div>
 
-      {/* ---------------- MOBILE INTERACTIVE ACTION DRAWER SHEET ---------------- */}
+      {/* ---------------- MOBILE SHEET ---------------- */}
       <AnimatePresence>
         {isMobileSheetOpen && (
           <>
-            {/* Blended Backdrop Blur */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMobileSheetOpen(false)}
-              className="lg:hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-xs"
+              className="lg:hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
             />
 
-            {/* iOS Native System-Style Action Sheet Drawer */}
             <motion.div
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 340 }}
-              className="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-background rounded-t-[24px] border-t border-border px-6 pt-4 pb-10 shadow-2xl max-w-lg mx-auto"
+              className="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-background rounded-t-3xl border-t border-border px-6 pt-4 pb-10 shadow-2xl max-w-lg mx-auto"
             >
-              {/* Top Drag Notch Handle */}
               <div className="w-12 h-1 bg-muted rounded-full mx-auto mb-5" />
 
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">
-                  Menu Links
+                  {t("menuLinks")}
                 </h3>
                 <Button
                   size="icon"
@@ -260,37 +277,48 @@ export function Navbar() {
                 </Button>
               </div>
 
-              {/* Sub-menu Grid Options */}
               <div className="grid grid-cols-1 gap-1.5 mb-6">
                 {remainingMobileLinks.map((link) => {
                   const Icon = link.icon
                   const isActive = pathname === link.href
-
                   return (
                     <Link
-                      key={link.name}
+                      key={link.href}
                       href={link.href}
                       onClick={() => setIsMobileSheetOpen(false)}
                       className={`flex items-center gap-4 p-3.5 rounded-xl transition-all ${
-                        isActive 
-                          ? "bg-muted text-foreground font-medium" 
+                        isActive
+                          ? "bg-muted text-foreground font-medium"
                           : "hover:bg-muted/40 text-foreground/80"
                       }`}
                     >
-                      <Icon className="h-5 w-5 text-muted-foreground" strokeWidth={1.8} />
+                      <Icon
+                        className="h-5 w-5 text-muted-foreground"
+                        strokeWidth={1.8}
+                      />
                       <span className="text-sm tracking-wide">{link.name}</span>
                     </Link>
                   )
                 })}
               </div>
 
-              {/* Mobile Centered Premium Bottom Call-to-Action */}
-              <Link href="/book-call" onClick={() => setIsMobileSheetOpen(false)}>
-                <Button className="w-full py-6 rounded-xl text-sm font-medium text-background  shadow-xs flex items-center justify-center gap-2 bg-blue-400">
-                  <CalendarCheck className="h-4 w-4" />
-                  Book Strategy Call
+              {/* WhatsApp CTA — mobile */}
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileSheetOpen(false)}
+                className="block"
+              >
+                <Button className="w-full h-12 rounded-xl text-sm font-semibold text-white shadow-md shadow-[#25D366]/30 flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a]">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+                  </span>
+                  <MessageCircle className="w-4 h-4" />
+                  {t("chatWhatsApp")}
                 </Button>
-              </Link>
+              </a>
             </motion.div>
           </>
         )}

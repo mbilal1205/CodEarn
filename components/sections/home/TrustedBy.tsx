@@ -2,10 +2,9 @@
 
 import { memo } from "react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Code2 } from "lucide-react";
 
-// --- REAL TECH STACK — Yeh woh tools hain jo main actually use karta hoon ---
-// Har ek GitHub pe verify ho sakta hai. Koi fake logo nahi.
 const TECH_STACK = [
   { id: 1, name: "Next.js", type: "Framework" },
   { id: 2, name: "React", type: "Library" },
@@ -21,18 +20,15 @@ const TECH_STACK = [
   { id: 12, name: "Docker", type: "DevOps" },
 ];
 
-// Double the array for seamless infinite looping animation
 const INFINITE_STACK = [...TECH_STACK, ...TECH_STACK];
 
 export const TrustedBy = memo(() => {
+  const t = useTranslations("Home.stack");
   return (
     <section className="relative w-full py-16 bg-background overflow-hidden border-b border-primary/[0.06]">
-      {/* Subtle Background Glow behind the section */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50vw] h-[20vh] bg-primary/[0.03] rounded-full blur-[100px] pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Apple Style Minimalist Header */}
         <div className="flex flex-col items-center justify-center text-center mb-10">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -43,10 +39,9 @@ export const TrustedBy = memo(() => {
           >
             <Code2 className="w-3.5 h-3.5 text-primary/70" />
             <span className="text-[10px] font-medium tracking-wider text-muted-foreground uppercase">
-              Tools I Actually Build With
+              {t("badge")}
             </span>
           </motion.div>
-          
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -54,54 +49,37 @@ export const TrustedBy = memo(() => {
             transition={{ delay: 0.1, duration: 0.5 }}
             className="text-xs sm:text-sm font-medium tracking-wide text-muted-foreground/80 max-w-md"
           >
-            Modern stack. Real production experience. Not just tutorials.
+            {t("subtitle")}
           </motion.p>
         </div>
 
-        {/* Cinematic Marquee Track Container with Left/Right Edge Fade Masks */}
         <div className="relative w-full max-w-5xl mx-auto">
-          
-          {/* Elite Edge Blending (Left Fade & Right Fade) */}
           <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-background to-transparent z-20 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-background to-transparent z-20 pointer-events-none" />
 
-          {/* Scrolling Window */}
           <div className="w-full overflow-hidden flex whitespace-nowrap py-4">
-            
             <motion.div
-              className="flex gap-8 sm:gap-12 pr-8 sm:pr-12 shrink-0 items-center"
+              className="flex gap-8 sm:gap-12 pe-8 sm:pe-12 shrink-0 items-center"
               animate={{ x: ["0%", "-50%"] }}
-              transition={{
-                ease: "linear",
-                duration: 30, // Velocity control (Slower = more elegant)
-                repeat: Infinity,
-              }}
+              transition={{ ease: "linear", duration: 30, repeat: Infinity }}
               whileHover={{ animationPlayState: "paused" }}
             >
               {INFINITE_STACK.map((tech, index) => (
                 <div
                   key={`${tech.id}-${index}`}
-                  className="group relative flex items-center justify-center h-14 w-36 sm:w-44 px-4 rounded-xl border border-primary/[0.03] bg-primary/[0.01] dark:bg-neutral-900/20 backdrop-blur-sm transition-all duration-300 hover:border-primary/20 hover:bg-background shadow-[inset_0_1px_1px_rgba(255,255,255,0.02)]"
+                  className="group relative flex items-center justify-center h-14 w-36 sm:w-44 px-4 rounded-xl border border-primary/[0.03] bg-primary/[0.01] dark:bg-neutral-900/20 backdrop-blur-sm transition-all duration-300 hover:border-primary/20 hover:bg-background"
                 >
-                  {/* Subtle Indicator Tag inside card */}
-                  <span className="absolute top-1 right-2 text-[8px] font-mono tracking-tighter opacity-0 group-hover:opacity-40 transition-opacity text-primary">
+                  <span className="absolute top-1 end-2 text-[8px] font-mono tracking-tighter opacity-0 group-hover:opacity-40 transition-opacity text-primary">
                     {tech.type}
                   </span>
-
-                  {/* Tech Name */}
-                  <div className="text-sm font-semibold tracking-tight text-muted-foreground/40 group-hover:text-primary/80 transition-all duration-300 transform group-hover:scale-[1.03]">
+                  <div className="text-sm font-semibold tracking-tight text-muted-foreground/40 group-hover:text-primary/80 transition-all duration-300">
                     {tech.name}
                   </div>
-
-                  {/* Absolute Bottom Soft Line Accent on Hover */}
-                  <div className="absolute bottom-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-primary/0 to-transparent group-hover:via-primary/40 transition-all duration-500" />
                 </div>
               ))}
             </motion.div>
-
           </div>
         </div>
-
       </div>
     </section>
   );

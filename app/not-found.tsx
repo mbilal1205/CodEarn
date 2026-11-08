@@ -1,489 +1,104 @@
 // app/not-found.tsx
-"use client";
-
-import { useEffect, useState, useRef } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { 
-  MapPin, 
-  Compass, 
-  Home, 
-  WifiOff, 
-  Search, 
-  ArrowRight,
-  Grid3X3,
-  Binary,
-  Route
-} from "lucide-react";
 import Link from "next/link";
 
-// ==========================================
-// TYPES
-// ==========================================
-interface GridCell {
-  id: number;
-  active: boolean;
-  delay: number;
-}
+export const metadata = {
+  title: "Page not found | CodEarn Tech",
+  robots: { index: false, follow: false },
+};
 
-// ==========================================
-// COMPONENTS
-// ==========================================
-
-// Animated Grid Background
-function AnimatedGrid() {
-  const [cells, setCells] = useState<GridCell[]>([]);
-  
-  useEffect(() => {
-    // Generate grid cells
-    const newCells = Array.from({ length: 100 }, (_, i) => ({
-      id: i,
-      active: Math.random() > 0.7,
-      delay: Math.random() * 5,
-    }));
-    setCells(newCells);
-  }, []);
-
+export default function RootNotFound() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0 grid grid-cols-10 md:grid-cols-20 gap-1 opacity-[0.03]">
-        {cells.map((cell) => (
-          <div
-            key={cell.id}
-            className={`aspect-square rounded-sm transition-all duration-1000 ${
-              cell.active ? "bg-primary animate-pulse" : "bg-transparent"
-            }`}
-            style={{ animationDelay: `${cell.delay}s` }}
-          />
-        ))}
-      </div>
-      
-      {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
-      <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background" />
-    </div>
-  );
-}
-
-// Floating Particles (CSS only)
-function FloatingParticles() {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(6)].map((_, i) => (
-        <div
-          key={i}
-          className="absolute w-2 h-2 bg-primary/20 rounded-full animate-float"
+    <div
+      style={{
+        minHeight: "100vh", // 👈 White space khatam karne ke liye 100vh kiya
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "1.5rem 1rem",
+        fontFamily: "system-ui, -apple-system, sans-serif",
+        background: "#0F172A", // Dark background fixed
+        color: "#F8FAFC",
+      }}
+    >
+      <div style={{ textAlign: "center", maxWidth: "28rem", margin: "0 auto" }}>
+        <p
           style={{
-            left: `${15 + i * 15}%`,
-            top: `${20 + (i % 3) * 25}%`,
-            animationDelay: `${i * 0.5}s`,
-            animationDuration: `${3 + i * 0.5}s`,
+            fontSize: "0.75rem",
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            color: "#94A3B8",
+            marginBottom: "1rem",
           }}
-        />
-      ))}
-    </div>
-  );
-}
-
-// Lost Explorer Illustration (SVG)
-function LostExplorer() {
-  return (
-    <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto">
-      {/* Background glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-3xl animate-pulse" />
-      
-      <svg
-        viewBox="0 0 200 200"
-        className="w-full h-full relative z-10 drop-shadow-2xl"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Grid floor */}
-        <g className="animate-pulse opacity-30">
-          <path d="M40 160 L160 160 L140 140 L60 140 Z" stroke="currentColor" strokeWidth="1" className="text-primary" />
-          <path d="M60 140 L60 120 M80 145 L80 125 M100 148 L100 128 M120 145 L120 125 M140 140 L140 120" 
-                stroke="currentColor" strokeWidth="0.5" className="text-primary" />
-        </g>
-
-        {/* Character Body */}
-        <g className="animate-float-slow">
-          {/* Legs */}
-          <rect x="85" y="120" width="12" height="30" rx="2" fill="currentColor" className="text-muted-foreground" />
-          <rect x="103" y="120" width="12" height="30" rx="2" fill="currentColor" className="text-muted-foreground" />
-          
-          {/* Torso */}
-          <rect x="80" y="80" width="40" height="45" rx="4" fill="currentColor" className="text-primary/80" />
-          
-          {/* Arms holding map */}
-          <rect x="65" y="85" width="15" height="35" rx="2" fill="currentColor" className="text-muted-foreground" transform="rotate(-20 72 102)" />
-          <rect x="120" y="85" width="15" height="35" rx="2" fill="currentColor" className="text-muted-foreground" transform="rotate(20 127 102)" />
-          
-          {/* Map */}
-          <rect x="75" y="95" width="50" height="35" rx="2" fill="#fef3c7" stroke="#d97706" strokeWidth="1" />
-          <circle cx="95" cy="112" r="3" fill="#dc2626" className="animate-pulse" />
-          <path d="M85 105 L115 120 M90 125 L110 100" stroke="#92400e" strokeWidth="0.5" opacity="0.5" />
-          
-          {/* Head */}
-          <circle cx="100" cy="65" r="18" fill="#fdba74" />
-          
-          {/* Safari Hat */}
-          <ellipse cx="100" cy="50" rx="25" ry="5" fill="#d97706" />
-          <path d="M85 50 L85 35 Q100 30 115 35 L115 50 Z" fill="#d97706" />
-          <rect x="85" y="48" width="30" height="3" fill="#92400e" />
-          
-          {/* Face - Confused expression */}
-          <circle cx="94" cy="65" r="2" fill="#1f2937" className="animate-blink" />
-          <circle cx="106" cy="65" r="2" fill="#1f2937" className="animate-blink" />
-          <path d="M92 72 Q100 75 108 72" stroke="#1f2937" strokeWidth="1.5" fill="none" />
-          
-          {/* Question marks */}
-          <text x="130" y="40" fontSize="20" fill="#fbbf24" className="animate-bounce" style={{ animationDelay: "0s" }}>?</text>
-          <text x="140" y="55" fontSize="15" fill="#fbbf24" className="animate-bounce" style={{ animationDelay: "0.2s" }}>?</text>
-        </g>
-
-        {/* Signal waves */}
-        <g className="animate-pulse opacity-50">
-          <path d="M150 60 Q160 50 170 60" stroke="#ef4444" strokeWidth="2" fill="none" />
-          <path d="M145 55 Q160 40 175 55" stroke="#ef4444" strokeWidth="2" fill="none" opacity="0.6" />
-          <path d="M140 50 Q160 30 180 50" stroke="#ef4444" strokeWidth="2" fill="none" opacity="0.3" />
-        </g>
-
-        {/* Crosshair/target */}
-        <g className="animate-spin-slow opacity-20">
-          <circle cx="100" cy="100" r="60" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" className="text-primary" />
-          <line x1="100" y1="30" x2="100" y2="50" stroke="currentColor" strokeWidth="1" className="text-primary" />
-          <line x1="100" y1="150" x2="100" y2="170" stroke="currentColor" strokeWidth="1" className="text-primary" />
-          <line x1="30" y1="100" x2="50" y2="100" stroke="currentColor" strokeWidth="1" className="text-primary" />
-          <line x1="150" y1="100" x2="170" y2="100" stroke="currentColor" strokeWidth="1" className="text-primary" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-// Glitch Text Effect
-function GlitchText({ text }: { text: string }) {
-  const [displayText, setDisplayText] = useState(text);
-  const [isGlitching, setIsGlitching] = useState(false);
-
-  useEffect(() => {
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
-    
-    const glitch = () => {
-      setIsGlitching(true);
-      let iterations = 0;
-      const maxIterations = 10;
-      
-      const interval = setInterval(() => {
-        setDisplayText(
-          text
-            .split("")
-            .map((char, index) => {
-              if (index < iterations) return text[index];
-              return chars[Math.floor(Math.random() * chars.length)];
-            })
-            .join("")
-        );
-        
-        iterations += 1/3;
-        if (iterations >= maxIterations) {
-          clearInterval(interval);
-          setDisplayText(text);
-          setIsGlitching(false);
-        }
-      }, 30);
-    };
-
-    const timeout = setTimeout(glitch, 1000);
-    const interval = setInterval(glitch, 5000);
-    
-    return () => {
-      clearTimeout(timeout);
-      clearInterval(interval);
-    };
-  }, [text]);
-
-  return (
-    <span className={`relative inline-block font-mono ${isGlitching ? "text-primary" : "text-white"}`}>
-      {displayText}
-      {isGlitching && (
-        <>
-          <span className="absolute top-0 left-0 -ml-0.5 text-red-500 opacity-70 animate-glitch-1">{displayText}</span>
-          <span className="absolute top-0 left-0 ml-0.5 text-cyan-500 opacity-70 animate-glitch-2">{displayText}</span>
-        </>
-      )}
-    </span>
-  );
-}
-
-// Search Suggestions
-function SearchSuggestions() {
-  const suggestions = [
-    "/services",
-    "/portfolio", 
-    "/contact",
-    "/about"
-  ];
-
-  return (
-    <div className="flex flex-wrap justify-center gap-2 mt-4">
-      {suggestions.map((path) => (
-        <Link
-          key={path}
-          href={path}
-          className="px-3 py-1 text-xs rounded-full bg-secondary/50 hover:bg-secondary text-secondary-foreground transition-colors flex items-center gap-1"
         >
-          <Search className="w-3 h-3" />
-          {path}
-        </Link>
-      ))}
-    </div>
-  );
-}
+          Page not found
+        </p>
 
-// ==========================================
-// MAIN COMPONENT
-// ==========================================
+        <h1
+          style={{
+            fontSize: "5rem",
+            fontWeight: 800,
+            letterSpacing: "-0.05em",
+            margin: "0 0 1rem 0",
+            color: "#F8FAFC",
+          }}
+        >
+          404
+        </h1>
 
-export default function NotFound() {
-  const [mounted, setMounted] = useState(false);
+        <p
+          style={{
+            fontSize: "1rem",
+            lineHeight: 1.6,
+            color: "#94A3B8",
+            marginBottom: "2rem",
+          }}
+        >
+          The page you&apos;re looking for doesn&apos;t exist or has moved.
+        </p>
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+        <div
+          style={{
+            display: "flex",
+            gap: "0.75rem",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          <Link
+            href="/en"
+            style={{
+              display: "inline-block",
+              padding: "0.75rem 1.5rem",
+              background: "#2563EB",
+              color: "#F8FAFC",
+              borderRadius: "9999px",
+              textDecoration: "none",
+              fontWeight: 600,
+              fontSize: "0.875rem",
+            }}
+          >
+            English home
+          </Link>
 
-  if (!mounted) return null;
-
-  return (
-    <div className="min-h-screen bg-background relative overflow-hidden flex flex-col">
-      {/* Background Elements */}
-      <AnimatedGrid />
-      <FloatingParticles />
-      
-      {/* Top Navigation Bar */}
-      
-
-      {/* Main Content */}
-      <main className="flex-1 relative z-10 flex flex-col items-center justify-center px-4 py-12 md:py-20 mt-10">
-        
-        {/* Error Code Display */}
-        <div className="mb-8 relative">
-          <div className="bg-black/90 border border-border/50 rounded-2xl p-8 shadow-2xl relative overflow-hidden min-w-[280px]">
-            {/* Scanline */}
-            <div className="absolute top-0 left-0 w-full h-px bg-primary/50 animate-scan" />
-            
-            {/* Grid overlay */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px]" />
-            
-            <div className="relative z-10 text-center space-y-2">
-              <div className="flex items-center justify-center gap-2 text-destructive/80 text-xs font-mono mb-2">
-                <WifiOff className="w-3 h-3 animate-pulse" />
-                <span>CONNECTION_LOST</span>
-              </div>
-              
-              <h1 className="text-7xl md:text-8xl font-black tracking-tighter">
-                <GlitchText text="404" />
-              </h1>
-              
-              <div className="text-muted-foreground font-mono text-sm">
-                ERROR_CODE: PAGE_NOT_FOUND
-              </div>
-            </div>
-          </div>
-          
-          {/* Decorative elements */}
-          <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary/20 rounded-full animate-ping" />
-          <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-secondary/30 rounded-full animate-pulse" />
-        </div>
-
-        {/* Illustration */}
-        <div className="mb-8">
-          <LostExplorer />
-        </div>
-
-        {/* Message */}
-        <div className="text-center max-w-2xl mx-auto mb-10 space-y-4">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
-            Destination Not Found
-          </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            The digital coordinates you&apos;re looking for seem to be off the map. 
-            Our explorer has searched every byte, but this page appears to be lost in the void.
-          </p>
-          
-          <SearchSuggestions />
-        </div>
-
-        {/* Action Cards */}
-        <div className="grid md:grid-cols-2 gap-4 w-full max-w-2xl mb-12">
-          {/* Professional Services */}
-          <Card className="group relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-            <CardContent className="p-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary/50 flex items-center justify-center text-primary-foreground shadow-lg group-hover:scale-110 transition-transform">
-                  <Route className="w-6 h-6" />
-                </div>
-                
-                <div className="flex-1">
-                  <h3 className="font-semibold text-lg mb-1 group-hover:text-primary transition-colors">
-                    Hire Experts
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Let our team build the perfect solution for your digital journey.
-                  </p>
-                  
-                  <Link href="/services">
-                    <Button className="w-full group/btn" size="sm">
-                      <span>Explore Services</span>
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </CardContent>
-            
-            {/* Hover gradient */}
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-          </Card>
-
-          {/* Training */}
-          <Card className="group relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-            <CardContent className="p-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-secondary to-secondary/50 flex items-center justify-center text-secondary-foreground shadow-lg group-hover:scale-110 transition-transform">
-                  <Compass className="w-6 h-6" />
-                </div>
-                
-                <div className="flex-1">
-                  <h3 className="font-semibold text-lg mb-1 group-hover:text-secondary transition-colors">
-                    Learn Navigation
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Master the skills to build and navigate your own digital landscape.
-                  </p>
-                  
-                  <Link href="/training">
-                    <Button variant="secondary" className="w-full group/btn" size="sm">
-                      <span>Start Learning</span>
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </CardContent>
-            
-            {/* Hover gradient */}
-            <div className="absolute inset-0 bg-gradient-to-r from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-          </Card>
-        </div>
-
-        {/* Return Home */}
-        <div className="text-center">
-          <p className="text-sm text-muted-foreground mb-3">
-            Or return to familiar territory
-          </p>
-          <Link href="/">
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="rounded-full px-8 hover:scale-105 transition-transform group"
-            >
-              <Home className="w-4 h-4 mr-2 group-hover:-translate-y-0.5 transition-transform" />
-              Back to Home Base
-            </Button>
+          <Link
+            href="/ar"
+            style={{
+              display: "inline-block",
+              padding: "0.75rem 1.5rem",
+              background: "transparent",
+              color: "#F8FAFC",
+              border: "1px solid #334155",
+              borderRadius: "9999px",
+              textDecoration: "none",
+              fontWeight: 600,
+              fontSize: "0.875rem",
+            }}
+          >
+            الصفحة الرئيسية
           </Link>
         </div>
-
-        {/* Stats Bar */}
-        <div className="mt-16 flex items-center gap-8 text-xs text-muted-foreground border-t border-border/50 pt-8">
-          <div className="flex items-center gap-2">
-            <Grid3X3 className="w-4 h-4" />
-            <span>GRID_SEARCH: FAILED</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Binary className="w-4 h-4" />
-            <span>BYTES_SCANNED: ∞</span>
-          </div>
-          <div className="hidden md:flex items-center gap-2">
-            <MapPin className="w-4 h-4" />
-            <span>LOCATION: UNKNOWN</span>
-          </div>
-        </div>
-      </main>
-
-      {/* Footer */}
-     
-      {/* Global Styles */}
-      <style jsx global>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-        }
-        
-        @keyframes float-slow {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-10px) rotate(2deg); }
-        }
-        
-        @keyframes scan {
-          0% { transform: translateY(-100%); }
-          100% { transform: translateY(400px); }
-        }
-        
-        @keyframes glitch-1 {
-          0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
-          20% { clip-path: inset(20% 0 30% 0); transform: translate(-2px, 2px); }
-          40% { clip-path: inset(50% 0 20% 0); transform: translate(2px, -2px); }
-          60% { clip-path: inset(10% 0 60% 0); transform: translate(-2px, 0); }
-          80% { clip-path: inset(80% 0 5% 0); transform: translate(2px, 2px); }
-        }
-        
-        @keyframes glitch-2 {
-          0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
-          20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -2px); }
-          40% { clip-path: inset(30% 0 40% 0); transform: translate(-2px, 2px); }
-          60% { clip-path: inset(10% 0 80% 0); transform: translate(2px, 0); }
-          80% { clip-path: inset(40% 0 30% 0); transform: translate(-2px, -2px); }
-        }
-        
-        @keyframes blink {
-          0%, 90%, 100% { opacity: 1; }
-          95% { opacity: 0; }
-        }
-        
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
-        
-        .animate-float-slow {
-          animation: float-slow 4s ease-in-out infinite;
-        }
-        
-        .animate-scan {
-          animation: scan 3s linear infinite;
-        }
-        
-        .animate-glitch-1 {
-          animation: glitch-1 0.3s infinite;
-        }
-        
-        .animate-glitch-2 {
-          animation: glitch-2 0.3s infinite;
-        }
-        
-        .animate-blink {
-          animation: blink 4s infinite;
-        }
-        
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
-        }
-      `}</style>
+      </div>
     </div>
   );
 }

@@ -1,139 +1,107 @@
 // lib/seo-schemas.ts
-// Structured Data for SEO (Schema.org)
+// Clean, Gulf-focused structured data (no physical address until UAE licence).
 
+import { SITE_URL, SITE_NAME, SITE_OG_IMAGE, SOCIAL_LINKS, CONTACT, SERVICES_CATALOG } from "@/lib/seo/site";
+
+/* ================================================================
+   1. ORGANIZATION SCHEMA
+   ================================================================ */
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "CodEarn",
-  alternateName: "Code Earn Tech",
-  url: "https://www.codearntech.com",
-  logo: "https://www.codearntech.com/logo.png",
-  description: "Leading software development company specializing in SaaS products, custom web applications, and practical programming training with guaranteed internships.",
-  foundingDate: "2021",
+  "@id": `${SITE_URL}/#organization`,
+  name: SITE_NAME,
+  alternateName: "CodEarn",
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo.webp`,
+  image: SITE_OG_IMAGE,
+  description:
+    "CodEarn Tech is a remote-first software engineering studio building custom SaaS platforms, web and mobile apps, and business automation for companies across the UAE, Saudi Arabia, Bahrain and worldwide.",
+  foundingDate: "2020",
   founders: [
     {
       "@type": "Person",
-      name: "Muhammad Bilal", // Aapna naam yahan add karein
+      name: "Muhammad Bilal",
+      jobTitle: "Founder & Software Architect",
     },
   ],
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Main Bazaar, Near City Center", // Exact address update karein
-    addressLocality: "Samundri",
-    addressRegion: "Punjab",
-    postalCode: "37300",
-    addressCountry: "PK",
-  },
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: "+92-321-9515138", // Aapka number add karein
-    contactType: "customer service",
-    availableLanguage: ["English", "Urdu"],
-    areaServed: "PK",
-  },
-  sameAs: [
-    "https://www.facebook.com/codearntech", // Social links update karein
-    "https://www.linkedin.com/company/codearntech",
-    "https://twitter.com/codearntech",
-    "https://github.com/codearntech",
-  ],
-  email: "codearntech@gmai.com",
+  email: CONTACT.email,
+  knowsLanguage: ["en", "ar"],
   knowsAbout: [
-    "SaaS Development",
+    "Custom SaaS Development",
     "Web Application Development",
+    "Mobile App Development",
+    "React Native",
+    "AI Integration",
+    "Business Automation",
     "Software Engineering",
-    "Programming Training",
-    "Backend Development",
-    "Data Modeling",
-    "System Architecture",
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Node.js",
+    "PostgreSQL",
   ],
-  makesOffer: [
-    {
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name: "SaaS Product Development",
-        description: "End-to-end SaaS platform development with scalable architecture",
-      },
-    },
-    {
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name: "Custom Web Application Development",
-        description: "Tailored web applications for business automation",
-      },
-    },
-    {
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "Course",
-        name: "Full Stack Development Training",
-        description: "Practical programming training with internship guarantee",
-      },
-    },
+  areaServed: [
+    { "@type": "Country", name: "United Arab Emirates" },
+    { "@type": "Country", name: "Saudi Arabia" },
+    { "@type": "Country", name: "Bahrain" },
   ],
+  makesOffer: SERVICES_CATALOG.map((service) => ({
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name: service.name,
+      description: service.description,
+      serviceType: service.serviceType,
+    },
+  })),
+  sameAs: [
+    SOCIAL_LINKS.linkedin,
+    SOCIAL_LINKS.twitter,
+    SOCIAL_LINKS.github,
+    SOCIAL_LINKS.youtube,
+  ].filter(Boolean),
 };
 
+/* ================================================================
+   2. WEBSITE SCHEMA
+   ================================================================ */
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "CodEarn",
-  url: "https://www.codearntech.com",
+  "@id": `${SITE_URL}/#website`,
+  name: SITE_NAME,
+  url: SITE_URL,
+  description:
+    "Custom SaaS platforms, web and mobile apps, and business automation for companies across the Gulf and worldwide.",
+  inLanguage: ["en", "ar"],
+  publisher: { "@id": `${SITE_URL}/#organization` },
   potentialAction: {
     "@type": "SearchAction",
     target: {
       "@type": "EntryPoint",
-      urlTemplate: "https://www.codearntech.com/blogs?q={search_term_string}",
+      urlTemplate: `${SITE_URL}/en/blogs?q={search_term_string}`,
     },
     "query-input": "required name=search_term_string",
   },
-  inLanguage: "en-US",
-  copyrightHolder: {
-    "@type": "Organization",
-    name: "CodEarn",
-  },
-  creator: {
-    "@type": "Organization",
-    name: "CodEarn",
-  },
 };
 
+/* ================================================================
+   3. LOCAL BUSINESS SCHEMA
+   ⚠️ DO NOT ENABLE until you hold a valid UAE trade licence.
+   Once you have one, fill in the physical address and enable this.
+   ================================================================ */
 export const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "Organization"],
-  name: "CodEarn",
-  image: "https://www.codearntech.com/og-image.jpg",
-  "@id": "https://www.codearntech.com",
-  url: "https://www.codearntech.com",
-  telephone: "+92-321-9515138",
+  "@type": "ProfessionalService",
+  "@id": `${SITE_URL}/#localbusiness`,
+  name: SITE_NAME,
+  image: SITE_OG_IMAGE,
+  url: SITE_URL,
+  email: CONTACT.email,
   priceRange: "$$",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Main Bazaar",
-    addressLocality: "Samundri",
-    addressRegion: "Punjab",
-    postalCode: "37300",
-    addressCountry: "PK",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: "31.4639", // Samundri coordinates
-    longitude: "73.3428",
-  },
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      opens: "09:00",
-      closes: "18:00",
-    },
-  ],
-  department: [
-    {
-      "@type": "LocalBusiness",
-      name: "CodEarn Training Center",
-      description: "Programming and software development training institute",
-    },
-  ],
+  // address: { ... } -> Add UAE address here when licence is ready
+  areaServed: ["AE", "SA", "BH"],
+  serviceType: SERVICES_CATALOG.map((s) => s.serviceType),
+  availableLanguage: ["English", "Arabic"],
 };

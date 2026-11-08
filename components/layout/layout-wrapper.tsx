@@ -2,7 +2,7 @@
 
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
 import { shouldHideGlobalLayout } from "@/lib/route-config";
 import {Navbar} from "@/components/layout/navbar";   // ← tumhara actual path
 import {Footer} from "@/components/layout/footer";   // ← tumhara actual path

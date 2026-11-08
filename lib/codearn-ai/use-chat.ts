@@ -3,6 +3,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { useLocale } from "next-intl"; // 👈 Import useLocale
 import type { ChatMessage, ChatResponse } from "./types";
 
 interface RateLimitInfo {
@@ -32,16 +33,12 @@ interface StoredConversation {
   savedAt: number;
 }
 
-/* ============================================================
-   PERSISTENCE HELPERS
-============================================================ */
 function loadStoredConversation(): StoredConversation | null {
   if (typeof window === "undefined") return null;
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return null;
     const parsed = JSON.parse(raw) as StoredConversation;
-    // Only restore if saved within last 24 hours
     const ONE_DAY = 24 * 60 * 60 * 1000;
     if (Date.now() - parsed.savedAt > ONE_DAY) {
       localStorage.removeItem(STORAGE_KEY);
@@ -57,31 +54,22 @@ function saveStoredConversation(data: StoredConversation) {
   if (typeof window === "undefined") return;
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  } catch {
-    // Storage full or disabled — silently ignore
-  }
+  } catch {}
 }
 
 function clearStoredConversation() {
   if (typeof window === "undefined") return;
   try {
     localStorage.removeItem(STORAGE_KEY);
-  } catch {
-    // ignore
-  }
+  } catch {}
 }
 
-/* ============================================================
-   HOOK
-============================================================ */
 export function useChat() {
+  const locale = useLocale(); // 👈 Get current language (en / ar)
   const [state, setState] = useState<UseChatState>(INITIAL_STATE);
   const [conversationId, setConversationId] = useState<string | undefined>();
   const [hydrated, setHydrated] = useState(false);
 
-  /* --------------------------------------------------------
-     Load persisted conversation on mount
-  -------------------------------------------------------- */
   useEffect(() => {
     const stored = loadStoredConversation();
     if (stored) {
@@ -91,9 +79,6 @@ export function useChat() {
     setHydrated(true);
   }, []);
 
-  /* --------------------------------------------------------
-     Save conversation on change
-  -------------------------------------------------------- */
   useEffect(() => {
     if (!hydrated) return;
     if (state.messages.length === 0) return;
@@ -104,15 +89,8 @@ export function useChat() {
     });
   }, [state.messages, conversationId, hydrated]);
 
-  /* --------------------------------------------------------
-     Core fetch function
-  -------------------------------------------------------- */
   const runRequest = useCallback(
-    async (
-      message: string,
-      historyOverride?: ChatMessage[],
-      options?: { isRegenerate?: boolean }
-    ) => {
+    async (message: string, historyOverride?: ChatMessage[], options?: { isRegenerate?: boolean }) => {
       const trimmed = message.trim();
       if (!trimmed) return;
 
@@ -125,6 +103,7 @@ export function useChat() {
             conversationId,
             history: historyOverride || state.messages.slice(-10),
             isRegenerate: options?.isRegenerate || false,
+            locale: locale, // 👈 Send locale to API
           }),
         });
 
@@ -143,10 +122,7 @@ export function useChat() {
 
         setState((s) => ({
           ...s,
-          messages: [
-            ...s.messages,
-            { role: "assistant", content: response.reply },
-          ],
+          messages: [...s.messages, { role: "assistant", content: response.reply }],
           isLoading: false,
           rateLimit: response.meta.rateLimit,
         }));
@@ -160,12 +136,9 @@ export function useChat() {
         }));
       }
     },
-    [conversationId, state.messages]
+    [conversationId, state.messages, locale] // 👈 Add locale dependency
   );
 
-  /* --------------------------------------------------------
-     Send a new message
-  -------------------------------------------------------- */
   const sendMessage = useCallback(
     async (text: string) => {
       const trimmed = text.trim();
@@ -179,33 +152,22 @@ export function useChat() {
         error: null,
       }));
 
-      await runRequest(trimmed, [
-        ...state.messages.slice(-10),
-        userMessage,
-      ]);
+      await runRequest(trimmed, [...state.messages.slice(-10), userMessage]);
     },
     [runRequest, state.isLoading, state.messages]
   );
 
-  /* --------------------------------------------------------
-     Regenerate the last AI response
-  -------------------------------------------------------- */
   const regenerate = useCallback(async () => {
     if (state.isLoading) return;
     if (state.messages.length < 2) return;
 
-    // Find the last user message
-    const lastUserIdx = [...state.messages]
-      .reverse()
-      .findIndex((m) => m.role === "user");
-
+    const lastUserIdx = [...state.messages].reverse().findIndex((m) => m.role === "user");
     if (lastUserIdx === -1) return;
 
     const realIdx = state.messages.length - 1 - lastUserIdx;
     const lastUserMessage = state.messages[realIdx];
     const historyUpToLast = state.messages.slice(0, realIdx);
 
-    // Remove the last AI response, keep loading state
     setState((s) => ({
       ...s,
       messages: historyUpToLast,
@@ -213,14 +175,9 @@ export function useChat() {
       error: null,
     }));
 
-    await runRequest(lastUserMessage.content, historyUpToLast, {
-      isRegenerate: true,
-    });
+    await runRequest(lastUserMessage.content, historyUpToLast, { isRegenerate: true });
   }, [state.isLoading, state.messages, runRequest]);
 
-  /* --------------------------------------------------------
-     Reset / New Chat
-  -------------------------------------------------------- */
   const reset = useCallback(() => {
     setState(INITIAL_STATE);
     setConversationId(undefined);

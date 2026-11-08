@@ -1,11 +1,16 @@
 // lib/seo/site.ts
-// ✅ Professional SEO configuration for CodEarn Tech
-// ✅ Brand: CodEarn Tech | Domain: codearntech.com | Base: Dubai, UAE
-// ✅ Serving clients worldwide | No physical location references
+// ✅ Professional SEO for CodEarn Tech
+// ✅ Remote-first software engineering studio
+// ✅ Serving UAE, Saudi Arabia, Bahrain & worldwide
+// ✅ EN + AR bilingual (hreflang ready)
+// ✅ AI / Answer Engine ready (Organization + OfferCatalog + FAQ)
+//
+// ⚠️  Do NOT add a physical address or LocalBusiness schema until a real
+//     UAE trade licence is in place. See comments near localBusinessSchema.
 
-/* ------------------------------------------------------------------ */
-/* CORE SITE CONSTANTS                                                  */
-/* ------------------------------------------------------------------ */
+/* ================================================================
+   CORE SITE CONSTANTS
+   ================================================================ */
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
@@ -14,23 +19,24 @@ export const SITE_URL =
 export const SITE_NAME = "CodEarn Tech";
 export const SITE_SHORT_NAME = "CodEarn";
 export const SITE_LEGAL_NAME = "CodEarn Tech";
-export const SITE_LOCALE = "en_US";
-export const SITE_LANGUAGE = "en-US";
+
+export const SITE_LOCALE = "en_AE"; // default OG locale
+export const SITE_LANGUAGE = "en";
 export const SITE_TWITTER_HANDLE = "@codearntech";
-export const SITE_FOUNDING_YEAR = "2021";
+export const SITE_FOUNDING_YEAR = "2020";
 
 export const SITE_TAGLINE =
-  "Software, AI & IT Training — Engineered for Growth";
+  "Software engineering studio for SaaS, web, mobile & AI";
 
 export const SITE_DESCRIPTION =
-  "CodEarn Tech is a Dubai-based software company delivering SaaS products, web development, AI solutions, and professional IT training to clients worldwide.";
+  "CodEarn Tech is a remote-first software engineering studio. We design and build custom SaaS platforms, web and mobile applications, and business automation for companies across the UAE, Saudi Arabia, Bahrain and worldwide.";
 
 export const SITE_SHORT_DESCRIPTION =
-  "SaaS products, web development, AI solutions, and IT training — built for clients worldwide.";
+  "Custom SaaS platforms, web and mobile apps, and business automation — for companies across the Gulf and worldwide.";
 
-/* ------------------------------------------------------------------ */
-/* BRANDING / ASSETS                                                    */
-/* ------------------------------------------------------------------ */
+/* ================================================================
+   BRANDING / ASSETS
+   ================================================================ */
 
 export const SITE_LOGO = `${SITE_URL}/logo.webp`;
 export const SITE_LOGO_WIDTH = 512;
@@ -44,12 +50,12 @@ export const SITE_FAVICON = `${SITE_URL}/favicon.ico`;
 export const SITE_ICON_192 = `${SITE_URL}/icon-192x192.png`;
 export const SITE_ICON_512 = `${SITE_URL}/icon-512x512.png`;
 
-export const SITE_THEME_COLOR = "#0f172a";
-export const SITE_BACKGROUND_COLOR = "#ffffff";
+export const SITE_THEME_COLOR = "#0F172A";
+export const SITE_BACKGROUND_COLOR = "#FFFFFF";
 
-/* ------------------------------------------------------------------ */
-/* SOCIAL LINKS (used in Organization.sameAs)                          */
-/* ------------------------------------------------------------------ */
+/* ================================================================
+   SOCIAL LINKS (Organization.sameAs)
+   ================================================================ */
 
 export const SOCIAL_LINKS = {
   linkedin: "https://www.linkedin.com/company/codearntech",
@@ -60,49 +66,161 @@ export const SOCIAL_LINKS = {
 
 export type SocialPlatform = keyof typeof SOCIAL_LINKS;
 
-/* ------------------------------------------------------------------ */
-/* CONTACT — Dubai HQ, worldwide service                               */
-/* ------------------------------------------------------------------ */
+/* ================================================================
+   LOCALES + HREFLANG
+   ================================================================ */
+
+export const LOCALES = ["en", "ar"] as const;
+export type Locale = (typeof LOCALES)[number];
+export const DEFAULT_LOCALE: Locale = "en";
+
+/**
+ * hreflang map — English and Arabic pages, associated with the Gulf
+ * region for Google's regional targeting. `x-default` points to EN.
+ */
+export const HREFLANG_MAP = {
+  en: "/en",
+  ar: "/ar",
+  "en-AE": "/en",
+  "ar-AE": "/ar",
+  "en-SA": "/en",
+  "ar-SA": "/ar",
+  "en-BH": "/en",
+  "ar-BH": "/ar",
+  "en-KW": "/en",
+  "ar-KW": "/ar",
+  "en-QA": "/en",
+  "ar-QA": "/ar",
+  "en-OM": "/en",
+  "ar-OM": "/ar",
+  "en-US": "/en",
+  "x-default": "/en",
+} as const;
+
+/* ================================================================
+   GULF REGION DATA — areaServed + country codes
+   ================================================================ */
+
+export const GULF_COUNTRIES = [
+  { code: "AE", name: "United Arab Emirates", nameAr: "الإمارات العربية المتحدة" },
+  { code: "SA", name: "Saudi Arabia", nameAr: "المملكة العربية السعودية" },
+  { code: "BH", name: "Bahrain", nameAr: "البحرين" },
+  { code: "KW", name: "Kuwait", nameAr: "الكويت" },
+  { code: "QA", name: "Qatar", nameAr: "قطر" },
+  { code: "OM", name: "Oman", nameAr: "عُمان" },
+] as const;
+
+/* ================================================================
+   SERVICES CATALOG — used in Organization.hasOfferCatalog
+   and Service schema on /services
+   ================================================================ */
+
+export const SERVICES_CATALOG = [
+  {
+    slug: "saas",
+    name: "Custom SaaS Development",
+    serviceType: "SaaS Development",
+    description:
+      "Multi-user SaaS platforms with authentication, subscriptions, admin dashboards and multi-tenant data design.",
+  },
+  {
+    slug: "web-apps",
+    name: "Web Applications & Websites",
+    serviceType: "Web Application Development",
+    description:
+      "Fast, secure, SEO-friendly websites and business portals built with Next.js and React.",
+  },
+  {
+    slug: "mobile-apps",
+    name: "Mobile Applications",
+    serviceType: "Mobile App Development",
+    description:
+      "Cross-platform iOS and Android apps with React Native, including offline-first support where needed.",
+  },
+  {
+    slug: "automation-ai",
+    name: "Automation & AI Integration",
+    serviceType: "AI & Business Automation",
+    description:
+      "Workflow automation, system integrations, chat assistants and AI features where they actually help.",
+  },
+  {
+    slug: "maintenance",
+    name: "Maintenance & Support",
+    serviceType: "Software Maintenance",
+    description:
+      "Ongoing monitoring, updates, bug fixes and improvements under a monthly plan.",
+  },
+] as const;
+
+export type ServiceSlug = (typeof SERVICES_CATALOG)[number]["slug"];
+
+/* ================================================================
+   CONTACT
+   ⚠️  No street address until UAE trade licence is active.
+       When it is, add `address` to `CONTACT` and re-enable
+       `localBusinessSchema`.
+   ================================================================ */
 
 export const CONTACT = {
   email: "hello@codearntech.com",
   supportEmail: "support@codearntech.com",
   salesEmail: "sales@codearntech.com",
-  phone: "", // TODO: apna UAE number yahan daalein, e.g. "+971-4-XXX-XXXX"
-  whatsapp: "", // TODO: apna WhatsApp number, e.g. "+971-XX-XXX-XXXX"
 
-  // Registered / business base (Dubai)
-  addressLocality: "Dubai",
-  addressRegion: "Dubai",
-  addressCountry: "AE",
-  addressCountryName: "United Arab Emirates",
-  postalCode: "", // optional
+  // TODO: business phone (E.164 format, e.g. "+971-4-XXX-XXXX")
+  // Must be a business line, not a personal SIM.
+  phone: "",
+  whatsapp: "",
 
-  areaServed: ["Worldwide", "Middle East", "Europe", "North America", "Asia"],
-  availableLanguages: ["English", "Urdu", "Arabic"] as const,
+  // Languages this team supports (EN + AR only — Urdu removed)
+  availableLanguages: ["English", "Arabic"] as const,
+
+  // Countries we actively serve (GCC + worldwide)
+  serviceCountries: ["AE", "SA", "BH", "KW", "QA", "OM"] as const,
 } as const;
 
-/* ------------------------------------------------------------------ */
-/* HELPERS                                                              */
-/* ------------------------------------------------------------------ */
+/* ================================================================
+   HELPERS
+   ================================================================ */
 
-/** Site ke andar kisi bhi path ka absolute URL */
+/** Absolute URL for any internal path. */
 export function absoluteUrl(path = "/"): string {
   if (!path) return SITE_URL;
   if (path.startsWith("http://") || path.startsWith("https://")) return path;
   return `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
-/** Non-empty social links only */
+/** Absolute URL for a page in a specific locale. */
+export function localizedUrl(locale: Locale, path = ""): string {
+  const cleanPath = path.replace(/^\/+|\/+$/g, "");
+  return absoluteUrl(cleanPath ? `/${locale}/${cleanPath}` : `/${locale}`);
+}
+
+/** Non-empty social links (used in Organization.sameAs). */
 function socialLinks(): string[] {
   return Object.values(SOCIAL_LINKS).filter(
     (url) => typeof url === "string" && url.length > 0,
   );
 }
 
-/* ------------------------------------------------------------------ */
-/* BREADCRUMBS SCHEMA                                                   */
-/* ------------------------------------------------------------------ */
+/** Gulf countries as schema.org Country objects. */
+function areaServed() {
+  return [
+    ...GULF_COUNTRIES.map((c) => ({
+      "@type": "Country" as const,
+      name: c.name,
+      identifier: c.code,
+    })),
+    {
+      "@type": "Place" as const,
+      name: "Worldwide",
+    },
+  ];
+}
+
+/* ================================================================
+   BREADCRUMBS SCHEMA
+   ================================================================ */
 
 export interface BreadcrumbItem {
   name: string;
@@ -122,9 +240,9 @@ export function buildBreadcrumbs(items: BreadcrumbItem[]) {
   };
 }
 
-/* ------------------------------------------------------------------ */
-/* ORGANIZATION SCHEMA                                                  */
-/* ------------------------------------------------------------------ */
+/* ================================================================
+   ORGANIZATION SCHEMA — the core entity for Google + AI search
+   ================================================================ */
 
 export function organizationSchema() {
   const contactPoints: Record<string, unknown>[] = [
@@ -133,14 +251,14 @@ export function organizationSchema() {
       contactType: "customer support",
       email: CONTACT.supportEmail || CONTACT.email,
       availableLanguage: [...CONTACT.availableLanguages],
-      areaServed: [...CONTACT.areaServed],
+      areaServed: [...CONTACT.serviceCountries],
     },
     {
       "@type": "ContactPoint",
       contactType: "sales",
       email: CONTACT.salesEmail,
       availableLanguage: [...CONTACT.availableLanguages],
-      areaServed: [...CONTACT.areaServed],
+      areaServed: [...CONTACT.serviceCountries],
     },
   ];
 
@@ -150,7 +268,7 @@ export function organizationSchema() {
       contactType: "customer support",
       telephone: CONTACT.phone,
       availableLanguage: [...CONTACT.availableLanguages],
-      areaServed: [...CONTACT.areaServed],
+      areaServed: [...CONTACT.serviceCountries],
     });
   }
 
@@ -175,47 +293,65 @@ export function organizationSchema() {
     description: SITE_DESCRIPTION,
     slogan: SITE_TAGLINE,
     foundingDate: `${SITE_FOUNDING_YEAR}-01-01`,
-    foundingLocation: {
-      "@type": "Place",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: CONTACT.addressLocality,
-        addressRegion: CONTACT.addressRegion,
-        addressCountry: CONTACT.addressCountry,
-      },
-    },
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: CONTACT.addressLocality,
-      addressRegion: CONTACT.addressRegion,
-      addressCountry: CONTACT.addressCountry,
-    },
     email: CONTACT.email,
-    areaServed: CONTACT.areaServed.map((region) => ({
-      "@type": "AdministrativeArea",
-      name: region,
-    })),
+    knowsLanguage: ["en", "ar"],
+    areaServed: areaServed(),
     knowsAbout: [
+      // Service areas
       "SaaS Development",
-      "Web Development",
-      "Full Stack Engineering",
-      "AI Solutions",
-      "Cloud Architecture",
-      "Software Engineering",
-      "IT Training",
-      "Programming Education",
-      "Backend Development",
-      "Frontend Development",
-      "System Design",
+      "Software as a Service",
+      "Multi-tenant Architecture",
+      "Web Application Development",
+      "Mobile App Development",
+      "React Native",
+      "Business Process Automation",
+      "AI Integration",
+      "AI Chatbot Development",
+      "Custom Software Development",
+      "Software Maintenance",
+      // Tech stack (entity signals)
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Node.js",
+      "PostgreSQL",
+      "Stripe",
+      "Cloud Deployment",
+      "API Development",
+      // Regions
+      "Software Development UAE",
+      "Software Development Saudi Arabia",
+      "Software Development Bahrain",
+      "Software Development Middle East",
     ],
+    serviceType: SERVICES_CATALOG.map((s) => s.serviceType),
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Software Development Services",
+      itemListElement: SERVICES_CATALOG.map((service) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: service.name,
+          serviceType: service.serviceType,
+          description: service.description,
+          url: `${SITE_URL}/services#${service.slug}`,
+          provider: { "@id": `${SITE_URL}/#organization` },
+        },
+      })),
+    },
+    currenciesAccepted: "AED, SAR, USD",
+    paymentAccepted: "Bank Transfer, Credit Card",
     sameAs: socialLinks(),
     contactPoint: contactPoints,
+    // NOTE: No `address` field — remote-first. When UAE trade licence is
+    // ready, add a PostalAddress object here and in CONTACT.
   };
 }
 
-/* ------------------------------------------------------------------ */
-/* WEBSITE SCHEMA (with sitelinks search box)                          */
-/* ------------------------------------------------------------------ */
+/* ================================================================
+   WEBSITE SCHEMA — sitelinks search box
+   ================================================================ */
 
 export function websiteSchema() {
   return {
@@ -226,62 +362,31 @@ export function websiteSchema() {
     alternateName: SITE_SHORT_NAME,
     url: SITE_URL,
     description: SITE_SHORT_DESCRIPTION,
-    inLanguage: SITE_LANGUAGE,
+    inLanguage: ["en", "ar"],
     publisher: { "@id": `${SITE_URL}/#organization` },
     potentialAction: {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: `${SITE_URL}/blogs?q={search_term_string}`,
+        urlTemplate: `${SITE_URL}/en/blogs?q={search_term_string}`,
       },
       "query-input": "required name=search_term_string",
     },
   };
 }
 
-/* ------------------------------------------------------------------ */
-/* OPTIONAL: LOCAL BUSINESS (Dubai base)                               */
-/* ------------------------------------------------------------------ */
-
-export function localBusinessSchema() {
-  const schema: Record<string, unknown> = {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "@id": `${SITE_URL}/#localbusiness`,
-    name: SITE_NAME,
-    image: SITE_OG_IMAGE,
-    url: SITE_URL,
-    email: CONTACT.email,
-    priceRange: "$$",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: CONTACT.addressLocality,
-      addressRegion: CONTACT.addressRegion,
-      addressCountry: CONTACT.addressCountry,
-    },
-    areaServed: [...CONTACT.areaServed],
-    serviceType: [
-      "Software Development",
-      "SaaS Development",
-      "AI Solutions",
-      "IT Training",
-    ],
-  };
-
-  if (CONTACT.phone) schema.telephone = CONTACT.phone;
-
-  return schema;
-}
-
-/* ------------------------------------------------------------------ */
-/* SERVICE SCHEMA                                                      */
-/* ------------------------------------------------------------------ */
+/* ================================================================
+   SERVICE SCHEMA — per service on /services page
+   ================================================================ */
 
 export interface ServiceInput {
   name: string;
   description: string;
   url?: string;
   serviceType?: string;
+  /** Optional starting price (AEDA, but stored as number) */
+  priceFrom?: number;
+  priceCurrency?: string;
 }
 
 export function serviceSchema({
@@ -289,8 +394,10 @@ export function serviceSchema({
   description,
   url,
   serviceType,
+  priceFrom,
+  priceCurrency = "AED",
 }: ServiceInput) {
-  return {
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Service",
     name,
@@ -298,74 +405,65 @@ export function serviceSchema({
     serviceType: serviceType || name,
     url: url ? absoluteUrl(url) : SITE_URL,
     provider: { "@id": `${SITE_URL}/#organization` },
-    areaServed: [...CONTACT.areaServed],
+    areaServed: areaServed(),
+    availableLanguage: [...CONTACT.availableLanguages],
   };
-}
 
-/* ------------------------------------------------------------------ */
-/* COURSE SCHEMA (for training pages)                                  */
-/* ------------------------------------------------------------------ */
-
-export interface CourseInput {
-  name: string;
-  description: string;
-  slug: string;
-  duration?: string; // ISO 8601 duration, e.g. "P3M"
-  level?: string;
-  mode?: "online" | "onsite" | "hybrid";
-  price?: number;
-  currency?: string;
-}
-
-export function courseSchema({
-  name,
-  description,
-  slug,
-  duration = "P3M",
-  level = "Beginner to Advanced",
-  mode = "online",
-  price,
-  currency = "USD",
-}: CourseInput) {
-  const offers: Record<string, unknown> = {
-    "@type": "Offer",
-    category: price ? "Paid" : "Contact",
-    availability: "https://schema.org/InStock",
-    url: absoluteUrl(`/training/${slug}`),
-  };
-  if (typeof price === "number") {
-    offers.price = price;
-    offers.priceCurrency = currency;
+  if (typeof priceFrom === "number") {
+    schema.offers = {
+      "@type": "Offer",
+      priceCurrency,
+      price: priceFrom.toString(),
+      availability: "https://schema.org/InStock",
+      url: url ? absoluteUrl(url) : SITE_URL,
+    };
   }
 
+  return schema;
+}
+
+/* ================================================================
+   HOWTO SCHEMA — "How we work" (process) for services page
+   ================================================================ */
+
+export interface HowToStep {
+  name: string;
+  text: string;
+}
+
+export function howToSchema({
+  name,
+  description,
+  steps,
+}: {
+  name: string;
+  description: string;
+  steps: HowToStep[];
+}) {
   return {
     "@context": "https://schema.org",
-    "@type": "Course",
+    "@type": "HowTo",
     name,
     description,
-    url: absoluteUrl(`/training/${slug}`),
-    provider: { "@id": `${SITE_URL}/#organization` },
-    educationalLevel: level,
-    inLanguage: CONTACT.availableLanguages,
-    timeRequired: duration,
-    hasCourseInstance: {
-      "@type": "CourseInstance",
-      courseMode: mode,
-      courseWorkload: "PT15H",
-      inLanguage: CONTACT.availableLanguages,
-    },
-    offers,
+    totalTime: "P4W",
+    step: steps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
   };
 }
 
-/* ------------------------------------------------------------------ */
-/* ARTICLE SCHEMA (for blog posts)                                     */
-/* ------------------------------------------------------------------ */
+/* ================================================================
+   ARTICLE SCHEMA — for blog posts
+   ================================================================ */
 
 export interface ArticleInput {
   headline: string;
   description: string;
   slug: string;
+  locale?: Locale;
   image?: string;
   datePublished: string;
   dateModified?: string;
@@ -380,6 +478,7 @@ export function articleSchema({
   headline,
   description,
   slug,
+  locale = DEFAULT_LOCALE,
   image,
   datePublished,
   dateModified,
@@ -389,35 +488,29 @@ export function articleSchema({
   section,
   wordCount,
 }: ArticleInput) {
+  const url = localizedUrl(locale, `blogs/${slug}`);
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline,
     description,
-    url: absoluteUrl(`/blogs/${slug}`),
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": absoluteUrl(`/blogs/${slug}`),
-    },
+    url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
     image: image ? [image] : [SITE_OG_IMAGE],
     datePublished,
     dateModified: dateModified || datePublished,
-    author: {
-      "@type": "Person",
-      name: authorName,
-      url: authorUrl,
-    },
+    author: { "@type": "Person", name: authorName, url: authorUrl },
     publisher: { "@id": `${SITE_URL}/#organization` },
     keywords: tags.join(", "),
     ...(section ? { articleSection: section } : {}),
     ...(wordCount ? { wordCount } : {}),
-    inLanguage: SITE_LANGUAGE,
+    inLanguage: locale,
   };
 }
 
-/* ------------------------------------------------------------------ */
-/* PRODUCT / SOFTWARE APPLICATION SCHEMA                               */
-/* ------------------------------------------------------------------ */
+/* ================================================================
+   SOFTWARE APPLICATION SCHEMA — for Labs products
+   ================================================================ */
 
 export interface SoftwareInput {
   name: string;
@@ -464,9 +557,9 @@ export function softwareApplicationSchema({
   return schema;
 }
 
-/* ------------------------------------------------------------------ */
-/* FAQ SCHEMA                                                          */
-/* ------------------------------------------------------------------ */
+/* ================================================================
+   FAQ SCHEMA — huge win for AI / featured snippets
+   ================================================================ */
 
 export interface FAQItem {
   question: string;
@@ -480,17 +573,14 @@ export function faqSchema(items: FAQItem[]) {
     mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
     })),
   };
 }
 
-/* ------------------------------------------------------------------ */
-/* PERSON SCHEMA (founder / team)                                      */
-/* ------------------------------------------------------------------ */
+/* ================================================================
+   PERSON SCHEMA — founder / team
+   ================================================================ */
 
 export interface PersonInput {
   name: string;
@@ -522,3 +612,46 @@ export function personSchema({
   if (sameAs.length > 0) schema.sameAs = sameAs;
   return schema;
 }
+
+/* ================================================================
+   LOCAL BUSINESS SCHEMA — ⚠️ DO NOT ENABLE until UAE trade
+   licence is in place. Once it is:
+     1. Add a full `address` to `CONTACT` above.
+     2. Enable this function and render it in `app/[locale]/layout.tsx`.
+     3. Add the same address to Google Business Profile.
+   ================================================================ */
+
+export function localBusinessSchema() {
+  const schema: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": `${SITE_URL}/#localbusiness`,
+    name: SITE_NAME,
+    image: SITE_OG_IMAGE,
+    url: SITE_URL,
+    email: CONTACT.email,
+    priceRange: "$$",
+    areaServed: areaServed(),
+    serviceType: SERVICES_CATALOG.map((s) => s.serviceType),
+    availableLanguage: [...CONTACT.availableLanguages],
+  };
+
+  if (CONTACT.phone) schema.telephone = CONTACT.phone;
+
+  // TODO when trade licence is active, uncomment and fill:
+  // schema.address = {
+  //   "@type": "PostalAddress",
+  //   streetAddress: "...",
+  //   addressLocality: "Dubai",
+  //   addressRegion: "Dubai",
+  //   postalCode: "...",
+  //   addressCountry: "AE",
+  // };
+
+  return schema;
+}
+
+/* ================================================================
+   COURSE SCHEMA — removed on purpose.
+   Training / Academy is retired per CodEarn Tech positioning.
+   ================================================================ */

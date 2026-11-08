@@ -1,9 +1,8 @@
-// components/codearn-ai/chat-message.tsx
-
 "use client";
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import {
   Sparkles,
   Check,
@@ -33,14 +32,13 @@ export default function ChatMessage({
   onRegenerate,
   showActions = false,
 }: ChatMessageProps) {
+  const t = useTranslations("AI.message");
   const isUser = message.role === "user";
   const { copy, copied } = useCopy();
   const [feedback, setFeedback] = useState<"up" | "down" | null>(null);
   const messageId = `msg-${index}`;
 
-  /* ============================================================
-     USER MESSAGE
-  ============================================================ */
+  /* USER MESSAGE — justify-end auto-flips in RTL (flex direction end) */
   if (isUser) {
     return (
       <motion.div
@@ -49,16 +47,14 @@ export default function ChatMessage({
         transition={{ duration: 0.25 }}
         className="flex justify-end"
       >
-        <div className="max-w-[85%] rounded-2xl rounded-tr-sm border border-primary/30 bg-primary px-4 py-2.5 text-sm leading-relaxed text-primary-foreground shadow-sm">
+        <div className="max-w-[85%] rounded-2xl rounded-te-sm border border-primary/30 bg-primary px-4 py-2.5 text-sm leading-relaxed text-primary-foreground shadow-sm">
           {message.content}
         </div>
       </motion.div>
     );
   }
 
-  /* ============================================================
-     AI MESSAGE
-  ============================================================ */
+  /* AI MESSAGE */
   const isCopied = copied === messageId;
 
   return (
@@ -69,14 +65,11 @@ export default function ChatMessage({
       className="group flex justify-start"
     >
       <div className="flex w-full items-start gap-3">
-        {/* AI avatar */}
         <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/10">
           <Sparkles className="h-3.5 w-3.5 text-primary" />
         </div>
 
-        {/* Content */}
         <div className="min-w-0 flex-1 space-y-2 pt-0.5">
-          {/* Markdown content — no box */}
           <div className="codearn-ai-content text-sm leading-relaxed text-foreground/90">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
@@ -103,12 +96,12 @@ export default function ChatMessage({
                   </a>
                 ),
                 ul: ({ children }) => (
-                  <ul className="my-2 ml-5 list-disc space-y-1.5 marker:text-primary">
+                  <ul className="my-2 ms-5 list-disc space-y-1.5 marker:text-primary">
                     {children}
                   </ul>
                 ),
                 ol: ({ children }) => (
-                  <ol className="my-2 ml-5 list-decimal space-y-1.5 marker:text-primary">
+                  <ol className="my-2 ms-5 list-decimal space-y-1.5 marker:text-primary">
                     {children}
                   </ol>
                 ),
@@ -125,7 +118,7 @@ export default function ChatMessage({
                     );
                   }
                   return (
-                    <code className="block overflow-x-auto rounded-lg border border-border bg-muted/50 p-3 font-mono text-xs">
+                    <code className="block overflow-x-auto rounded-lg border border-border bg-muted/50 p-3 font-mono text-xs" dir="ltr">
                       {children}
                     </code>
                   );
@@ -146,7 +139,7 @@ export default function ChatMessage({
                   </h3>
                 ),
                 blockquote: ({ children }) => (
-                  <blockquote className="my-2 border-l-2 border-primary/40 pl-3 italic text-muted-foreground">
+                  <blockquote className="my-2 border-s-2 border-primary/40 ps-3 italic text-muted-foreground">
                     {children}
                   </blockquote>
                 ),
@@ -157,13 +150,11 @@ export default function ChatMessage({
             </ReactMarkdown>
           </div>
 
-          {/* Source badge */}
           <div className="flex items-center gap-1.5 text-[10px] font-medium tracking-wider text-muted-foreground uppercase">
             <Check className="h-2.5 w-2.5 text-primary" />
-            <span>Based on CodEarn information</span>
+            <span>{t("basedOn")}</span>
           </div>
 
-          {/* Action row — only on last AI message */}
           {showActions && isLast && (
             <motion.div
               initial={{ opacity: 0, y: 4 }}
@@ -171,44 +162,40 @@ export default function ChatMessage({
               transition={{ delay: 0.15 }}
               className="flex items-center gap-1 pt-1"
             >
-              {/* Copy */}
               <button
                 onClick={() => copy(message.content, messageId)}
-                aria-label="Copy message"
+                aria-label={t("copy")}
                 className="flex h-7 items-center gap-1.5 rounded-md px-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
               >
                 {isCopied ? (
                   <>
                     <CheckCheck className="h-3 w-3 text-green-500" />
-                    <span className="text-green-500">Copied</span>
+                    <span className="text-green-500">{t("copied")}</span>
                   </>
                 ) : (
                   <>
                     <Copy className="h-3 w-3" />
-                    <span>Copy</span>
+                    <span>{t("copy")}</span>
                   </>
                 )}
               </button>
 
-              {/* Regenerate */}
               {onRegenerate && (
                 <button
                   onClick={onRegenerate}
-                  aria-label="Regenerate response"
+                  aria-label={t("regenerate")}
                   className="flex h-7 items-center gap-1.5 rounded-md px-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
                 >
                   <RefreshCw className="h-3 w-3" />
-                  <span>Regenerate</span>
+                  <span>{t("regenerate")}</span>
                 </button>
               )}
 
-              {/* Divider */}
               <div className="mx-1 h-4 w-px bg-border" />
 
-              {/* Feedback */}
               <button
                 onClick={() => setFeedback("up")}
-                aria-label="Helpful"
+                aria-label={t("helpful")}
                 className={`flex h-7 w-7 items-center justify-center rounded-md transition-colors ${
                   feedback === "up"
                     ? "bg-green-500/10 text-green-500"
@@ -219,7 +206,7 @@ export default function ChatMessage({
               </button>
               <button
                 onClick={() => setFeedback("down")}
-                aria-label="Not helpful"
+                aria-label={t("notHelpful")}
                 className={`flex h-7 w-7 items-center justify-center rounded-md transition-colors ${
                   feedback === "down"
                     ? "bg-destructive/10 text-destructive"

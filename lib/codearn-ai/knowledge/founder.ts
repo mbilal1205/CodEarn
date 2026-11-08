@@ -3,19 +3,19 @@
 export const founder = {
   name: "Muhammad Bilal",
   role: "Founder & Software Architect",
-  company: "CodEarn",
+  company: "CodEarn Tech",
 
   background:
-    "Software engineer and product builder. Started CodEarn in 2024 to build software products around real problems.",
+    "Software engineer and product builder. Started CodEarn in 2020 to build software products and services around real problems.",
 
   focus:
-    "Building products, leading engineering, and writing about the reality of building software.",
+    "Leading engineering, building products, and writing about the reality of building software.",
 
   founderStoryUrl: "/founder",
 
-  /**
-   * Verified quotes from the founder.
-   */
+  workingStyle:
+    "Muhammad leads the studio hands-on — clients talk directly to the engineers writing their code. No account-manager layers, no middlemen.",
+
   quotes: [
     "Skills create potential. Opportunities create outcomes.",
     "Build with intention. Stay grateful. Keep learning.",
@@ -23,5 +23,5 @@ export const founder = {
   ],
 
   personalNote:
-    "Muhammad Bilal is the founder of CodEarn. He writes and shares thoughts about building products, engineering and the reality of running a software company.",
+    "Muhammad Bilal is the founder of CodEarn Tech. He works directly with clients on architecture and delivery, and writes about building products and running a software studio.",
 };

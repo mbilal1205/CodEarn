@@ -1,18 +1,8 @@
-// components/codearn-ai/chat-suggestions.tsx
-
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { ArrowUpRight } from "lucide-react";
-
-const DEFAULT_SUGGESTIONS = [
-  "What is CodEarn?",
-  "What is GigThink?",
-  "Who founded CodEarn?",
-  "What does CodEarn build?",
-  "How can I work with CodEarn?",
-  "Does CodEarn build custom software?",
-];
 
 interface ChatSuggestionsProps {
   onSelect: (question: string) => void;
@@ -29,9 +19,12 @@ export default function ChatSuggestions({
   suggestions,
   variant = "default",
 }: ChatSuggestionsProps) {
+  const t = useTranslations("AI");
+  const allSuggestions = t.raw("suggestions") as string[];
+
   const items =
     suggestions ||
-    (compact ? DEFAULT_SUGGESTIONS.slice(0, 4) : DEFAULT_SUGGESTIONS);
+    (compact ? allSuggestions.slice(0, 4) : allSuggestions);
 
   const isFollowUp = variant === "followup";
 
@@ -58,7 +51,7 @@ export default function ChatSuggestions({
         >
           <span>{question}</span>
           <ArrowUpRight
-            className={`h-3 w-3 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
+            className={`h-3 w-3 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5 ${
               isFollowUp
                 ? "text-primary"
                 : "text-muted-foreground group-hover:text-primary"

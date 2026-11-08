@@ -1,166 +1,161 @@
 // lib/codearn-ai/knowledge/routes.ts
 
 /**
- * All public routes on the CodEarn website.
+ * All public routes on the CodEarn website (English + Arabic).
  * The AI uses this to give users accurate, clickable links.
- *
- * ⚠️ Keep this updated when adding/removing pages.
  */
 
 export interface SiteRoute {
   path: string;
   title: string;
   description: string;
-  keywords: string[]; // for AI matching
+  keywords: string[];
 }
 
 export const routes: SiteRoute[] = [
-  /* ============================================================
-     HOME
-  ============================================================ */
+  /* ── Home ─────────────────────────────────────────────── */
   {
     path: "/",
     title: "Home",
-    description: "CodEarn homepage — software products and services overview.",
+    description:
+      "CodEarn homepage — remote-first software engineering studio for SaaS, web, mobile, and AI automation.",
     keywords: ["home", "main", "landing"],
   },
 
-  /* ============================================================
-     COMPANY
-  ============================================================ */
+  /* ── Company ──────────────────────────────────────────── */
   {
     path: "/about",
     title: "About",
     description:
-      "Learn about CodEarn — who we are, what we build, and our mission.",
-    keywords: ["about", "company", "who we are", "mission"],
+      "Who CodEarn is, how we work, and the team behind the studio.",
+    keywords: ["about", "company", "who we are", "team", "mission"],
   },
   {
     path: "/founder",
     title: "Founder Story",
     description:
-      "Muhammad Bilal's founder story — his journey, beliefs, and why he built CodEarn.",
+      "Muhammad Bilal's journey, beliefs, and why he built CodEarn.",
     keywords: ["founder", "muhammad bilal", "bilal", "story", "journey"],
   },
   {
     path: "/contact",
     title: "Contact",
     description:
-      "Get in touch with CodEarn — projects, partnerships, support, demos, and general inquiries.",
-    keywords: ["contact", "email", "reach out", "get in touch", "support"],
-  },
-  {
-    path: "/book-call",
-    title: "Book a Call",
-    description:
-      "Schedule a call with the CodEarn team to discuss your project.",
-    keywords: ["call", "schedule", "book", "meeting", "consultation"],
+      "Get in touch with CodEarn via email or WhatsApp for projects, partnerships, and support.",
+    keywords: ["contact", "email", "whatsapp", "reach out", "get in touch"],
   },
 
-  /* ============================================================
-     PRODUCTS & SERVICES
-  ============================================================ */
+  /* ── Services ─────────────────────────────────────────── */
   {
-    path: "/products",
-    title: "Products",
+    path: "/services",
+    title: "Services",
     description:
-      "CodEarn's software products — GigThink (live) and what's being built next.",
-    keywords: ["products", "gigthink", "saas", "software", "apps"],
+      "Custom SaaS platforms, web and mobile apps, AI & automation, and maintenance — what we actually build.",
+    keywords: [
+      "services",
+      "solutions",
+      "development",
+      "custom software",
+      "saas",
+      "web apps",
+      "mobile apps",
+      "ai",
+      "automation",
+    ],
   },
   {
-    path: "/solutions",
-    title: "Solutions",
+    path: "/pricing",
+    title: "Pricing",
     description:
-      "Custom software solutions — SaaS, web apps, automation, and AI integrations.",
-    keywords: ["solutions", "custom software", "services", "development"],
+      "Transparent pricing for websites, web apps, mobile apps, SaaS, AI automation, and maintenance plans.",
+    keywords: [
+      "pricing",
+      "cost",
+      "price",
+      "how much",
+      "budget",
+      "quote",
+    ],
   },
   {
     path: "/case-studies",
     title: "Case Studies",
     description:
-      "Real projects and outcomes from CodEarn's work with clients.",
-    keywords: ["case studies", "portfolio", "projects", "work", "clients"],
+      "Real projects delivered by CodEarn — including Buzzly Publicity (Bahrain) and Hassan Digital Skills.",
+    keywords: [
+      "case studies",
+      "portfolio",
+      "work",
+      "clients",
+      "projects",
+      "buzzly",
+      "hds",
+    ],
   },
 
-  /* ============================================================
-     LEARNING & TRAINING
-  ============================================================ */
-  {
-    path: "/training",
-    title: "Training",
-    description:
-      "Practical software training and mentorship programs from CodEarn.",
-    keywords: ["training", "courses", "learning", "mentorship", "education"],
-  },
-  {
-    path: "/enroll",
-    title: "Enroll",
-    description:
-      "Enroll in CodEarn's training programs and courses.",
-    keywords: ["enroll", "sign up", "join", "register", "course"],
-  },
-
-  /* ============================================================
-     CONTENT
-  ============================================================ */
+  /* ── Content ──────────────────────────────────────────── */
   {
     path: "/blogs",
     title: "Blog",
     description:
       "Notes from the CodEarn team — engineering, product, and founder thoughts.",
-    keywords: ["blog", "articles", "posts", "writing", "journal"],
+    keywords: ["blog", "articles", "posts", "writing", "insights"],
   },
 
-  /* ============================================================
-     AI
-  ============================================================ */
+  /* ── AI ───────────────────────────────────────────────── */
   {
     path: "/codearn-ai",
     title: "CodEarn AI",
     description:
-      "The official AI assistant for CodEarn — ask anything about the company.",
+      "The official AI assistant for CodEarn — ask anything about services, pricing, and the studio.",
     keywords: ["ai", "assistant", "chat", "codearn ai"],
   },
 
-  /* ============================================================
-     LEGAL
-  ============================================================ */
+  /* ── Legal ────────────────────────────────────────────── */
   {
     path: "/privacy-policy",
     title: "Privacy Policy",
-    description:
-      "How CodEarn collects, uses, and protects user data.",
+    description: "How CodEarn collects, uses, and protects your data.",
     keywords: ["privacy", "data", "policy"],
   },
   {
     path: "/terms",
     title: "Terms of Service",
-    description:
-      "Terms governing the use of CodEarn's websites and products.",
+    description: "Terms governing the use of CodEarn's website and services.",
     keywords: ["terms", "service", "legal"],
   },
   {
     path: "/cookies",
     title: "Cookie Policy",
-    description:
-      "Information about cookies and tracking used on CodEarn websites.",
+    description: "Information about cookies and tracking on CodEarn websites.",
     keywords: ["cookies", "tracking"],
   },
 ];
 
 /* ============================================================
-   EXTERNAL LINKS (separate from internal routes)
+   EXTERNAL LINKS — public URLs outside codearntech.com
 ============================================================ */
 export const externalLinks = {
-  gigthink: {
-    url: "https://gigthink.com",
-    title: "GigThink",
-    description: "CodEarn's live product — AI-powered sales workspace.",
+  whatsapp: {
+    url: "https://wa.me/971541757432",
+    title: "WhatsApp",
+    description:
+      "Chat with the CodEarn team directly on WhatsApp — quickest way to start a project conversation.",
+  },
+  linkedin: {
+    url: "https://www.linkedin.com/company/codearntech",
+    title: "LinkedIn",
+    description: "CodEarn's LinkedIn — company updates and founder posts.",
+  },
+  github: {
+    url: "https://github.com/codearntech",
+    title: "GitHub",
+    description: "CodEarn's public code and open-source work.",
   },
 };
 
 /* ============================================================
-   HELPER — Find a route by keyword
+   HELPERS
 ============================================================ */
 export function findRouteByKeyword(query: string): SiteRoute | null {
   const lower = query.toLowerCase();
@@ -171,9 +166,6 @@ export function findRouteByKeyword(query: string): SiteRoute | null {
   );
 }
 
-/* ============================================================
-   SITE SUMMARY — compact list for the AI
-============================================================ */
 export function getSiteSummary(): string {
   return routes
     .map((r) => `• ${r.path} — ${r.title}: ${r.description}`)

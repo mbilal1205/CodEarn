@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { X, Copy, Check, Twitter, Linkedin, MessageCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { SITE_URL } from "@/lib/seo/site";
 import { ShareData } from "./types";
-import { useState } from "react";
 
 interface ShareModalProps {
   data: ShareData;
@@ -11,36 +13,39 @@ interface ShareModalProps {
 }
 
 export default function ShareModal({ data, onClose }: ShareModalProps) {
+  const t = useTranslations("Share");
   const [copied, setCopied] = useState(false);
 
+  // Use dynamic origin for sharing, fallback to SITE_URL
+  const shareUrl = typeof window !== "undefined" ? window.location.href : SITE_URL;
   const shareText = encodeURIComponent(data.message);
-  const shareUrl = encodeURIComponent("https://www.codearntech.com");
+  const encodedUrl = encodeURIComponent(shareUrl);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(data.message + " https://www.codearntech.com");
+    navigator.clipboard.writeText(`${data.message} ${shareUrl}`);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   const shareLinks = [
     {
-      name: "WhatsApp",
+      name: t("whatsapp"),
       icon: MessageCircle,
-      url: `https://wa.me/?text=${shareText}%20${shareUrl}`,
-      color: "bg-green-500 hover:bg-green-600"
+      url: `https://wa.me/?text=${shareText}%20${encodedUrl}`,
+      color: "bg-green-500 hover:bg-green-600",
     },
     {
-      name: "Twitter",
+      name: t("twitter"),
       icon: Twitter,
-      url: `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`,
-      color: "bg-sky-500 hover:bg-sky-600"
+      url: `https://twitter.com/intent/tweet?text=${shareText}&url=${encodedUrl}`,
+      color: "bg-sky-500 hover:bg-sky-600",
     },
     {
-      name: "LinkedIn",
+      name: t("linkedin"),
       icon: Linkedin,
-      url: `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`,
-      color: "bg-blue-600 hover:bg-blue-700"
-    }
+      url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+      color: "bg-blue-600 hover:bg-blue-700",
+    },
   ];
 
   return (
@@ -48,18 +53,25 @@ export default function ShareModal({ data, onClose }: ShareModalProps) {
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-md w-full"
+        className="bg-card border border-border rounded-2xl p-6 max-w-md w-full shadow-2xl"
       >
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold">Doston Ko Batao! 🚀</h2>
-          <button onClick={onClose} className="p-2 hover:bg-slate-800 rounded-full">
+          <h2 className="text-2xl font-bold text-foreground">
+            {t("title")}
+          </h2>
+          <button
+            onClick={onClose}
+            className="p-2 hover:bg-muted rounded-full transition-colors text-muted-foreground hover:text-foreground"
+          >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="bg-slate-800/50 rounded-xl p-4 mb-6">
-          <p className="text-sm text-muted-foreground mb-2">Aapki achievement:</p>
-          <p className="text-lg font-semibold text-cyan-400">{data.message}</p>
+        <div className="bg-muted/50 border border-border rounded-xl p-4 mb-6">
+          <p className="text-sm text-muted-foreground mb-2">
+            {t("subtitle")}
+          </p>
+          <p className="text-lg font-semibold text-primary">{data.message}</p>
         </div>
 
         <div className="grid grid-cols-3 gap-3 mb-6">
@@ -79,10 +91,16 @@ export default function ShareModal({ data, onClose }: ShareModalProps) {
 
         <button
           onClick={handleCopy}
-          className="w-full py-3 bg-slate-800 hover:bg-slate-700 rounded-xl flex items-center justify-center gap-2 transition-colors"
+          className="w-full py-3 bg-muted hover:bg-muted/80 text-foreground rounded-xl flex items-center justify-center gap-2 transition-colors border border-border"
         >
-          {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-          <span>{copied ? "Copied!" : "Copy Text"}</span>
+          {copied ? (
+            <Check className="w-4 h-4 text-green-500" />
+          ) : (
+            <Copy className="w-4 h-4" />
+          )}
+          <span className="font-medium">
+            {copied ? t("copied") : t("copy")}
+          </span>
         </button>
       </motion.div>
     </div>

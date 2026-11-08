@@ -1,10 +1,5 @@
 // lib/codearn-ai/suggestions-map.ts
 
-/**
- * Contextual follow-up suggestions based on AI response topics.
- * Lightweight keyword matching — no ML needed.
- */
-
 interface SuggestionRule {
   keywords: string[];
   followUps: string[];
@@ -12,104 +7,83 @@ interface SuggestionRule {
 
 const RULES: SuggestionRule[] = [
   {
-    keywords: ["gigthink", "gig think"],
+    keywords: ["website", "web", "site", "web app"],
     followUps: [
-      "How does GigThink's match scoring work?",
-      "Is GigThink free to use?",
-      "Who is GigThink for?",
+      "How much does a business website cost?",
+      "Do you build custom web applications?",
+      "Can you integrate APIs into my website?",
     ],
   },
   {
-    keywords: ["page", "site", "website", "link"],
+    keywords: ["mobile", "app", "react native", "ios", "android"],
     followUps: [
-      "Show me the products page",
-      "How can I contact CodEarn?",
-      "Where can I read the founder story?",
+      "How much does a mobile app cost?",
+      "Do you handle App Store submissions?",
+      "Do you build offline-first apps?",
     ],
   },
   {
-    keywords: ["learn", "training", "course"],
+    keywords: ["saas", "platform", "subscription", "multi-tenant"],
     followUps: [
-      "What training programs does CodEarn offer?",
-      "How do I enroll?",
-      "Where can I see the training page?",
+      "Can you build a multi-tenant SaaS platform?",
+      "How long does SaaS development take?",
+      "Do you help with product scoping?",
     ],
   },
   {
-    keywords: ["blog", "article", "read"],
+    keywords: ["ai", "automation", "chatbot", "whatsapp"],
     followUps: [
-      "What topics does the blog cover?",
-      "Where can I read the blog?",
-      "Who writes the blog posts?",
+      "Can you build a WhatsApp AI chatbot?",
+      "Do you integrate OpenAI into business tools?",
+      "How does AI automation help my business?",
     ],
   },
   {
-    keywords: ["founder", "muhammad bilal", "bilal"],
+    keywords: ["price", "cost", "pricing", "budget", "how much"],
     followUps: [
-      "What is Muhammad Bilal's background?",
-      "How can I contact the founder?",
-      "What products has the founder built?",
+      "What is included in the Business package?",
+      "Do you offer express delivery?",
+      "Can I get a custom quote?",
     ],
   },
   {
-    keywords: ["codearn", "company"],
+    keywords: ["case study", "work", "portfolio", "buzzly", "hds"],
     followUps: [
-      "What does CodEarn build?",
-      "Where is CodEarn based?",
-      "How can I work with CodEarn?",
+      "Can I see the Buzzly Publicity case study?",
+      "What projects have you delivered?",
+      "Do you have experience with bilingual sites?",
     ],
   },
   {
-    keywords: ["contact", "email", "reach"],
+    keywords: ["contact", "email", "whatsapp", "call", "reach"],
     followUps: [
-      "What is CodEarn's email?",
-      "How can I partner with CodEarn?",
-      "Do you offer custom software development?",
+      "What is your WhatsApp number?",
+      "How can I book a strategy call?",
+      "Do you offer free consultations?",
     ],
   },
   {
-    keywords: ["service", "development", "custom"],
+    keywords: ["uae", "dubai", "saudi", "riyadh", "bahrain", "gulf"],
     followUps: [
-      "Does CodEarn build mobile apps?",
-      "Can CodEarn help with AI integrations?",
-      "How much does a project cost?",
-    ],
-  },
-  {
-    keywords: ["mentor", "training", "course"],
-    followUps: [
-      "How do I apply for mentorship?",
-      "What topics does the mentorship cover?",
-      "Is mentorship free?",
-    ],
-  },
-  {
-    keywords: ["product", "saas", "app"],
-    followUps: [
-      "What other products is CodEarn building?",
-      "Is GigThink CodEarn's only live product?",
-      "When is the next product launching?",
+      "Do you work with clients in the UAE?",
+      "Are you a remote-first studio?",
+      "Can you support Arabic and English?",
     ],
   },
 ];
 
 const FALLBACK: string[] = [
-  "What else can you tell me about CodEarn?",
-  "What products does CodEarn have?",
-  "How can I get in touch?",
+  "What services does CodEarn offer?",
+  "How much does a project cost?",
+  "Can I see your past work?",
 ];
 
-/**
- * Returns 3 contextual follow-up suggestions.
- */
 export function getFollowUps(aiResponse: string): string[] {
   const lower = aiResponse.toLowerCase();
-
   for (const rule of RULES) {
     if (rule.keywords.some((kw) => lower.includes(kw))) {
       return rule.followUps;
     }
   }
-
   return FALLBACK;
 }

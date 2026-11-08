@@ -1,120 +1,63 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo/site";
-import { caseStudies } from "@/lib/studydata";
+import { caseStudies } from "@/lib/case-studies";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
+  const locales = ["en", "ar"] as const;
 
-  const staticPages: MetadataRoute.Sitemap = [
-    {
-      url: `${SITE_URL}/`,
-      lastModified: now,
-      changeFrequency: "daily",
-      priority: 1.0,
-    },
-    {
-      url: `${SITE_URL}/about`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/contact`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/blogs`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/case-studies`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/codearn-ai`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.7,
-    },
-    {
-      url: `${SITE_URL}/products`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/solutions`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/training`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/enroll`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/book-call`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/founder`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${SITE_URL}/privacy-policy`,
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: `${SITE_URL}/terms`,
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: `${SITE_URL}/cookies`,
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-  ];
+  // Core static pages
+  const staticPages = [
+    { path: "", changeFrequency: "weekly", priority: 1.0 },
+    { path: "/services", changeFrequency: "weekly", priority: 0.9 },
+    { path: "/contact", changeFrequency: "monthly", priority: 0.9 },
+    { path: "/case-studies", changeFrequency: "weekly", priority: 0.8 },
+    { path: "/about", changeFrequency: "monthly", priority: 0.8 },
+    { path: "/founder", changeFrequency: "monthly", priority: 0.7 },
+    { path: "/codearn-ai", changeFrequency: "weekly", priority: 0.7 },
+    { path: "/blogs", changeFrequency: "weekly", priority: 0.7 },
+    { path: "/privacy-policy", changeFrequency: "yearly", priority: 0.3 },
+    { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
+    { path: "/cookies", changeFrequency: "yearly", priority: 0.3 },
+  ] as const;
 
-  const caseStudyPages: MetadataRoute.Sitemap = caseStudies.map((p) => ({
-    url: `${SITE_URL}/case-studies/${p.id}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
+  const sitemapEntries: MetadataRoute.Sitemap = [];
 
-  const trainingPages: MetadataRoute.Sitemap = [
-    "full-stack-development",
-    "backend-development",
-    "data-modeling",
-  ].map((slug) => ({
-    url: `${SITE_URL}/training/${slug}`,
-    lastModified: now,
-    changeFrequency: "weekly",
-    priority: 0.8,
-  }));
+  // 1. Static Pages (bilingual)
+  staticPages.forEach((page) => {
+    locales.forEach((locale) => {
+      sitemapEntries.push({
+        url: `${SITE_URL}/${locale}${page.path}`,
+        lastModified: now,
+        changeFrequency: page.changeFrequency,
+        priority: page.priority,
+        alternates: {
+          languages: {
+            en: `${SITE_URL}/en${page.path}`,
+            ar: `${SITE_URL}/ar${page.path}`,
+          },
+        },
+      });
+    });
+  });
 
-  return [...staticPages, ...caseStudyPages, ...trainingPages];
+  // 2. Case Studies (bilingual)
+  caseStudies.forEach((project) => {
+    locales.forEach((locale) => {
+      sitemapEntries.push({
+        url: `${SITE_URL}/${locale}/case-studies/${project.id}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.7,
+        alternates: {
+          languages: {
+            en: `${SITE_URL}/en/case-studies/${project.id}`,
+            ar: `${SITE_URL}/ar/case-studies/${project.id}`,
+          },
+        },
+      });
+    });
+  });
+
+  return sitemapEntries;
 }
