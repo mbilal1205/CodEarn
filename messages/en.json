@@ -1395,5 +1395,29 @@
     "secondaryButton": "See our work",
     "note": "Response within one business day."
   }
-}
+},
+  "Blog": {
+    "metadata": {
+      "title": "Blog | Insights on SaaS, Web & AI | CodEarn Tech",
+      "description": "Practical insights on software development, SaaS, bilingual web design, and AI automation — from the CodEarn Tech team."
+    },
+    "listing": {
+      "badge": "Insights & Ideas",
+      "headingLine1": "Notes from the",
+      "headingLine2": "CodEarn team.",
+      "description": "Practical thoughts on building software, serving the Gulf market, and shipping products that actually work.",
+      "featuredLabel": "Featured",
+      "recentLabel": "Latest articles",
+      "readMore": "Read article",
+      "minRead": "min read",
+      "backToBlog": "All articles"
+    },
+    "post": {
+      "publishedOn": "Published on",
+      "by": "By",
+      "share": "Share this article",
+      "relatedTitle": "Related articles",
+      "backToBlog": "Back to all articles"
+    }
+  }
 }

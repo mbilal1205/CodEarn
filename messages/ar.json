@@ -1395,5 +1395,29 @@
     "secondaryButton": "شاهد أعمالنا",
     "note": "استجابة خلال يوم عمل واحد."
   }
-}
+},
+  "Blog": {
+    "metadata": {
+      "title": "المدونة | رؤى حول SaaS والويب والذكاء الاصطناعي | CodEarn Tech",
+      "description": "رؤى عملية حول تطوير البرمجيات ومنصات SaaS والتصميم ثنائي اللغة وأتمتة الذكاء الاصطناعي — من فريق CodEarn Tech."
+    },
+    "listing": {
+      "badge": "رؤى وأفكار",
+      "headingLine1": "ملاحظات من",
+      "headingLine2": "فريق CodEarn.",
+      "description": "أفكار عملية حول بناء البرمجيات وخدمة سوق الخليج وتسليم منتجات تعمل فعلاً.",
+      "featuredLabel": "مميز",
+      "recentLabel": "أحدث المقالات",
+      "readMore": "اقرأ المقال",
+      "minRead": "دقيقة قراءة",
+      "backToBlog": "كل المقالات"
+    },
+    "post": {
+      "publishedOn": "نُشر في",
+      "by": "بقلم",
+      "share": "شارك هذا المقال",
+      "relatedTitle": "مقالات ذات صلة",
+      "backToBlog": "العودة إلى كل المقالات"
+    }
+  }
 }
