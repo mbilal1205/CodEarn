@@ -66,6 +66,52 @@ const DesktopNavLink = memo(
 )
 DesktopNavLink.displayName = "DesktopNavLink"
 
+/* -------------------- MOBILE TAB ITEM -------------------- */
+const MobileTabItem = memo(
+  ({
+    href,
+    name,
+    icon: Icon,
+    isActive,
+  }: {
+    href: string
+    name: string
+    icon: typeof Layers
+    isActive: boolean
+  }) => (
+    <Link
+      href={href}
+      className="relative flex flex-col items-center justify-center flex-1 h-full text-center group"
+    >
+      <div className="relative flex flex-col items-center gap-1 py-1 w-full">
+        <Icon
+          className={`h-[21px] w-[21px] transition-transform duration-200 group-active:scale-90 ${
+            isActive ? "text-foreground" : "text-muted-foreground"
+          }`}
+          strokeWidth={isActive ? 2.2 : 1.8}
+        />
+        <span
+          className={`text-[10px] tracking-wide transition-colors ${
+            isActive
+              ? "text-foreground font-medium"
+              : "text-muted-foreground font-normal"
+          }`}
+        >
+          {name}
+        </span>
+        {isActive && (
+          <motion.div
+            layoutId="activeMobileTabLine"
+            className="absolute bottom-[-4px] w-5 h-[3px] bg-primary rounded-full"
+            transition={{ type: "spring", stiffness: 380, damping: 30 }}
+          />
+        )}
+      </div>
+    </Link>
+  )
+)
+MobileTabItem.displayName = "MobileTabItem"
+
 /* -------------------- NAVBAR -------------------- */
 export function Navbar() {
   const pathname = usePathname()
@@ -91,13 +137,14 @@ export function Navbar() {
 
   if (!isMounted) return null
 
-  /* Mobile bottom bar: 4 primary tabs */
-  const primaryMobileTabs = navLinks.slice(0, 4)
-  const remainingMobileLinks = navLinks.slice(4)
+  /* ---------- Mobile layout: 2 left | WhatsApp | 1 right + More ---------- */
+  const leftMobileTabs = navLinks.slice(0, 2) // Services, Work
+  const rightMobileTabs = navLinks.slice(2, 3) // About
+  const moreMobileLinks = navLinks.slice(3) // Blog, Contact
 
   return (
     <>
-      {/* ---------------- TOP HEADER ---------------- */}
+      {/* ==================== TOP HEADER ==================== */}
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -126,7 +173,6 @@ export function Navbar() {
                 </div>
               </div>
 
-              {/* 👇 Tag ALWAYS visible now */}
               <div className="flex flex-col leading-none">
                 <span className="text-base sm:text-lg md:text-xl font-bold tracking-tight text-gradient">
                   CodEarn
@@ -153,7 +199,6 @@ export function Navbar() {
               <LanguageSwitcher />
               <ThemeToggle />
 
-              {/* 👇 WhatsApp — icon only < xl, full text at xl+ */}
               <a
                 href={WHATSAPP_URL}
                 target="_blank"
@@ -161,21 +206,13 @@ export function Navbar() {
                 className="hidden lg:inline-flex group"
                 aria-label={t("chatWhatsApp")}
               >
-                <Button
-                  className="relative rounded-full h-10 px-3 xl:px-4 gap-2 text-xs font-semibold text-white whitespace-nowrap overflow-hidden transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] bg-[#25D366] hover:bg-[#20bd5a] shadow-md shadow-[#25D366]/30 hover:shadow-lg hover:shadow-[#25D366]/40 ring-1 ring-white/10"
-                >
-                  {/* Live pulse dot */}
+                <Button className="relative rounded-full h-10 px-3 xl:px-4 gap-2 text-xs font-semibold text-white whitespace-nowrap overflow-hidden transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] bg-[#25D366] hover:bg-[#20bd5a] shadow-md shadow-[#25D366]/30 hover:shadow-lg hover:shadow-[#25D366]/40 ring-1 ring-white/10">
                   <span className="relative flex h-2 w-2 shrink-0">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
                   </span>
-
                   <MessageCircle className="w-3.5 h-3.5 shrink-0" />
-
-                  {/* 👇 Text only at xl+ (1280px+) */}
-                  <span className="hidden xl:inline">
-                    {t("chatWhatsApp")}
-                  </span>
+                  <span className="hidden xl:inline">{t("chatWhatsApp")}</span>
                 </Button>
               </a>
             </div>
@@ -183,66 +220,112 @@ export function Navbar() {
         </nav>
       </motion.header>
 
-      {/* ---------------- MOBILE BOTTOM TABS ---------------- */}
-      <div className="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-background/85 backdrop-blur-xl border-t border-border pb-safe-bottom shadow-[0_-4px_24px_rgba(0,0,0,0.04)]">
-        <div className="flex items-center justify-around h-16 px-2 max-w-md mx-auto">
-          {primaryMobileTabs.map((tab) => {
-            const Icon = tab.icon
-            const isActive = pathname === tab.href
-            return (
-              <Link
-                key={tab.href}
-                href={tab.href}
-                className="relative flex flex-col items-center justify-center flex-1 h-full text-center group"
-              >
-                <div className="relative flex flex-col items-center gap-1 py-1 w-full">
-                  <Icon
-                    className={`h-[21px] w-[21px] transition-transform duration-200 group-active:scale-90 ${
-                      isActive ? "text-foreground" : "text-muted-foreground"
-                    }`}
-                    strokeWidth={isActive ? 2.2 : 1.8}
-                  />
-                  <span
-                    className={`text-[10px] tracking-wide transition-colors ${
-                      isActive
-                        ? "text-foreground font-medium"
-                        : "text-muted-foreground font-normal"
-                    }`}
-                  >
-                    {tab.name}
-                  </span>
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeMobileTabLine"
-                      className="absolute bottom-[-4px] w-5 h-[3px] bg-primary rounded-full"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </div>
-              </Link>
-            )
-          })}
-
-          <button
-            onClick={() => setIsMobileSheetOpen(true)}
-            className={`flex flex-col items-center justify-center flex-1 h-full text-center transition-colors group ${
-              isMobileSheetOpen ? "text-foreground" : "text-muted-foreground"
-            }`}
-          >
-            <div className="flex flex-col items-center gap-1 py-1">
-              <MoreHorizontal
-                className="h-[21px] w-[21px] group-active:scale-90 transition-transform duration-200"
-                strokeWidth={1.8}
-              />
-              <span className="text-[10px] tracking-wide font-normal">
-                {t("more")}
-              </span>
+      {/* ==================== MOBILE BOTTOM BAR ==================== */}
+      <div className="lg:hidden fixed bottom-0 inset-x-0 z-50">
+        <div className="relative">
+          {/* ───── BAR ───── */}
+          <div className="relative bg-background/90 backdrop-blur-xl border-t border-border shadow-[0_-4px_24px_rgba(0,0,0,0.06)] pb-safe-bottom">
+            {/* Notch cutouts — background circles that "erase" the border */}
+            <div
+              className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
+              aria-hidden="true"
+            >
+              <div className="flex items-center">
+                <div className="w-5 h-5 rounded-full bg-background translate-x-1/2" />
+                <div className="w-5 h-5 rounded-full bg-background -translate-x-1/2" />
+              </div>
             </div>
-          </button>
+
+            {/* Tab bar */}
+            <div className="flex items-center h-16 px-2 max-w-md mx-auto">
+              {/* Left tabs */}
+              {leftMobileTabs.map((tab) => (
+                <MobileTabItem
+                  key={tab.href}
+                  href={tab.href}
+                  name={tab.name}
+                  icon={tab.icon}
+                  isActive={pathname === tab.href}
+                />
+              ))}
+
+              {/* Center spacer for raised WhatsApp button */}
+              <div className="w-14 shrink-0" aria-hidden="true" />
+
+              {/* Right tab */}
+              {rightMobileTabs.map((tab) => (
+                <MobileTabItem
+                  key={tab.href}
+                  href={tab.href}
+                  name={tab.name}
+                  icon={tab.icon}
+                  isActive={pathname === tab.href}
+                />
+              ))}
+
+              {/* More */}
+              <button
+                onClick={() => setIsMobileSheetOpen(true)}
+                className={`flex flex-col items-center justify-center flex-1 h-full text-center transition-colors group ${
+                  isMobileSheetOpen ? "text-foreground" : "text-muted-foreground"
+                }`}
+                aria-label={t("more")}
+              >
+                <div className="flex flex-col items-center gap-1 py-1">
+                  <MoreHorizontal
+                    className="h-[21px] w-[21px] group-active:scale-90 transition-transform duration-200"
+                    strokeWidth={1.8}
+                  />
+                  <span className="text-[10px] tracking-wide font-normal">
+                    {t("more")}
+                  </span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          {/* ───── RAISED WHATSAPP BUTTON (balanced) ───── */}
+          <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 280,
+              damping: 22,
+              delay: 0.25,
+            }}
+            className="absolute left-1/2 -translate-x-1/2 -top-6 z-10"
+          >
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t("chatWhatsApp")}
+              className="group relative flex items-center justify-center"
+            >
+              {/* Main button with background ring — notch illusion */}
+              <div className="relative w-[52px] h-[52px] rounded-full bg-[#25D366] flex items-center justify-center shadow-md shadow-[#25D366]/30 ring-[5px] ring-background group-active:scale-95 transition-transform duration-150">
+                {/* Inner highlight */}
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent pointer-events-none"
+                />
+
+                {/* WhatsApp icon */}
+                <MessageCircle
+                  className="relative w-5.5 h-5.5 text-white"
+                  strokeWidth={2.2}
+                />
+
+                {/* Static online dot — bottom-right */}
+                <span className="absolute -bottom-0.5 -end-0.5 h-3 w-3 rounded-full bg-green-400 ring-2 ring-background" />
+              </div>
+            </a>
+          </motion.div>
         </div>
       </div>
 
-      {/* ---------------- MOBILE SHEET ---------------- */}
+      {/* ==================== MOBILE SHEET ==================== */}
       <AnimatePresence>
         {isMobileSheetOpen && (
           <>
@@ -277,8 +360,8 @@ export function Navbar() {
                 </Button>
               </div>
 
-              <div className="grid grid-cols-1 gap-1.5 mb-6">
-                {remainingMobileLinks.map((link) => {
+              <div className="grid grid-cols-1 gap-1.5">
+                {moreMobileLinks.map((link) => {
                   const Icon = link.icon
                   const isActive = pathname === link.href
                   return (
@@ -302,23 +385,7 @@ export function Navbar() {
                 })}
               </div>
 
-              {/* WhatsApp CTA — mobile */}
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMobileSheetOpen(false)}
-                className="block"
-              >
-                <Button className="w-full h-12 rounded-xl text-sm font-semibold text-white shadow-md shadow-[#25D366]/30 flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a]">
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
-                  </span>
-                  <MessageCircle className="w-4 h-4" />
-                  {t("chatWhatsApp")}
-                </Button>
-              </a>
+              {/* 👇 WhatsApp CTA REMOVED — already in bottom bar */}
             </motion.div>
           </>
         )}
