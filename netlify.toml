@@ -1,0 +1,49 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Fallback redirects (agar middleware na chale to ye kaam karega)
+[[redirects]]
+  from = "/"
+  to = "/en"
+  status = 302
+  force = false
+
+[[redirects]]
+  from = "/services"
+  to = "/en/services"
+  status = 302
+  force = false
+
+[[redirects]]
+  from = "/about"
+  to = "/en/about"
+  status = 302
+  force = false
+
+[[redirects]]
+  from = "/pricing"
+  to = "/en/pricing"
+  status = 302
+  force = false
+
+[[redirects]]
+  from = "/contact"
+  to = "/en/contact"
+  status = 302
+  force = false
+
+[[redirects]]
+  from = "/blogs/*"
+  to = "/en/blogs/:splat"
+  status = 302
+  force = false
+
+[[redirects]]
+  from = "/case-studies/*"
+  to = "/en/case-studies/:splat"
+  status = 302
+  force = false
