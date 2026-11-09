@@ -5,28 +5,28 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ============================================================
-   FONT SIZE SCALE — bumped up for readability
+   FLUID TYPE SCALE
+   clamp(min, preferred, max) — mobile se desktop tak smooth
    ============================================================ */
 @theme {
-  /* Default Tailwind se ~15-20% bada */
-  --text-xs: 0.875rem;      /* 14px (was 12px) */
-  --text-sm: 1rem;          /* 16px (was 14px) */
-  --text-base: 1.125rem;    /* 18px (was 16px) */
-  --text-lg: 1.25rem;       /* 20px (was 18px) */
-  --text-xl: 1.5rem;        /* 24px (was 20px) */
-  --text-2xl: 1.75rem;      /* 28px (was 24px) */
-  --text-3xl: 2.125rem;     /* 34px (was 30px) */
-  --text-4xl: 2.625rem;     /* 42px (was 36px) */
-  --text-5xl: 3.5rem;       /* 56px (was 48px) */
-  --text-6xl: 4.25rem;      /* 68px (was 60px) */
-  --text-7xl: 5rem;         /* 80px (was 72px) */
+  /* Body text */
+  --text-xs:   clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);   /* 12 → 13px */
+  --text-sm:   clamp(0.875rem, 0.83rem + 0.2vw, 0.9375rem);   /* 14 → 15px */
+  --text-base: clamp(0.9375rem, 0.88rem + 0.25vw, 1.0625rem); /* 15 → 17px */
+  --text-lg:   clamp(1.0625rem, 0.98rem + 0.35vw, 1.1875rem); /* 17 → 19px */
+  --text-xl:   clamp(1.1875rem, 1.08rem + 0.5vw, 1.375rem);   /* 19 → 22px */
+  --text-2xl:  clamp(1.375rem, 1.2rem + 0.75vw, 1.75rem);     /* 22 → 28px */
+  --text-3xl:  clamp(1.5rem, 1.28rem + 1vw, 2.125rem);        /* 24 → 34px */
+  --text-4xl:  clamp(1.75rem, 1.35rem + 1.6vw, 2.625rem);     /* 28 → 42px */
+  --text-5xl:  clamp(2rem, 1.4rem + 2.5vw, 3.5rem);           /* 32 → 56px */
+  --text-6xl:  clamp(2.5rem, 1.5rem + 3.5vw, 4.25rem);        /* 40 → 68px */
+  --text-7xl:  clamp(3rem, 1.6rem + 4.5vw, 5rem);             /* 48 → 80px */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* Font families — English + Arabic */
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", sans-serif;
   --font-arabic: var(--font-ibm-plex-arabic), var(--font-jakarta), "Tahoma",
@@ -73,8 +73,8 @@
 }
 
 @keyframes loading-bar {
-  0% { transform: translateX(-100%); }
-  50% { transform: translateX(100%); }
+  0%   { transform: translateX(-100%); }
+  50%  { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
 }
 
@@ -96,7 +96,6 @@
   --secondary: oklch(0.965 0.01 252.3);
   --secondary-foreground: oklch(0.35 0.12 252.3);
   --muted: oklch(0.97 0.008 250);
-  /* 👇 Muted darker — easy to read, not faded */
   --muted-foreground: oklch(0.42 0.03 255);
   --accent: oklch(0.95 0.02 252.3);
   --accent-foreground: oklch(0.4 0.15 252.3);
@@ -138,7 +137,6 @@
   --secondary: oklch(0.23 0.04 260);
   --secondary-foreground: oklch(0.92 0.04 250);
   --muted: oklch(0.23 0.04 260);
-  /* 👇 Muted brighter in dark — readable, not faded */
   --muted-foreground: oklch(0.78 0.03 255);
   --accent: oklch(0.23 0.04 260);
   --accent-foreground: oklch(0.98 0.003 247);
@@ -164,7 +162,7 @@
 }
 
 /* ============================================================
-   BASE STYLES — font family, sizes, readability
+   BASE STYLES — Mobile-first, clean, readable
    ============================================================ */
 @layer base {
   * {
@@ -174,8 +172,8 @@
   html {
     font-family: var(--font-sans);
     -webkit-text-size-adjust: 100%;
-    /* 👇 Base font size increased from 16px to 18px */
-    font-size: 18px;
+    /* Default — NO global bump */
+    font-size: 16px;
   }
 
   html[lang="ar"] {
@@ -183,7 +181,7 @@
     letter-spacing: 0;
   }
 
-  /* Arabic headings */
+  /* Arabic line-height for legibility */
   html[lang="ar"] h1,
   html[lang="ar"] h2,
   html[lang="ar"] h3,
@@ -196,7 +194,7 @@
 
   html[lang="ar"] p,
   html[lang="ar"] li {
-    line-height: 1.8;
+    line-height: 1.75;
   }
 
   html[lang="ar"] .font-mono,
@@ -215,14 +213,14 @@
 
   body {
     @apply bg-background text-foreground;
-    /* 👇 Slightly larger line-height for readability */
-    line-height: 1.65;
+    line-height: 1.6;
     font-weight: 400;
+    font-size: var(--text-base);
   }
 
-  /* 👇 Headings tighter line-height */
+  /* Headings — mobile-friendly */
   h1, h2, h3, h4 {
-    line-height: 1.2;
+    line-height: 1.15;
     font-weight: 700;
     letter-spacing: -0.02em;
   }
@@ -230,6 +228,16 @@
   h5, h6 {
     line-height: 1.3;
     font-weight: 600;
+  }
+
+  /* Larger line-height on desktop for breathing room */
+  @media (min-width: 768px) {
+    body {
+      line-height: 1.65;
+    }
+    h1, h2, h3, h4 {
+      line-height: 1.2;
+    }
   }
 
   html[dir="rtl"] .rtl-flip {

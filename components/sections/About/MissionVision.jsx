@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import {
   Target,
@@ -19,26 +18,50 @@ import { Separator } from "@/components/ui/separator";
 
 const BELIEF_ICONS = [Zap, Heart, Globe];
 
+/* SSR-safe animation variants */
+const fadeUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-80px" },
+  transition: { duration: 0.5 },
+};
+
+const fadeLeft = {
+  initial: { opacity: 0, x: -30 },
+  whileInView: { opacity: 1, x: 0 },
+  viewport: { once: true, margin: "-80px" },
+  transition: { duration: 0.6 },
+};
+
+const fadeRight = {
+  initial: { opacity: 0, x: 30 },
+  whileInView: { opacity: 1, x: 0 },
+  viewport: { once: true, margin: "-80px" },
+  transition: { duration: 0.6 },
+};
+
 export function MissionVision() {
   const t = useTranslations("About.mission");
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const prefersReducedMotion = useReducedMotion();
 
   const missionPoints = t.raw("missionPoints");
   const visionPoints = t.raw("visionPoints");
   const beliefs = t.raw("beliefs");
 
   return (
-    <section ref={ref} className="py-20 lg:py-28 bg-muted/30 overflow-hidden">
+    <section className="py-20 lg:py-28 bg-muted/30 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        {/* Header */}
         <motion.div
           className="text-center max-w-3xl mx-auto mb-16"
-          initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          initial={fadeUp.initial}
+          whileInView={fadeUp.whileInView}
+          viewport={fadeUp.viewport}
+          transition={fadeUp.transition}
         >
-          <Badge variant="outline" className="mb-4 px-4 py-1.5 text-sm border-primary/20">
+          <Badge
+            variant="outline"
+            className="mb-4 px-4 py-1.5 text-sm border-primary/20"
+          >
             {t("badge")}
           </Badge>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 text-foreground">
@@ -50,9 +73,10 @@ export function MissionVision() {
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 mb-20">
           {/* Mission */}
           <motion.div
-            initial={prefersReducedMotion ? {} : { opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            initial={fadeLeft.initial}
+            whileInView={fadeLeft.whileInView}
+            viewport={fadeLeft.viewport}
+            transition={fadeLeft.transition}
             className="group relative"
           >
             <div className="absolute -inset-1 bg-gradient-to-r from-primary/60 to-primary/30 rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity" />
@@ -87,9 +111,10 @@ export function MissionVision() {
 
           {/* Vision */}
           <motion.div
-            initial={prefersReducedMotion ? {} : { opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={fadeRight.initial}
+            whileInView={fadeRight.whileInView}
+            viewport={fadeRight.viewport}
+            transition={fadeRight.transition}
             className="group relative"
           >
             <div className="absolute -inset-1 bg-gradient-to-r from-primary/40 to-primary/20 rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity" />
@@ -128,9 +153,10 @@ export function MissionVision() {
         {/* Beliefs */}
         <motion.div
           className="mb-16"
-          initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.3 }}
+          initial={fadeUp.initial}
+          whileInView={fadeUp.whileInView}
+          viewport={fadeUp.viewport}
+          transition={fadeUp.transition}
         >
           <h3 className="text-2xl font-bold text-foreground text-center mb-12">
             {t("beliefsHeading")}
@@ -142,9 +168,10 @@ export function MissionVision() {
               return (
                 <motion.div
                   key={belief.title}
-                  initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
                   className="p-6 rounded-xl bg-card border border-border hover:border-primary/20 transition-colors text-center"
                 >
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
@@ -164,9 +191,10 @@ export function MissionVision() {
 
         {/* Quote */}
         <motion.div
-          initial={prefersReducedMotion ? {} : { opacity: 0, scale: 0.95 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.6 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5 }}
           className="relative p-8 lg:p-12 rounded-3xl bg-primary/5 border border-primary/10 text-center"
         >
           <Quote className="w-10 h-10 text-primary/20 mx-auto mb-4" />
@@ -190,9 +218,10 @@ export function MissionVision() {
 
         {/* CTA */}
         <motion.div
-          initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.7 }}
+          initial={fadeUp.initial}
+          whileInView={fadeUp.whileInView}
+          viewport={fadeUp.viewport}
+          transition={{ duration: 0.5, delay: 0.1 }}
           className="mt-12 text-center"
         >
           <p className="text-muted-foreground mb-4">{t("ctaText")}</p>
