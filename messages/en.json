@@ -3,11 +3,11 @@
     "title": "CodEarn Tech | Custom SaaS, Web & Mobile Development",
     "description": "CodEarn Tech builds custom SaaS platforms, web and mobile apps, and business automation for companies across the Gulf and worldwide."
   },
- "Nav": {
+"Nav": {
   "home": "Home",
   "services": "Services",
   "work": "Work",
-  "labs": "Labs",
+  "pricing": "Pricing",
   "about": "About",
   "blog": "Blog",
   "contact": "Contact",

@@ -14,6 +14,7 @@ import {
   X,
   BookOpen,
   MessageCircle,
+  Coins,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -33,6 +34,7 @@ const useNavLinks = () => {
     { name: t("services"), href: "/services", icon: Layers },
     { name: t("work"), href: "/case-studies", icon: Briefcase },
     { name: t("about"), href: "/about", icon: Info },
+    { name: t("pricing"), href: "/pricing", icon: Coins },
     { name: t("blog"), href: "/blogs", icon: BookOpen },
     { name: t("contact"), href: "/contact", icon: PhoneCall },
   ] as const
@@ -137,10 +139,10 @@ export function Navbar() {
 
   if (!isMounted) return null
 
-  /* ---------- Mobile layout: 2 left | WhatsApp | 1 right + More ---------- */
+  /* ---------- Mobile layout: 2 left | WhatsApp | 2 right + More ---------- */
   const leftMobileTabs = navLinks.slice(0, 2) // Services, Work
-  const rightMobileTabs = navLinks.slice(2, 3) // About
-  const moreMobileLinks = navLinks.slice(3) // Blog, Contact
+  const rightMobileTabs = navLinks.slice(2, 4) // About, Pricing
+  const moreMobileLinks = navLinks.slice(4) // Blog, Contact
 
   return (
     <>
@@ -225,7 +227,7 @@ export function Navbar() {
         <div className="relative">
           {/* ───── BAR ───── */}
           <div className="relative bg-background/90 backdrop-blur-xl border-t border-border shadow-[0_-4px_24px_rgba(0,0,0,0.06)] pb-safe-bottom">
-            {/* Notch cutouts — background circles that "erase" the border */}
+            {/* Notch cutouts */}
             <div
               className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
               aria-hidden="true"
@@ -252,7 +254,7 @@ export function Navbar() {
               {/* Center spacer for raised WhatsApp button */}
               <div className="w-14 shrink-0" aria-hidden="true" />
 
-              {/* Right tab */}
+              {/* Right tabs */}
               {rightMobileTabs.map((tab) => (
                 <MobileTabItem
                   key={tab.href}
@@ -284,7 +286,7 @@ export function Navbar() {
             </div>
           </div>
 
-          {/* ───── RAISED WHATSAPP BUTTON (balanced) ───── */}
+          {/* ───── RAISED WHATSAPP BUTTON ───── */}
           <motion.div
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -303,21 +305,15 @@ export function Navbar() {
               aria-label={t("chatWhatsApp")}
               className="group relative flex items-center justify-center"
             >
-              {/* Main button with background ring — notch illusion */}
               <div className="relative w-[52px] h-[52px] rounded-full bg-[#25D366] flex items-center justify-center shadow-md shadow-[#25D366]/30 ring-[5px] ring-background group-active:scale-95 transition-transform duration-150">
-                {/* Inner highlight */}
                 <span
                   aria-hidden="true"
                   className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent pointer-events-none"
                 />
-
-                {/* WhatsApp icon */}
                 <MessageCircle
-                  className="relative w-5.5 h-5.5 text-white"
+                  className="relative w-[22px] h-[22px] text-white"
                   strokeWidth={2.2}
                 />
-
-                {/* Static online dot — bottom-right */}
                 <span className="absolute -bottom-0.5 -end-0.5 h-3 w-3 rounded-full bg-green-400 ring-2 ring-background" />
               </div>
             </a>
@@ -384,8 +380,6 @@ export function Navbar() {
                   )
                 })}
               </div>
-
-              {/* 👇 WhatsApp CTA REMOVED — already in bottom bar */}
             </motion.div>
           </>
         )}
