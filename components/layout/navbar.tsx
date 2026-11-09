@@ -139,10 +139,13 @@ export function Navbar() {
 
   if (!isMounted) return null
 
-  /* ---------- Mobile layout: 2 left | WhatsApp | 2 right + More ---------- */
-  const leftMobileTabs = navLinks.slice(0, 2) // Services, Work
-  const rightMobileTabs = navLinks.slice(2, 4) // About, Pricing
-  const moreMobileLinks = navLinks.slice(4) // Blog, Contact
+  /* ---------- MOBILE LAYOUT LOGIC ---------- */
+  // Left side: Services, About
+  const leftMobileTabs = [navLinks[0], navLinks[2]] 
+  // Right side: Pricing
+  const rightMobileTabs = [navLinks[3]] 
+  // More menu: Work, Blog, Contact
+  const moreMobileLinks = [navLinks[1], navLinks[4], navLinks[5]] 
 
   return (
     <>
@@ -240,7 +243,7 @@ export function Navbar() {
 
             {/* Tab bar */}
             <div className="flex items-center h-16 px-2 max-w-md mx-auto">
-              {/* Left tabs */}
+              {/* Left tabs (Services, About) */}
               {leftMobileTabs.map((tab) => (
                 <MobileTabItem
                   key={tab.href}
@@ -254,7 +257,7 @@ export function Navbar() {
               {/* Center spacer for raised WhatsApp button */}
               <div className="w-14 shrink-0" aria-hidden="true" />
 
-              {/* Right tabs */}
+              {/* Right tab (Pricing) */}
               {rightMobileTabs.map((tab) => (
                 <MobileTabItem
                   key={tab.href}
@@ -265,7 +268,7 @@ export function Navbar() {
                 />
               ))}
 
-              {/* More */}
+              {/* More (Dots) */}
               <button
                 onClick={() => setIsMobileSheetOpen(true)}
                 className={`flex flex-col items-center justify-center flex-1 h-full text-center transition-colors group ${
