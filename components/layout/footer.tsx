@@ -40,7 +40,6 @@ function useFooterSections(): Record<string, FooterSection> {
       links: [
         { name: t("company.about"), href: "/about" },
         { name: t("company.work"), href: "/case-studies" },
-        { name: t("company.labs"), href: "/products" },
         { name: t("company.blog"), href: "/blogs" },
         { name: t("company.contact"), href: "/contact" },
       ],
